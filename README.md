@@ -1,15 +1,23 @@
 # Học tiếng Việt
 
-A small personal app for learning northern Vietnamese from my own lesson notes. It covers reading, listening and typing. Speaking practice happens elsewhere.
+A small personal app for learning northern Vietnamese from my own lesson notes. It is written only: reading and typing, with no sound. Speaking practice happens elsewhere.
+
+Live at https://isaacvdp.github.io/hoc-tieng-viet/
 
 ## Exercises
 
 - **Translate:** read the English and type the Vietnamese.
 - **Build:** tap the words into the right order.
-- **Listen:** hear a sentence and pick what it means.
-- **Dictation:** hear a sentence and type it.
-- **Letters:** the alphabet, tones and letter combinations with audio, plus three listening and sound quizzes.
-- **Mistakes:** everything you got wrong stays listed until you get it right twice in a row.
+- **Fill in:** pick the word that completes the sentence.
+- **Meaning:** read the Vietnamese and pick what it means.
+- **Right sentence:** pick the sentence with the correct word order.
+- **Right marks:** pick the correct spelling. Only appears when chosen, not in Mix.
+
+Other pages:
+
+- **Letters:** the alphabet, tones and letter combinations described in English, with three quizzes.
+- **Notes:** the rules from my lessons, and a search across every word and sentence.
+- **Mistakes:** everything I got wrong stays listed until I get it right twice in a row.
 
 Typing is checked without tone or vowel marks, and the correct spelling is always shown afterwards.
 
@@ -25,18 +33,10 @@ Then open http://localhost:8000. Progress is saved in the browser, separately on
 
 ## Add lessons
 
-1. Add sentences to `data/content.json`. Each one needs `topic`, `vi` and `en`. `alt` (other accepted answers) and `note` (shown with the answer) are optional.
-2. Generate audio for the new sentences:
+Add sentences to `data/content.json`. Each one needs `topic`, `vi` and `en`. `alt` (other accepted answers) and `note` (shown with the answer) are optional. Rules for the Notes page go under `rules`.
 
-   ```
-   pip install edge-tts
-   python tools/generate_audio.py
-   ```
+Then check the content and the exercises:
 
-3. Check the content and the answer checker:
-
-   ```
-   node tests/check.test.js
-   ```
-
-The audio is Microsoft's `vi-VN-HoaiMyNeural` voice through edge-tts. The text of each new sentence is sent to Microsoft to generate its clip.
+```
+node tests/check.test.js
+```

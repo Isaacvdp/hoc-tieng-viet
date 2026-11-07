@@ -54,6 +54,46 @@ for (const item of content.items) {
   assert(item.en);
 }
 for (const t of content.topics) assert(content.items.some((i) => i.topic === t.id), "empty " + t.id);
+
+// exercises: the right answer is always there, once, and no wrong option is also valid
+const Ex = require(root + "/js/exercises.js");
+const { plain } = require(root + "/js/check.js");
+const plainText = (t) => words(t).map(plain).join(" ");
+const rulesTopics = content.rules.flatMap((r) => r.topics || []);
+for (const t of rulesTopics) assert(topics.has(t), "rule topic " + t);
+assert.equal(Ex.toneName("nước"), "sắc");
+assert.equal(Ex.toneName("mã"), "ngã");
+assert.equal(Ex.toneName("mạ"), "nặng");
+assert.equal(Ex.toneName("cam"), "ngang");
+for (const item of content.items) {
+  const accepted = new Set([item.vi, ...(item.alt || [])].map(plainText));
+  const modes = Ex.allowedModes(item);
+  for (let round = 0; round < 25; round++) {
+    const m = Ex.meaningOptions(item, content.items);
+    assert.equal(m.length, 4, item.vi); assert.equal(new Set(m).size, 4, item.vi); assert(m.includes(item.en));
+    if (modes.includes("fill")) {
+      const f = Ex.fillBlank(item, content.items, content.confusables);
+      assert.equal(f.options.length, 4, item.vi); assert.equal(new Set(f.options).size, 4, item.vi + f.options);
+      assert(f.options.includes(f.right));
+      for (const o of f.options) {
+        if (o === f.right) continue;
+        assert(!accepted.has(plainText(`${f.before} ${o} ${f.after}`)), `fill also valid: ${item.vi} / ${o}`);
+      }
+    }
+    if (modes.includes("sentence")) {
+      const s = Ex.sentenceOptions(item);
+      assert(s.options.length >= 3, "few sentence options: " + item.vi); assert(s.options.includes(s.right));
+      assert.equal(new Set(s.options).size, s.options.length);
+      for (const o of s.options) if (o !== s.right) assert(!accepted.has(plainText(o)), `sentence also valid: ${o}`);
+    }
+    if (modes.includes("marks")) {
+      const k = Ex.marksOptions(item);
+      assert.equal(k.options.length, 4, "marks options: " + item.vi); assert(k.options.includes(item.vi));
+      for (const o of k.options) assert.equal(plainText(o), plainText(item.vi), o);
+    }
+  }
+}
+
 const letters = content.letterGroups.slice(0, 4).flatMap((g) => g.letters.map((l) => l.letter));
 assert.equal(letters.length, 29, "alphabet count " + letters.length);
 console.log("ok", content.items.length, "items;", new Set(words(content.items.map((i) => i.vi).join(" ")).map((w) => w.toLowerCase())).size, "unique words");

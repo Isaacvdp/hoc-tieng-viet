@@ -5,13 +5,16 @@ const QUIZ_SIZE = 10;
 const DAY = 24 * 60 * 60 * 1000;
 const REVIEW_AFTER_DAYS = [0, 1, 3, 7, 21];
 const STORAGE_KEY = "hoc-tieng-viet";
+const SEARCH_LIMIT = 40;
 
 const MODES = [
-  { id: "mix", label: "Mix" },
-  { id: "translate", label: "Translate" },
-  { id: "build", label: "Build" },
-  { id: "listen", label: "Listen" },
-  { id: "dictation", label: "Dictation" },
+  { id: "mix", label: "Mix", hint: "A bit of everything except marks." },
+  { id: "translate", label: "Translate", hint: "Read the English and type the Vietnamese." },
+  { id: "build", label: "Build", hint: "Tap the words into the right order." },
+  { id: "fill", label: "Fill in", hint: "Pick the word that completes the sentence." },
+  { id: "meaning", label: "Meaning", hint: "Read the Vietnamese and pick what it means." },
+  { id: "sentence", label: "Right sentence", hint: "Pick the sentence with the correct word order." },
+  { id: "marks", label: "Right marks", hint: "Pick the correct spelling. You read the marks, you don't type them." },
 ];
 
 const KIND_LABELS = {
@@ -21,14 +24,14 @@ const KIND_LABELS = {
   spelling: "spelling",
   skipped: "didn't know",
   meaning: "meaning",
+  choice: "wrong word",
+  marks: "marks",
 };
 
-const PROPER_FIRST_WORDS = new Set(["Isaac", "Tết", "Na"]);
+const { shuffle, pick, toneName, tileWords, allowedModes, acceptedAnswers } = Exercises;
 
 const app = document.getElementById("app");
-const audio = new Audio();
 let content;
-let audioFiles = {};
 let topicById = {};
 let state = load();
 let onKey = null;
@@ -36,9 +39,11 @@ let onKey = null;
 // ---------- Storage ----------
 
 function load() {
-  const empty = { progress: {}, mode: "mix", topics: null, speakAnswers: true };
+  const empty = { progress: {}, mode: "mix", topics: null };
   try {
-    return { ...empty, ...JSON.parse(localStorage.getItem(STORAGE_KEY)) };
+    const saved = { ...empty, ...JSON.parse(localStorage.getItem(STORAGE_KEY)) };
+    if (!MODES.some((mode) => mode.id === saved.mode)) saved.mode = "mix";
+    return saved;
   } catch {
     return empty;
   }
@@ -125,60 +130,26 @@ function show(...children) {
   window.scrollTo(0, 0);
 }
 
-function shuffle(list) {
-  const copy = [...list];
-  for (let i = copy.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [copy[i], copy[j]] = [copy[j], copy[i]];
-  }
-  return copy;
-}
-
-const pick = (list) => list[Math.floor(Math.random() * list.length)];
-
-const PLAY_ICON = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11a.5.5 0 0 0 .77.42l8.5-5.5a.5.5 0 0 0 0-.84l-8.5-5.5A.5.5 0 0 0 4 2.5z"/></svg>';
-
-function hasAudio(text) {
-  return Boolean(audioFiles[text]);
-}
-
-function play(text, slow = false) {
-  if (!hasAudio(text)) return;
-  audio.src = `audio/${audioFiles[text]}`;
-  audio.playbackRate = slow ? 0.7 : 1;
-  audio.play().catch(() => {
-    // Browsers may block sound until the first tap. The play button still works.
-  });
-}
-
-function iconPlayButton(text, label) {
-  if (!hasAudio(text)) return null;
-  const button = h("button", { class: "icon-btn", type: "button", "aria-label": label || `Play ${text}`, onclick: () => play(text) });
-  button.innerHTML = PLAY_ICON;
-  return button;
-}
-
-function audioControls(text) {
-  if (!hasAudio(text)) return h("p", { class: "sub small" }, "No audio for this one yet.");
-  const normal = h("button", { class: "btn audio-btn", type: "button", onclick: () => play(text) });
-  normal.innerHTML = PLAY_ICON;
-  normal.append("Play");
-  const slow = h("button", { class: "btn", type: "button", onclick: () => play(text, true) }, "Slow");
-  return h("div", { class: "audio-row" }, normal, slow);
-}
-
 // "Tôi muốn đi **Na Uy**." becomes text with the keyword emphasised.
 function withBold(text) {
   return text.split("**").map((part, i) => (i % 2 ? h("strong", {}, part) : part));
 }
 
-function allowedModes(item) {
-  if (item.from) return ["translate", "build"];
-  if (Check.words(item.vi).length < 3) return ["translate", "listen", "dictation"];
-  return ["translate", "build", "listen", "dictation"];
+function modesFor(item, sessionMode) {
+  const modes = allowedModes(item);
+  return sessionMode === "mix" ? modes.filter((mode) => mode !== "marks") : modes;
 }
 
-const acceptedAnswers = (item) => [item.vi, ...(item.alt || [])];
+function renderRule(rule) {
+  return [
+    rule.body.map((text) => h("p", { class: "rule-body" }, text)),
+    rule.examples?.length > 0 && h("dl", { class: "examples" },
+      rule.examples.map((example) => [
+        h("dt", { lang: "vi" }, example.vi),
+        h("dd", {}, example.en),
+      ])),
+  ];
+}
 
 // ---------- Practice setup ----------
 
@@ -194,28 +165,21 @@ function renderPractice() {
   function refresh() {
     state.topics = [...selected];
     save();
-    const pool = poolFor();
-    startButton.disabled = pool.length === 0;
-    startButton.textContent = `Start ${Math.min(SESSION_SIZE, pool.length) || ""} questions`.replace("  ", " ");
-    message.textContent = pool.length === 0 ? "Pick at least one topic that works with this exercise." : "";
-    message.hidden = pool.length > 0;
+    const count = Math.min(SESSION_SIZE, poolFor().length);
+    startButton.disabled = count === 0;
+    startButton.textContent = count ? `Start ${count} questions` : "Start";
+    message.textContent = count ? "" : "Pick at least one topic that works with this exercise.";
+    message.hidden = count > 0;
     for (const box of topicBoxes) box.checked = selected.has(box.value);
   }
 
-  const modeHints = {
-    mix: "A bit of everything.",
-    translate: "Read the English and type the Vietnamese.",
-    build: "Tap the words into the right order.",
-    listen: "Hear a sentence and pick what it means.",
-    dictation: "Hear a sentence and type what you heard.",
-  };
-  const modeHint = h("p", { class: "sub small", style: "margin-top:8px" }, modeHints[state.mode]);
+  const modeHint = h("p", { class: "sub small mode-hint" }, MODES.find((m) => m.id === state.mode).hint);
   const modes = h("div", { class: "segments", role: "radiogroup", "aria-label": "Exercise" },
     MODES.map((mode) =>
       h("label", {},
         h("input", {
           type: "radio", name: "mode", value: mode.id, checked: state.mode === mode.id,
-          onchange: () => { state.mode = mode.id; modeHint.textContent = modeHints[mode.id]; refresh(); },
+          onchange: () => { state.mode = mode.id; modeHint.textContent = mode.hint; refresh(); },
         }),
         mode.label)),
   );
@@ -248,18 +212,11 @@ function renderPractice() {
     refresh();
   };
 
-  const speak = h("label", { class: "check-line" },
-    h("input", {
-      type: "checkbox", checked: state.speakAnswers,
-      onchange: (event) => { state.speakAnswers = event.target.checked; save(); },
-    }),
-    "Read answers aloud");
-
   show(
     h("h1", {}, "Practice"),
-    h("p", { class: "sub" }, "You don't need tone marks yet. The correct spelling is always shown afterwards."),
+    h("p", { class: "sub" }, "You don't need to type tone marks yet. The correct spelling is always shown afterwards."),
     h("h2", {}, "Exercise"),
-    modes, modeHint, speak,
+    modes, modeHint,
     h("div", { class: "topic-head" },
       h("h2", {}, "Topics"),
       h("span", {},
@@ -291,31 +248,19 @@ function chooseItems(pool) {
 }
 
 function startSession(pool, mode = state.mode) {
-  runSession({
-    queue: chooseItems(pool).map((item) => ({ item, retry: false })),
-    mode,
-    total: 0,
-    done: 0,
-    firstTryRight: 0,
-    missed: [],
-    pool,
-  });
+  const queue = chooseItems(pool).map((item) => ({ item, retry: false }));
+  nextQuestion({ queue, mode, total: queue.length, done: 0, firstTryRight: 0, missed: [], pool });
 }
 
 // ---------- Practice session ----------
 
-function runSession(session) {
-  session.total = session.queue.length;
-  nextQuestion(session);
-}
-
 function nextQuestion(session) {
   const entry = session.queue.shift();
   if (!entry) return renderSummary(session);
-  const options = allowedModes(entry.item);
+  const options = modesFor(entry.item, session.mode);
   const mode = session.mode === "mix" ? pick(options) : options.includes(session.mode) ? session.mode : "translate";
-  const render = { translate: askTyped, dictation: askTyped, build: askBuild, listen: askListen }[mode];
-  render(session, entry, mode);
+  const ask = { translate: askTyped, build: askBuild, meaning: askMeaning, fill: askFill, sentence: askSentence, marks: askMarks };
+  ask[mode](session, entry);
 }
 
 function progressRow(session, retry) {
@@ -323,23 +268,20 @@ function progressRow(session, retry) {
   return h("div", { class: "progress-row" },
     h("div", { class: "progress-track", role: "progressbar", "aria-valuenow": session.done, "aria-valuemin": 0, "aria-valuemax": session.total }, fill),
     h("span", {}, retry ? "Second try" : `${session.done + 1} of ${session.total}`),
-    h("button", { class: "btn link small", type: "button", style: "min-height:auto;padding:0", onclick: () => renderSummary(session) }, "End"));
+    h("button", { class: "btn link small end-link", type: "button", onclick: () => renderSummary(session) }, "End"));
 }
 
-function promptFor(item, mode) {
+function promptFor(item) {
   if (item.from) {
     return [
       h("p", { class: "instruction" }, "Ask about the highlighted word"),
       h("p", { class: "prompt", lang: "vi" }, withBold(item.from)),
     ];
   }
-  if (mode === "dictation") {
-    return [h("p", { class: "instruction" }, "Type what you hear"), audioControls(item.vi)];
-  }
   return [h("p", { class: "instruction" }, "In Vietnamese"), h("p", { class: "prompt" }, item.en)];
 }
 
-function askTyped(session, entry, mode) {
+function askTyped(session, entry) {
   const { item } = entry;
   const input = h("input", {
     class: "answer-input", type: "text", lang: "vi", "aria-label": "Your answer",
@@ -359,9 +301,8 @@ function askTyped(session, entry, mode) {
       h("button", { class: "btn primary", type: "submit" }, "Check"),
       h("button", { class: "btn", type: "button", onclick: showHint }, "Hint"),
       h("button", { class: "btn link", type: "button", onclick: () => submit("") }, "I don't know")));
-  show(progressRow(session, entry.retry), promptFor(item, mode), form);
+  show(progressRow(session, entry.retry), promptFor(item), form);
   input.focus();
-  if (mode === "dictation") play(item.vi);
 }
 
 function gradeTyped(item, typed) {
@@ -370,12 +311,6 @@ function gradeTyped(item, typed) {
     flexiblePronouns: !topicById[item.topic].strictPronouns,
   });
   return { ...check, typed, showDiff: true };
-}
-
-function tileWords(item) {
-  const list = Check.words(item.vi);
-  if (!PROPER_FIRST_WORDS.has(list[0])) list[0] = list[0].toLowerCase();
-  return list;
 }
 
 function askBuild(session, entry) {
@@ -399,7 +334,7 @@ function askBuild(session, entry) {
 
   show(
     progressRow(session, entry.retry),
-    item.from ? promptFor(item, "build") : [h("p", { class: "instruction" }, "Put the words in order"), h("p", { class: "prompt" }, item.en)],
+    item.from ? promptFor(item) : [h("p", { class: "instruction" }, "Put the words in order"), h("p", { class: "prompt" }, item.en)],
     builtTray, bankTray,
     h("div", { class: "actions" }, checkButton,
       h("button", { class: "btn link", type: "button", onclick: () => finish(session, entry, gradeTyped(item, "")) }, "I don't know")),
@@ -407,50 +342,77 @@ function askBuild(session, entry) {
   draw();
 }
 
-function askListen(session, entry) {
+// Shared by every multiple-choice exercise.
+function askChoice(session, entry, { heading, options, right, wrongKind, optionsLang }) {
   const { item } = entry;
-  const others = shuffle(content.items.filter((other) => other.en !== item.en && !other.from));
-  // Same-topic options are harder to tell apart, so they come first.
-  const distractors = [...others.filter((o) => o.topic === item.topic), ...others.filter((o) => o.topic !== item.topic)];
-  const texts = [];
-  for (const other of distractors) {
-    if (texts.length === 3) break;
-    if (!texts.includes(other.en)) texts.push(other.en);
-  }
-  const options = shuffle([item.en, ...texts]);
-
   const buttons = options.map((text, i) =>
-    h("button", {
-      class: "option", type: "button",
-      onclick: () => choose(i),
-    }, h("span", { class: "key", "aria-hidden": "true" }, i + 1), h("span", {}, text)));
+    h("button", { class: "option", type: "button", lang: optionsLang, onclick: () => choose(i) },
+      h("span", { class: "key", "aria-hidden": "true" }, i + 1), h("span", {}, text)));
 
   function choose(i) {
     if (buttons[0].disabled) return;
-    const correct = options[i] === item.en;
+    const correct = options[i] === right;
     buttons.forEach((button, b) => {
       button.disabled = true;
-      if (options[b] === item.en) button.classList.add("is-right");
+      if (options[b] === right) button.classList.add("is-right");
       else if (b === i) button.classList.add("is-wrong");
     });
     onKey = null;
     finish(session, entry, {
-      correct, answer: item.vi, typed: options[i], kinds: correct ? {} : { meaning: 1 }, tips: [],
+      correct, answer: item.vi, typed: options[i], kinds: correct ? {} : { [wrongKind]: 1 }, tips: [],
       showDiff: false, keep: true,
     });
   }
 
-  show(
-    progressRow(session, entry.retry),
-    h("p", { class: "instruction" }, "What does this mean?"),
-    audioControls(item.vi),
-    h("div", { class: "options" }, buttons),
-  );
+  show(progressRow(session, entry.retry), heading, h("div", { class: "options" }, buttons));
   onKey = (event) => {
     const index = Number(event.key) - 1;
     if (index >= 0 && index < options.length) choose(index);
   };
-  play(item.vi);
+}
+
+function askMeaning(session, entry) {
+  const { item } = entry;
+  askChoice(session, entry, {
+    heading: [h("p", { class: "instruction" }, "What does this mean?"), h("p", { class: "prompt", lang: "vi" }, item.vi)],
+    options: Exercises.meaningOptions(item, content.items),
+    right: item.en,
+    wrongKind: "meaning",
+  });
+}
+
+function askFill(session, entry) {
+  const { item } = entry;
+  const blank = Exercises.fillBlank(item, content.items, content.confusables);
+  askChoice(session, entry, {
+    heading: [
+      h("p", { class: "instruction" }, "Fill in the missing word"),
+      h("p", { class: "prompt" }, item.en),
+      h("p", { class: "blank-line", lang: "vi" }, blank.before, " ", h("span", { class: "blank", "aria-label": "missing word" }, " "), " ", blank.after),
+    ],
+    options: blank.options,
+    right: blank.right,
+    wrongKind: "choice",
+    optionsLang: "vi",
+  });
+}
+
+function askSentence(session, entry) {
+  const { item } = entry;
+  const { options, right } = Exercises.sentenceOptions(item);
+  askChoice(session, entry, {
+    heading: [h("p", { class: "instruction" }, "Which sentence is right?"), h("p", { class: "prompt" }, item.en)],
+    options, right, wrongKind: "order", optionsLang: "vi",
+  });
+}
+
+function askMarks(session, entry) {
+  const { item } = entry;
+  const { options, right } = Exercises.marksOptions(item);
+  askChoice(session, entry, {
+    heading: [h("p", { class: "instruction" }, "Which spelling is right?"), h("p", { class: "prompt" }, item.en)],
+    options, right, wrongKind: "marks", optionsLang: "vi",
+  });
 }
 
 function verdictFor(result) {
@@ -494,17 +456,18 @@ function finish(session, entry, result) {
   if (!entry.retry) {
     if (result.correct) session.firstTryRight += 1;
     else session.missed.push({ item, typed: result.typed });
+    session.done += 1;
   }
   if (!result.correct && !entry.retry) session.queue.push({ item, retry: true });
-  if (!entry.retry) session.done += 1;
 
   const next = () => nextQuestion(session);
   const nextButton = h("button", { class: "btn primary", type: "button", onclick: next },
     session.queue.length ? "Next" : "See results");
   const actions = h("div", { class: "actions" }, nextButton);
+  const typedWrong = result.showDiff && !result.correct && !result.kinds?.skipped;
 
   // The checker only knows the answers in the notes, so a wrong call can be overruled.
-  if (!result.correct && !result.kinds?.skipped && result.showDiff) {
+  if (typedWrong) {
     actions.append(h("button", {
       class: "btn link", type: "button",
       onclick: () => {
@@ -520,37 +483,35 @@ function finish(session, entry, result) {
     }, "My answer was fine"));
   }
 
-  const answerText = result.answer;
-  const lines = result.showDiff && !result.correct && !result.kinds?.skipped ? explainMistakes(result) : [];
+  const lines = typedWrong ? explainMistakes(result) : [];
   const notes = [...(result.tips || []), ...(item.note ? [item.note] : [])];
-  const spoken = hasAudio(answerText) ? answerText : item.vi;
+  const rule = content.rules.find((r) => r.topics?.includes(item.topic));
 
   const panel = h("section", { class: "feedback", "aria-live": "polite" },
     verdictFor(result),
-    result.showDiff && !result.correct && !result.kinds?.skipped && [
+    typedWrong && [
       h("p", { class: "line-label" }, "You wrote"),
       h("p", { class: "words", lang: "vi" }, typedLine(result)),
     ],
     h("p", { class: "line-label" }, result.correct && result.showDiff ? "With marks" : "Correct answer"),
-    h("div", { class: "answer-row" },
-      h("p", { class: "words", lang: "vi" }, result.showDiff && !result.correct && !result.kinds?.skipped ? expectedLine(result) : answerText),
-      iconPlayButton(spoken, "Play the answer")),
+    h("p", { class: "words", lang: "vi" }, typedWrong ? expectedLine(result) : result.answer),
     (result.keep || item.from) && h("p", { class: "sub small" }, item.en),
     lines.length > 0 && h("ul", { class: "mistake-list" }, lines.map((line) => h("li", {}, line))),
     notes.length > 0 && h("div", { class: "tip" }, notes.map((note) => h("p", {}, note))),
+    rule && !result.correct && h("details", { class: "rule-peek" },
+      h("summary", {}, `Rule: ${rule.title}`),
+      renderRule(rule)),
   );
 
   if (result.keep) {
     // Keep the answer options on screen so the right one can be compared.
     app.append(panel, actions);
-    onKey = null;
   } else {
     show(progressRow(session, entry.retry),
       item.from ? h("p", { class: "prompt", lang: "vi" }, withBold(item.from)) : h("p", { class: "prompt" }, item.en),
       panel, actions);
   }
   nextButton.focus();
-  if (state.speakAnswers && !result.keep) play(spoken);
 }
 
 function renderSummary(session) {
@@ -561,16 +522,13 @@ function renderSummary(session) {
       ? [h("h2", {}, "Worth another look"),
          session.missed.map(({ item, typed }) =>
            h("div", { class: "review-item" },
-             h("div", { class: "mistake-head" },
-               h("div", {},
-                 h("p", { class: "mistake-vi", lang: "vi" }, item.vi),
-                 h("p", { class: "mistake-en" }, item.en),
-                 typed ? h("p", { class: "mistake-typed" }, "You answered: ", vi(typed)) : null),
-               iconPlayButton(item.vi))))]
+             h("p", { class: "mistake-vi", lang: "vi" }, item.vi),
+             h("p", { class: "mistake-en" }, item.en),
+             typed ? h("p", { class: "mistake-typed" }, "You answered: ", vi(typed)) : null))]
       : answered ? h("p", { class: "sub" }, "No mistakes in this session.") : null,
     h("div", { class: "actions" },
       h("button", { class: "btn primary", type: "button", onclick: () => startSession(session.pool, session.mode) }, "Keep going"),
-      h("a", { class: "btn", href: "#/practice", style: "display:inline-flex;align-items:center;text-decoration:none;color:inherit" }, "Change topics")),
+      h("a", { class: "btn as-link", href: "#/practice" }, "Change topics")),
   );
 }
 
@@ -582,16 +540,15 @@ function renderLetters() {
       h("span", { class: "letter-glyph", lang: "vi" }, entry.letter),
       h("div", {},
         h("p", {}, entry.sound),
-        h("p", { class: "letter-word" }, h("b", { lang: "vi" }, entry.word), ` = ${entry.meaning}`)),
-      iconPlayButton(entry.word)));
+        h("p", { class: "letter-word" }, h("b", { lang: "vi" }, entry.word), ` = ${entry.meaning}`))));
 
   show(
     h("h1", {}, "Letters and tones"),
-    h("p", { class: "sub" }, "Northern pronunciation. Tap play to hear each sound in a word."),
+    h("p", { class: "sub" }, "How each letter sounds in the north, described in English."),
     h("div", { class: "quiz-buttons" },
-      h("button", { class: "btn primary", type: "button", onclick: () => startQuiz(pairQuestions()) }, "Hear the difference"),
-      h("button", { class: "btn", type: "button", onclick: () => startQuiz(toneQuestions()) }, "Tone quiz"),
-      h("button", { class: "btn", type: "button", onclick: () => startQuiz(soundQuestions()) }, "Letter sounds")),
+      h("button", { class: "btn primary", type: "button", onclick: () => startQuiz(soundQuestions()) }, "Letter sounds"),
+      h("button", { class: "btn", type: "button", onclick: () => startQuiz(toneQuestions()) }, "Tones"),
+      h("button", { class: "btn", type: "button", onclick: () => startQuiz(similarQuestions()) }, "Similar words")),
     h("h2", {}, "Tones"),
     h("p", { class: "group-note" }, "Six tones. The mark changes the word completely."),
     content.tones.map((tone) =>
@@ -599,8 +556,7 @@ function renderLetters() {
         h("span", { class: "letter-glyph", lang: "vi" }, tone.mark),
         h("div", {},
           h("p", {}, h("b", { lang: "vi" }, tone.name), `. ${tone.how}`),
-          h("p", { class: "letter-word" }, h("b", { lang: "vi" }, tone.word), ` = ${tone.meaning}`)),
-        iconPlayButton(tone.word))),
+          h("p", { class: "letter-word" }, h("b", { lang: "vi" }, tone.word), ` = ${tone.meaning}`)))),
     content.letterGroups.map((group) => [
       h("h2", {}, group.title),
       group.note ? h("p", { class: "group-note" }, group.note) : null,
@@ -609,28 +565,50 @@ function renderLetters() {
   );
 }
 
-function pairQuestions() {
+function similarQuestions() {
   return shuffle(content.soundPairs).slice(0, QUIZ_SIZE).map((pair) => {
-    const heard = pick([pair.a, pair.b]);
-    const words = shuffle([pair.a, pair.b]);
+    const target = pick([pair.a, pair.b]);
     return {
-      instruction: "Which word did you hear?", audio: heard.word, big: true,
-      options: words.map((w) => w.word), right: heard.word,
-      explain: `${pair.label}: ${pair.a.word} = ${pair.a.meaning}, ${pair.b.word} = ${pair.b.meaning}`,
+      instruction: "Which word means this?", prompt: target.meaning, optionsLang: "vi",
+      options: shuffle([pair.a.word, pair.b.word]), right: target.word,
+      explain: `${pair.a.word} = ${pair.a.meaning}, ${pair.b.word} = ${pair.b.meaning}`,
     };
   });
 }
 
 function toneQuestions() {
-  return Array.from({ length: QUIZ_SIZE }, () => {
-    const family = pick(content.toneFamilies);
-    const heard = pick(family);
-    return {
-      instruction: "Which tone did you hear?", audio: heard.word, big: true,
-      options: family.map((w) => w.word), right: heard.word,
-      explain: `${heard.word} = ${heard.meaning}, the ${heard.tone} tone.`,
-    };
-  });
+  const names = content.tones.map((tone) => tone.name);
+  const words = [...new Set(content.items.flatMap((item) => Check.words(item.vi)).map((w) => w.toLowerCase()))]
+    .filter((word) => /^\p{L}+$/u.test(word) && !/[øf]|iphone|isaac/.test(word));
+  const makers = [
+    () => {
+      const heard = pick(pick(content.toneFamilies));
+      const family = content.toneFamilies.find((f) => f.includes(heard));
+      return {
+        instruction: "Which word means this?", prompt: heard.meaning, optionsLang: "vi",
+        options: family.map((w) => w.word), right: heard.word,
+        explain: `${heard.word} = ${heard.meaning}, the ${heard.tone} tone.`,
+      };
+    },
+    () => {
+      const word = pick(words);
+      const name = toneName(word);
+      return {
+        instruction: "Which tone is on this word?", prompt: word, promptLang: "vi", optionsLang: "vi",
+        options: names, right: name,
+        explain: `${word} has the ${name} tone.`,
+      };
+    },
+    () => {
+      const tone = pick(content.tones);
+      return {
+        instruction: "Which tone is this?", prompt: tone.how, optionsLang: "vi",
+        options: names, right: tone.name,
+        explain: `${tone.name}, written ${tone.mark}, as in ${tone.word} = ${tone.meaning}.`,
+      };
+    },
+  ];
+  return Array.from({ length: QUIZ_SIZE }, (_, i) => makers[i % makers.length]());
 }
 
 function soundQuestions() {
@@ -644,9 +622,9 @@ function soundQuestions() {
       if (!wrong.some((w) => w.same && w.same === other.same)) wrong.push(other);
     }
     return {
-      instruction: "Which letter makes this sound?", prompt: entry.sound, big: true,
+      instruction: "Which letter makes this sound?", prompt: entry.sound, optionsLang: "vi",
       options: shuffle([entry, ...wrong]).map((o) => o.letter), right: entry.letter,
-      explain: `${entry.letter}, as in ${entry.word} = ${entry.meaning}`, afterAudio: entry.word,
+      explain: `${entry.letter}, as in ${entry.word} = ${entry.meaning}`,
     };
   });
 }
@@ -659,7 +637,7 @@ function startQuiz(questions) {
     const q = questions[index];
     if (!q) return showEnd();
     const buttons = q.options.map((text, i) =>
-      h("button", { class: "option", type: "button", lang: "vi", onclick: () => choose(i) },
+      h("button", { class: "option", type: "button", lang: q.optionsLang, onclick: () => choose(i) },
         h("span", { class: "key", "aria-hidden": "true" }, i + 1), h("span", {}, text)));
 
     function choose(i) {
@@ -677,12 +655,9 @@ function startQuiz(questions) {
       app.append(
         h("section", { class: "feedback", "aria-live": "polite" },
           h("strong", { class: `verdict ${correct ? "right" : "wrong"}` }, correct ? "Correct" : "Not quite"),
-          h("div", { class: "answer-row" },
-            h("p", { lang: "vi" }, q.explain),
-            iconPlayButton(q.audio || q.afterAudio))),
+          h("p", { lang: "vi" }, q.explain)),
         h("div", { class: "actions" }, nextButton));
       nextButton.focus();
-      if (q.afterAudio) play(q.afterAudio);
     }
 
     const fill = h("div", { class: "progress-fill", style: `width:${(index / questions.length) * 100}%` });
@@ -692,25 +667,70 @@ function startQuiz(questions) {
         h("span", {}, `${index + 1} of ${questions.length}`),
         h("a", { href: "#/letters", class: "small" }, "End")),
       h("p", { class: "instruction" }, q.instruction),
-      q.prompt ? h("p", { class: "prompt" }, q.prompt) : audioControls(q.audio),
+      h("p", { class: "prompt", lang: q.promptLang }, q.prompt),
       h("div", { class: "options big" }, buttons),
     );
     onKey = (event) => {
       const i = Number(event.key) - 1;
       if (i >= 0 && i < q.options.length) choose(i);
     };
-    if (q.audio) play(q.audio);
   }
 
   function showEnd() {
     show(
       h("h1", {}, `${score} of ${questions.length} right`),
       h("div", { class: "actions" },
-        h("a", { class: "btn primary", href: "#/letters", style: "display:inline-flex;align-items:center;text-decoration:none" }, "Back to letters")),
+        h("a", { class: "btn primary as-link", href: "#/letters" }, "Back to letters")),
     );
   }
 
   ask();
+}
+
+// ---------- Notes ----------
+
+function renderNotes() {
+  const results = h("div", { "aria-live": "polite" });
+  const search = h("input", {
+    class: "answer-input", type: "search", lang: "vi", "aria-label": "Search words and sentences",
+    autocomplete: "off", autocapitalize: "off", autocorrect: "off", spellcheck: "false",
+    placeholder: "Search Vietnamese or English",
+    oninput: () => drawResults(),
+  });
+  const rules = h("div", {}, content.rules.map((rule) =>
+    h("section", { class: "rule" }, h("h2", {}, rule.title), renderRule(rule))));
+
+  function drawResults() {
+    const query = Check.plain(search.value.trim());
+    rules.hidden = query.length > 0;
+    if (!query) return results.replaceChildren();
+    const seen = new Set();
+    const matches = content.items.filter((item) => {
+      if (seen.has(item.vi)) return false;
+      const hit = Check.plain(item.vi).includes(query) || Check.plain(item.en).includes(query);
+      if (hit) seen.add(item.vi);
+      return hit;
+    });
+    results.replaceChildren(
+      ...(matches.length === 0
+        ? [h("p", { class: "sub search-empty" }, "Nothing in your notes matches that.")]
+        : clean([
+            matches.slice(0, SEARCH_LIMIT).map((item) =>
+              h("div", { class: "review-item" },
+                h("p", { class: "mistake-vi", lang: "vi" }, item.vi),
+                h("p", { class: "mistake-en" }, item.en))),
+            matches.length > SEARCH_LIMIT && h("p", { class: "sub small search-empty" }, `Showing the first ${SEARCH_LIMIT} of ${matches.length}.`),
+          ])),
+    );
+  }
+
+  show(
+    h("h1", {}, "Notes"),
+    h("p", { class: "sub" }, "The rules from your lessons, and every word and sentence in the app."),
+    h("div", { class: "search" }, search),
+    results,
+    rules,
+  );
 }
 
 // ---------- Mistakes ----------
@@ -723,7 +743,7 @@ function renderMistakes() {
       h("div", { class: "empty" },
         h("p", {}, "Nothing to review right now."),
         h("p", { class: "sub small" }, "Anything you get wrong lands here until you get it right twice in a row."),
-        h("a", { class: "btn primary", href: "#/practice", style: "display:inline-flex;align-items:center;text-decoration:none" }, "Go to practice")),
+        h("a", { class: "btn primary as-link", href: "#/practice" }, "Go to practice")),
     );
     return;
   }
@@ -741,23 +761,20 @@ function renderMistakes() {
     tally ? h("p", { class: "tally small" }, tally) : null,
     h("div", { class: "actions" },
       h("button", { class: "btn primary", type: "button", onclick: () => startSession(items, "mix") }, `Practise these (${Math.min(items.length, SESSION_SIZE)})`)),
-    h("div", { style: "margin-top:16px" }, items.map((item) => {
+    h("div", { class: "mistake-items" }, items.map((item) => {
       const p = state.progress[itemKey(item)];
       return h("div", { class: "mistake" },
-        h("div", { class: "mistake-head" },
-          h("div", {},
-            h("p", { class: "mistake-vi", lang: "vi" }, item.vi),
-            h("p", { class: "mistake-en" }, item.en),
-            p.lastTyped ? h("p", { class: "mistake-typed" }, "Last answer: ", vi(p.lastTyped)) : null,
-            p.misses > 1 ? h("p", { class: "mistake-typed" }, `Wrong ${p.misses} times`) : null),
-          iconPlayButton(item.vi)));
+        h("p", { class: "mistake-vi", lang: "vi" }, item.vi),
+        h("p", { class: "mistake-en" }, item.en),
+        p.lastTyped ? h("p", { class: "mistake-typed" }, "Last answer: ", vi(p.lastTyped)) : null,
+        p.misses > 1 ? h("p", { class: "mistake-typed" }, `Wrong ${p.misses} times`) : null);
     })),
   );
 }
 
 // ---------- Routing and startup ----------
 
-const routes = { practice: renderPractice, letters: renderLetters, mistakes: renderMistakes };
+const routes = { practice: renderPractice, letters: renderLetters, notes: renderNotes, mistakes: renderMistakes };
 
 function route() {
   const name = location.hash.replace("#/", "") || "practice";
@@ -766,7 +783,6 @@ function route() {
     if (link.dataset.route === name) link.setAttribute("aria-current", "page");
     else link.removeAttribute("aria-current");
   });
-  audio.pause();
   render();
 }
 
@@ -776,10 +792,9 @@ document.addEventListener("keydown", (event) => {
 
 async function start() {
   try {
-    const [contentResponse, audioResponse] = await Promise.all([fetch("data/content.json"), fetch("data/audio.json")]);
-    if (!contentResponse.ok) throw new Error(`content: ${contentResponse.status}`);
-    content = await contentResponse.json();
-    audioFiles = audioResponse.ok ? await audioResponse.json() : {};
+    const response = await fetch("data/content.json");
+    if (!response.ok) throw new Error(`content: ${response.status}`);
+    content = await response.json();
   } catch (error) {
     app.replaceChildren(h("p", {}, "The lessons couldn't load. If you opened this file directly, run it through a local server: python -m http.server"));
     console.error(error);
