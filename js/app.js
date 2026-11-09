@@ -534,13 +534,32 @@ function renderSummary(session) {
 
 // ---------- Letters ----------
 
+// The picture that goes with a letter: a vowel map spot, or where a consonant is made.
+function letterVisual(letter) {
+  return Visuals.isVowel(letter) ? Visuals.vowelMap(letter) : Visuals.placeStrip(letter);
+}
+
+function letterRow(entry) {
+  const vowel = Visuals.isVowel(entry.letter);
+  const air = Visuals.consonantAir(entry.letter);
+  // Skip the air note when the description already says it, such as "no puff of air".
+  const longWords = (text) => text.toLowerCase().split(/\W+/).filter((w) => w.length >= 3);
+  const repeats = air && longWords(air).some((w) => longWords(entry.sound).includes(w));
+  const detail = vowel ? Visuals.vowelTags(entry.letter) : repeats ? null : air;
+  return h("div", { class: `letter-row ${vowel ? "has-picture" : ""}` },
+    h("span", { class: "letter-glyph", lang: "vi" }, entry.letter),
+    vowel && h("div", { class: "letter-picture" }, Visuals.vowelMap(entry.letter)),
+    h("div", {},
+      h("p", {}, entry.sound),
+      detail && h("p", { class: "letter-detail" }, detail),
+      !vowel && Visuals.placeStrip(entry.letter),
+      h("p", { class: "letter-word" }, h("b", { lang: "vi" }, entry.word), ` = ${entry.meaning}`)));
+}
+
 function renderLetters() {
-  const rows = (letters) => letters.map((entry) =>
-    h("div", { class: "letter-row" },
-      h("span", { class: "letter-glyph", lang: "vi" }, entry.letter),
-      h("div", {},
-        h("p", {}, entry.sound),
-        h("p", { class: "letter-word" }, h("b", { lang: "vi" }, entry.word), ` = ${entry.meaning}`))));
+  const groups = content.letterGroups;
+  const firstVowelGroup = groups.find((group) => group.letters.some((l) => Visuals.isVowel(l.letter)));
+  const firstConsonantGroup = groups.find((group) => !group.letters.some((l) => Visuals.isVowel(l.letter)));
 
   show(
     h("h1", {}, "Letters and tones"),
@@ -550,17 +569,24 @@ function renderLetters() {
       h("button", { class: "btn", type: "button", onclick: () => startQuiz(toneQuestions()) }, "Tones"),
       h("button", { class: "btn", type: "button", onclick: () => startQuiz(similarQuestions()) }, "Similar words")),
     h("h2", {}, "Tones"),
-    h("p", { class: "group-note" }, "Six tones. The mark changes the word completely."),
+    h("p", { class: "group-note" }, "Six tones. The mark changes the word completely. Each line shows your voice going from low (bottom) to high (top) across the word. The dot is where you start."),
     content.tones.map((tone) =>
-      h("div", { class: "letter-row" },
+      h("div", { class: "letter-row has-picture" },
         h("span", { class: "letter-glyph", lang: "vi" }, tone.mark),
+        h("div", { class: "letter-picture" }, Visuals.contour(tone.name)),
         h("div", {},
           h("p", {}, h("b", { lang: "vi" }, tone.name), `. ${tone.how}`),
           h("p", { class: "letter-word" }, h("b", { lang: "vi" }, tone.word), ` = ${tone.meaning}`)))),
-    content.letterGroups.map((group) => [
+    groups.map((group) => [
+      group === firstVowelGroup && [
+        h("h2", {}, "Vowel map"),
+        h("p", { class: "group-note" }, "Where your tongue sits for each vowel. Left is the front of the mouth, top is a nearly closed mouth. Circled vowels have rounded lips."),
+        h("div", { class: "vowel-map-wrap" }, Visuals.vowelMap(null, "large")),
+      ],
       h("h2", {}, group.title),
+      group === firstConsonantGroup && h("p", { class: "group-note" }, "The strip shows where in the mouth each sound is made, from the lips to the throat."),
       group.note ? h("p", { class: "group-note" }, group.note) : null,
-      rows(group.letters),
+      group.letters.map(letterRow),
     ]),
   );
 }
@@ -605,6 +631,16 @@ function toneQuestions() {
         instruction: "Which tone is this?", prompt: tone.how, optionsLang: "vi",
         options: names, right: tone.name,
         explain: `${tone.name}, written ${tone.mark}, as in ${tone.word} = ${tone.meaning}.`,
+        explainVisual: Visuals.contour(tone.name, { size: "medium" }),
+      };
+    },
+    () => {
+      const tone = pick(content.tones);
+      return {
+        instruction: "Which tone has this pitch line?",
+        visual: Visuals.contour(tone.name, { size: "large", label: "Pitch line for a tone" }),
+        optionsLang: "vi", options: names, right: tone.name,
+        explain: `${tone.name}: ${tone.how}`,
       };
     },
   ];
@@ -625,6 +661,7 @@ function soundQuestions() {
       instruction: "Which letter makes this sound?", prompt: entry.sound, optionsLang: "vi",
       options: shuffle([entry, ...wrong]).map((o) => o.letter), right: entry.letter,
       explain: `${entry.letter}, as in ${entry.word} = ${entry.meaning}`,
+      explainVisual: letterVisual(entry.letter),
     };
   });
 }
@@ -655,7 +692,8 @@ function startQuiz(questions) {
       app.append(
         h("section", { class: "feedback", "aria-live": "polite" },
           h("strong", { class: `verdict ${correct ? "right" : "wrong"}` }, correct ? "Correct" : "Not quite"),
-          h("p", { lang: "vi" }, q.explain)),
+          h("p", { lang: "vi" }, q.explain),
+          q.explainVisual && h("div", { class: "explain-picture" }, q.explainVisual)),
         h("div", { class: "actions" }, nextButton));
       nextButton.focus();
     }
@@ -667,7 +705,7 @@ function startQuiz(questions) {
         h("span", {}, `${index + 1} of ${questions.length}`),
         h("a", { href: "#/letters", class: "small" }, "End")),
       h("p", { class: "instruction" }, q.instruction),
-      h("p", { class: "prompt", lang: q.promptLang }, q.prompt),
+      q.visual ? h("div", { class: "quiz-picture" }, q.visual) : h("p", { class: "prompt", lang: q.promptLang }, q.prompt),
       h("div", { class: "options big" }, buttons),
     );
     onKey = (event) => {
