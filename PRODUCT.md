@@ -33,9 +33,14 @@ Speaking practice happens privately with his wife, so the app does not record or
 - Progress is stored on the device, with no accounts or backend.
 - No audio. Microsoft's neural voices were tried and removed: a native speaker found the ngã and nặng tones identical, and bánh was mispronounced. The generator and clips are in the git history (commit 4de7e3b).
 
+- Northern only. No southern pronunciation or vocabulary, not even for comparison.
+- Inspired by vietnameselab.com (pronunciation, grammar guide, syllable chart, frequency list), with all content written fresh.
+
 ## Evidence on Hand
 
-Lesson notes in `data/content.json`. Nothing beyond these notes and basic alphabet facts should be presented as coming from his lessons.
+- Lesson notes in `data/content.json`. Nothing beyond these notes and basic alphabet facts should be presented as coming from his lessons.
+- `data/words.json`: the top 1000 frequency list Isaac supplied, with glosses tidied.
+- `data/grammar.json`: 96 grammar points written for the app, not yet checked by a native speaker.
 
 ## Product Principles
 

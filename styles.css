@@ -463,6 +463,52 @@ button:disabled { cursor: not-allowed; opacity: 0.5; }
   .gp-meaning { grid-column: 1 / 3; grid-row: 2; }
 }
 
+/* Sounds: jumps, vowel groups, endings, syllable builder */
+.page-jumps { display: flex; flex-wrap: wrap; gap: 0 14px; margin-top: 8px; }
+.btn.link.jump { min-height: 32px; padding: 4px 0; color: var(--accent); }
+.sound-row { padding: 10px 0; border-bottom: 1px solid var(--line); }
+.sound-forms { font-size: 1.125rem; font-weight: 650; }
+.syllable-builder { margin-top: 8px; }
+.chip-picker { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 4px; }
+.pick {
+  min-width: 40px;
+  min-height: 36px;
+  padding: 4px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg);
+  font-weight: 600;
+}
+.pick:hover { border-color: var(--accent); }
+.pick.on { border-color: var(--accent); background: var(--accent); color: var(--on-accent); }
+.syl-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); gap: 6px; margin-top: 12px; }
+.syl {
+  min-height: 40px;
+  padding: 4px 6px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg);
+  font-size: 1rem;
+}
+.syl:hover { border-color: var(--accent); }
+.syl.is-known { background: var(--right-soft); border-color: var(--right); }
+.syl.is-invalid { color: var(--muted); text-decoration: line-through; opacity: 0.6; }
+.syl.on { outline: 2px solid var(--accent); outline-offset: 1px; }
+.syl-panel { margin-top: 16px; padding: 16px; border-radius: var(--radius); background: var(--surface); }
+.syl-big { font-size: 2.25rem; font-weight: 650; line-height: 1.2; }
+.syl-big.is-invalid { color: var(--muted); text-decoration: line-through; }
+.syl-tones { display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; margin: 12px 0; }
+.syl-tone { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.syl-tone.is-invalid { opacity: 0.35; }
+.syl-notes { margin-top: 8px; }
+.syl-place { margin-top: 8px; }
+.syl-panel .place:not(.on) { background: var(--bg); }
+.syl-examples { line-height: 1.8; }
+
+@media (max-width: 480px) {
+  .syl-tones { grid-template-columns: repeat(3, 1fr); row-gap: 10px; }
+}
+
 /* Shared small pieces */
 .mode-hint { margin-top: 8px; }
 .end-link { min-height: auto; padding: 0; }

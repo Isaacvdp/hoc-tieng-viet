@@ -47,6 +47,7 @@ function load() {
     saved.words = { cards: {}, newPerDay: 5, introduced: {}, bonus: {}, ...saved.words };
     saved.grammar = { right: {}, misses: {}, ...saved.grammar };
     saved.grammarUi = { level: "All", category: "All", ...saved.grammarUi };
+    saved.syllableUi = { initial: "b", group: "vowels", rime: "a", ...saved.syllableUi };
     return saved;
   };
   try {
@@ -561,14 +562,19 @@ function renderLetters() {
   const firstVowelGroup = groups.find((group) => group.letters.some((l) => Visuals.isVowel(l.letter)));
   const firstConsonantGroup = groups.find((group) => !group.letters.some((l) => Visuals.isVowel(l.letter)));
 
+  const jump = (id, label) => h("button", { class: "btn link jump", type: "button", onclick: () => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }) }, label);
+
   show(
-    h("h1", {}, "Letters and tones"),
-    h("p", { class: "sub" }, "How each letter sounds in the north, described in English."),
+    h("h1", {}, "Sounds"),
+    h("p", { class: "sub" }, "How Vietnamese sounds in the north, described in English: tones, letters, vowel groups, endings, and how syllables are built."),
+    h("nav", { class: "page-jumps", "aria-label": "On this page" },
+      jump("sec-tones", "Tones"), jump("sec-vowels", "Vowels"), jump("sec-consonants", "Consonants"),
+      jump("sec-groups", "Vowel groups"), jump("sec-endings", "Endings"), jump("sec-syllables", "Syllable builder")),
     h("div", { class: "quiz-buttons" },
-      h("button", { class: "btn primary", type: "button", onclick: () => startQuiz(soundQuestions()) }, "Letter sounds"),
-      h("button", { class: "btn", type: "button", onclick: () => startQuiz(toneQuestions()) }, "Tones"),
-      h("button", { class: "btn", type: "button", onclick: () => startQuiz(similarQuestions()) }, "Similar words")),
-    h("h2", {}, "Tones"),
+      h("button", { class: "btn primary", type: "button", onclick: () => startQuiz(soundQuestions()) }, "Letter sounds quiz"),
+      h("button", { class: "btn", type: "button", onclick: () => startQuiz(toneQuestions()) }, "Tones quiz"),
+      h("button", { class: "btn", type: "button", onclick: () => startQuiz(similarQuestions()) }, "Similar words quiz")),
+    h("h2", { id: "sec-tones" }, "Tones"),
     h("p", { class: "group-note" }, "Six tones. The mark changes the word completely. Each line shows your voice going from low (bottom) to high (top) across the word. The dot is where you start."),
     content.tones.map((tone) =>
       h("div", { class: "letter-row has-picture" },
@@ -579,15 +585,153 @@ function renderLetters() {
           h("p", { class: "letter-word" }, h("b", { lang: "vi" }, tone.word), ` = ${tone.meaning}`)))),
     groups.map((group) => [
       group === firstVowelGroup && [
-        h("h2", {}, "Vowel map"),
+        h("h2", { id: "sec-vowels" }, "Vowel map"),
         h("p", { class: "group-note" }, "Where your tongue sits for each vowel. Left is the front of the mouth, top is a nearly closed mouth. Circled vowels have rounded lips."),
         h("div", { class: "vowel-map-wrap" }, Visuals.vowelMap(null, "large")),
       ],
-      h("h2", {}, group.title),
+      h("h2", { id: group === firstConsonantGroup ? "sec-consonants" : null }, group.title),
       group === firstConsonantGroup && h("p", { class: "group-note" }, "The strip shows where in the mouth each sound is made, from the lips to the throat."),
       group.note ? h("p", { class: "group-note" }, group.note) : null,
       group.letters.map(letterRow),
     ]),
+    northernExtras(),
+    syllableBuilder(),
+  );
+}
+
+// ---------- Vowel groups, endings and the syllable builder ----------
+
+const VOWEL_GROUPS = [
+  { forms: "iê · ia · yê · ya", how: "Say 'ee' and glide into 'uh', like 'ear'. Written ia (or ya) when nothing follows, iê (or yê) when a letter follows.", words: ["tiền", "nhiều", "việc", "chia sẻ"] },
+  { forms: "uô · ua", how: "'oo' gliding into 'uh'. Written ua when nothing follows, uô when a letter follows.", words: ["của", "muốn", "cuộc", "mua"] },
+  { forms: "ươ · ưa", how: "ư (oo with spread lips) gliding into ơ. Written ưa when nothing follows, ươ when a letter follows.", words: ["nước", "người", "chưa", "đưa"] },
+  { forms: "oa · oe · uy · uê", how: "Start with a quick w: oa ≈ 'wa', oe ≈ 'weh', uy ≈ 'wee', uê ≈ 'way'. After q the w is written u: qua, quê.", words: ["hoặc", "khoảng", "thuê", "quả"] },
+  { forms: "ai · ay / ao · au", how: "ai has a long a, ay a short one (tai vs tay). The same goes for ao (long) and au (short).", words: ["hai", "này", "sao", "sau"] },
+];
+
+const ENDINGS = [
+  { forms: "-anh", how: "Sounds like 'ayn' in the north.", words: ["anh", "nhanh", "thành"] },
+  { forms: "-ach", how: "Sounds like 'ayk', short and cut off.", words: ["sách", "cách", "khách"] },
+  { forms: "-ênh, -inh, -êch, -ich", how: "The tongue stays forward; -nh is a soft ng and -ch a soft k.", words: ["tính", "lịch sử", "chính"] },
+  { forms: "-ong, -ông, -ung, -oc, -ôc, -uc", how: "The lips close at the end, so ông almost sounds like 'om' with puffed cheeks.", words: ["không", "ông", "cùng", "học"] },
+  { forms: "-p, -t, -c", how: "Not released: stop the sound without a puff of air. Only the sắc and nặng tones can go with these endings.", words: ["một", "đẹp", "biết", "được"] },
+];
+
+function soundTable(id, title, note, rows) {
+  const find = (w) => words.find((word) => word.vi === w);
+  return [
+    h("h2", { id }, title),
+    note && h("p", { class: "group-note" }, note),
+    rows.map((row) => h("div", { class: "sound-row" },
+      h("p", { class: "sound-forms", lang: "vi" }, row.forms),
+      h("p", {}, row.how),
+      h("p", { class: "letter-word" }, row.words.map((w, i) => [i ? " · " : "", h("b", { lang: "vi" }, w), find(w) ? ` ${find(w).en.split(";")[0]}` : ""])))),
+  ];
+}
+
+function northernExtras() {
+  return [
+    soundTable("sec-groups", "Vowel groups", "Two or three vowels that glide into each other in one syllable.", VOWEL_GROUPS),
+    soundTable("sec-endings", "Endings", "How syllable endings sound in the north.", ENDINGS),
+  ];
+}
+
+let syllableIndex = null;
+// Every syllable in the 1000 words, filed under initial + rime.
+function syllablesInWords() {
+  if (syllableIndex) return syllableIndex;
+  syllableIndex = new Map();
+  for (const word of words) {
+    for (const part of Check.words(word.vi)) {
+      const parsed = Syllables.parse(part);
+      if (!parsed || !Syllables.RIMES.has(parsed.rime)) continue;
+      const key = `${parsed.initial}|${parsed.rime}`;
+      if (!syllableIndex.has(key)) syllableIndex.set(key, []);
+      const list = syllableIndex.get(key);
+      if (!list.includes(word)) list.push(word);
+    }
+  }
+  return syllableIndex;
+}
+
+function syllableBuilder() {
+  const box = h("section", { id: "sec-syllables", class: "syllable-builder" });
+  const ui = state.syllableUi;
+  const index = syllablesInWords();
+
+  function draw() {
+    const group = Syllables.RIME_GROUPS.find((g) => g.id === ui.group) || Syllables.RIME_GROUPS[0];
+    if (!group.rimes.includes(ui.rime)) ui.rime = group.rimes[0];
+    const set = (patch) => { Object.assign(ui, patch); save(); draw(); };
+
+    const initials = h("div", { class: "chip-picker", role: "radiogroup", "aria-label": "First letter" },
+      Syllables.INITIALS.map((initial) => h("button", {
+        class: `pick ${ui.initial === initial ? "on" : ""}`, type: "button", lang: "vi",
+        "aria-pressed": ui.initial === initial ? "true" : "false", onclick: () => set({ initial }),
+      }, initial || "none")));
+    const groups = h("div", { class: "segments", role: "radiogroup", "aria-label": "Rime group" },
+      Syllables.RIME_GROUPS.map((g) => h("label", {},
+        h("input", { type: "radio", name: "rime-group", value: g.id, checked: g.id === group.id, onchange: () => set({ group: g.id }) }),
+        g.label)));
+    const cells = h("div", { class: "syl-grid" }, group.rimes.map((rime) => {
+      const ok = Syllables.check(ui.initial, rime).ok;
+      const known = index.has(`${ui.initial}|${rime}`);
+      return h("button", {
+        class: `syl ${ok ? "" : "is-invalid"} ${known ? "is-known" : ""} ${rime === ui.rime ? "on" : ""}`,
+        type: "button", lang: "vi", onclick: () => set({ rime }),
+        "aria-label": `${Syllables.join(ui.initial, rime)}${ok ? "" : ", not a valid spelling"}${known ? ", in your words" : ""}`,
+      }, Syllables.join(ui.initial, rime));
+    }));
+
+    box.replaceChildren(
+      h("h2", {}, "Syllable builder"),
+      h("p", { class: "group-note" }, "Every syllable is a first letter, a rime and a tone. Pick them to see the spelling, where the tone mark goes and real words that use it. Highlighted cells are in your top 1000 words; crossed-out ones break a spelling rule."),
+      h("p", { class: "line-label" }, "First letter"),
+      initials,
+      h("p", { class: "line-label" }, "Rime"),
+      groups,
+      cells,
+      syllablePanel(ui.initial, ui.rime, index),
+    );
+  }
+
+  draw();
+  return box;
+}
+
+function syllablePanel(initial, rime, index) {
+  const rule = Syllables.check(initial, rime);
+  const plain = Syllables.join(initial, rime);
+  if (!rule.ok) {
+    return h("div", { class: "syl-panel" },
+      h("p", { class: "syl-big is-invalid", lang: "vi" }, plain),
+      h("p", { class: "verdict wrong" }, "Not a valid spelling"),
+      h("p", {}, rule.reason));
+  }
+  const at = Syllables.markIndex(rime);
+  const carrier = [...rime][at];
+  const styles = Syllables.write(initial, rime, "huyền", "new") !== Syllables.write(initial, rime, "huyền", "old");
+  const examples = (index.get(`${initial}|${rime}`) || []).slice(0, 8);
+  const notes = Syllables.rimeNotes(rime);
+  const consonant = initial && Visuals.placeStrip(initial);
+  return h("div", { class: "syl-panel" },
+    h("p", { class: "syl-big", lang: "vi" }, plain),
+    h("div", { class: "syl-tones" }, Syllables.TONE_ORDER.map((tone) => {
+      const possible = Syllables.validTone(rime, tone);
+      return h("div", { class: `syl-tone ${possible ? "" : "is-invalid"}` },
+        Visuals.contour(tone, { size: "tiny" }),
+        h("span", { class: "tone-chip-word", lang: "vi" }, possible ? Syllables.write(initial, rime, tone) : "–"),
+        h("span", { class: "tone-chip-name", lang: "vi" }, tone));
+    })),
+    h("p", {}, "The tone mark goes on ", h("b", { lang: "vi" }, carrier), "."),
+    styles && h("p", { class: "sub small" }, `Both ${Syllables.write(initial, rime, "huyền", "new")} and ${Syllables.write(initial, rime, "huyền", "old")} are used; the app's notes write the mark on the second vowel.`),
+    Syllables.isChecked(rime) && h("p", { class: "sub small" }, "Ends in p, t, c or ch, so only sắc and nặng are possible."),
+    notes.length > 0 && h("ul", { class: "plain-list syl-notes" }, notes.map((n) => h("li", {}, n))),
+    consonant && h("div", { class: "syl-place" }, h("p", { class: "line-label" }, `Where ${initial} is made`), consonant),
+    h("p", { class: "line-label" }, "In your top 1000 words"),
+    examples.length
+      ? h("p", { class: "syl-examples" }, examples.map((w, i) => [i ? " · " : "", h("b", { lang: "vi" }, w.vi), ` ${w.en.split(";")[0]}`]))
+      : h("p", { class: "sub small" }, "None of your top 1000 words use this syllable. It may still be a real word."),
   );
 }
 
