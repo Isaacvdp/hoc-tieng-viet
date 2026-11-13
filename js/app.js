@@ -32,6 +32,7 @@ const { shuffle, pick, toneName, tileWords, allowedModes, acceptedAnswers } = Ex
 
 const app = document.getElementById("app");
 let content;
+let words = [];
 let topicById = {};
 let state = load();
 let onKey = null;
@@ -39,13 +40,14 @@ let onKey = null;
 // ---------- Storage ----------
 
 function load() {
-  const empty = { progress: {}, mode: "mix", topics: null };
+  const empty = { progress: {}, mode: "mix", topics: null, words: null };
   try {
     const saved = { ...empty, ...JSON.parse(localStorage.getItem(STORAGE_KEY)) };
     if (!MODES.some((mode) => mode.id === saved.mode)) saved.mode = "mix";
+    saved.words = { cards: {}, newPerDay: 5, introduced: {}, bonus: {}, ...saved.words };
     return saved;
   } catch {
-    return empty;
+    return { ...empty, words: { cards: {}, newPerDay: 5, introduced: {}, bonus: {} } };
   }
 }
 
@@ -771,6 +773,228 @@ function renderNotes() {
   );
 }
 
+// ---------- Words (spaced repetition) ----------
+
+const NEW_PER_DAY_OPTIONS = [3, 5, 10];
+const GRADES = [
+  { id: "again", label: "Again", key: "1" },
+  { id: "hard", label: "Hard", key: "2" },
+  { id: "good", label: "Good", key: "3" },
+  { id: "easy", label: "Easy", key: "4" },
+];
+
+const today = () => SRS.dayKey(Date.now());
+
+function newLeft() {
+  const w = state.words;
+  const bonus = w.bonus.day === today() ? w.bonus.count : 0;
+  return Math.max(0, w.newPerDay + bonus - (w.introduced[today()] || 0));
+}
+
+const wordByRank = (rank) => words.find((w) => w.rank === rank);
+
+// Sentences from the lesson notes that contain the word, as a whole word.
+function examplesFor(word) {
+  const target = Check.words(word.vi).map((w) => w.toLowerCase());
+  const seen = new Set();
+  return content.items.filter((item) => {
+    const list = Check.words(item.vi).map((w) => w.toLowerCase());
+    const found = list.some((_, i) => target.every((t, k) => list[i + k] === t));
+    if (!found || seen.has(item.vi) || list.length < 2) return false;
+    seen.add(item.vi);
+    return true;
+  }).slice(0, 2);
+}
+
+function toneChips(text) {
+  return h("div", { class: "tone-chips" }, Check.words(text).map((syllable) => {
+    const name = toneName(syllable);
+    return h("div", { class: "tone-chip" },
+      Visuals.contour(name, { size: "tiny", label: `${syllable}: ${name} tone` }),
+      h("span", { class: "tone-chip-word", lang: "vi" }, syllable),
+      h("span", { class: "tone-chip-name", lang: "vi" }, name));
+  }));
+}
+
+function wordDetails(word) {
+  const examples = examplesFor(word);
+  return [
+    h("p", { class: "card-meaning" }, word.en),
+    toneChips(word.vi),
+    examples.length > 0 && h("div", { class: "card-examples" },
+      h("p", { class: "line-label" }, "In your notes"),
+      examples.map((item) => h("p", {}, vi(item.vi, { class: "example-vi" }), h("span", { class: "sub small" }, ` ${item.en}`)))),
+  ];
+}
+
+function wordStatus(word, now) {
+  const card = state.words.cards[`${word.rank}:r`];
+  if (!card) return { text: "not started", cls: "" };
+  if (card.state !== "review") return { text: "learning", cls: "is-learning" };
+  if (card.due <= now) return { text: "due", cls: "is-due" };
+  return { text: `next in ${SRS.formatWait(card.due - now)}`, cls: "is-known" };
+}
+
+function renderWords() {
+  const now = Date.now();
+  const w = state.words;
+  const c = SRS.counts(w.cards, words, { now, newLeft: newLeft() });
+  const total = c.new + c.learning + c.review;
+  const started = words.filter((word) => w.cards[`${word.rank}:r`]).length;
+  const inReview = words.filter((word) => w.cards[`${word.rank}:r`]?.state === "review").length;
+  const upcoming = Object.values(w.cards).map((card) => card.due).filter((due) => due > now).sort((a, b) => a - b)[0];
+
+  const perDay = h("div", { class: "segments", role: "radiogroup", "aria-label": "New words per day" },
+    NEW_PER_DAY_OPTIONS.map((n) =>
+      h("label", {},
+        h("input", { type: "radio", name: "per-day", value: n, checked: w.newPerDay === n, onchange: () => { w.newPerDay = n; save(); renderWords(); } }),
+        `${n} a day`)));
+
+  const study = total > 0
+    ? [
+        h("p", { class: "due-line" }, `${c.new} new · ${c.learning} learning · ${c.review} to review`),
+        h("div", { class: "actions" }, h("button", { class: "btn primary", type: "button", onclick: () => studyWords() }, "Study now")),
+      ]
+    : [
+        h("p", { class: "due-line" }, started === words.length && !upcoming
+          ? "You've started all 100 words."
+          : upcoming ? `Done for now. Next card in ${SRS.formatWait(upcoming - now)}.` : "Done for now."),
+        started < words.length && h("div", { class: "actions" },
+          h("button", {
+            class: "btn", type: "button",
+            onclick: () => {
+              const count = (w.bonus.day === today() ? w.bonus.count : 0) + w.newPerDay;
+              w.bonus = { day: today(), count };
+              save();
+              studyWords();
+            },
+          }, `Learn ${w.newPerDay} more new words`)),
+      ];
+
+  show(
+    h("h1", {}, "Words"),
+    h("p", { class: "sub" }, "The 100 most common Vietnamese words, a few new ones each day. Cards come back just before you'd forget them."),
+    h("div", { class: "word-study" }, study),
+    h("h2", {}, "New words per day"),
+    perDay,
+    h("h2", {}, "Progress"),
+    h("p", { class: "sub" }, `${started} of ${words.length} started · ${inReview} past the learning stage`),
+    h("div", { class: "word-list" }, words.map((word) => {
+      const status = wordStatus(word, now);
+      return h("div", { class: "word-row" },
+        h("span", { class: "word-rank" }, word.rank),
+        h("span", { class: "word-vi", lang: "vi" }, word.vi),
+        h("span", { class: "word-en" }, word.en),
+        h("span", { class: `word-status ${status.cls}` }, status.text));
+    })),
+    h("div", { class: "actions" },
+      h("button", { class: "btn", type: "button", onclick: exportForAnki }, "Download for Anki")),
+    h("p", { class: "sub small" }, "Imports into the Anki app as Basic (and reversed card) notes. Progress here and in Anki is separate."),
+  );
+}
+
+function studyWords(session = { done: 0 }) {
+  const now = Date.now();
+  const w = state.words;
+  const next = SRS.pickNext(w.cards, words, { now, newLeft: newLeft() });
+  if (!next) {
+    show(
+      h("h1", {}, session.done ? `Done for now, ${session.done} ${session.done === 1 ? "card" : "cards"}` : "Nothing to study right now"),
+      h("p", { class: "sub" }, "New words and reviews come back on their own. Check in tomorrow."),
+      h("div", { class: "actions" }, h("a", { class: "btn primary as-link", href: "#/words" }, "Back to words")),
+    );
+    return;
+  }
+
+  const c = SRS.counts(w.cards, words, { now, newLeft: newLeft() });
+  const header = h("div", { class: "progress-row" },
+    h("span", { class: "study-counts" },
+      h("span", { class: "count-new" }, `${c.new} new`), " · ",
+      h("span", {}, `${c.learning} learning`), " · ",
+      h("span", {}, `${c.review} review`)),
+    h("a", { href: "#/words", class: "small end-link" }, "End"));
+
+  if (next.introduce) {
+    const word = next.introduce;
+    const meet = () => {
+      w.cards[`${word.rank}:r`] = { ...SRS.newCard(`${word.rank}:r`), due: Date.now() + SRS.MINUTE };
+      w.introduced[today()] = (w.introduced[today()] || 0) + 1;
+      save();
+      studyWords(session);
+    };
+    show(header,
+      h("section", { class: "flashcard", tabindex: "-1" },
+        h("p", { class: "card-meta" }, `New word · #${word.rank} most common`),
+        h("p", { class: "flash-word", lang: "vi" }, word.vi),
+        wordDetails(word)),
+      h("div", { class: "actions" }, h("button", { class: "btn primary", type: "button", onclick: meet }, "Got it")),
+      h("p", { class: "sub small" }, "You'll be asked about it again in a minute."));
+    onKey = (event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); meet(); } };
+    app.querySelector(".flashcard").focus();
+    return;
+  }
+
+  const card = next.card;
+  const [rank, side] = card.id.split(":");
+  const word = wordByRank(Number(rank));
+  const reverse = side === "p";
+  const front = reverse
+    ? [h("p", { class: "card-meta" }, "In Vietnamese?"), h("p", { class: "flash-word flash-en" }, word.en)]
+    : [h("p", { class: "card-meta" }, `#${word.rank} · What does it mean?`), h("p", { class: "flash-word", lang: "vi" }, word.vi)];
+  // Focus sits on the card, not a button, so space and Enter only do what the key handler says.
+  const cardBox = h("section", { class: "flashcard", tabindex: "-1" }, front);
+  const actions = h("div", { class: "actions" });
+
+  const grade = (id) => {
+    const updated = SRS.schedule(card, id, Date.now());
+    w.cards[card.id] = updated;
+    const reverseId = `${word.rank}:p`;
+    if (SRS.shouldUnlockReverse(card, updated) && !w.cards[reverseId]) {
+      w.cards[reverseId] = { ...SRS.newCard(reverseId), due: Date.now() };
+    }
+    session.done += 1;
+    save();
+    studyWords(session);
+  };
+
+  const reveal = () => {
+    if (reverse) cardBox.append(h("p", { class: "flash-word answer", lang: "vi" }, word.vi), toneChips(word.vi), h("p", { class: "sub small" }, `#${word.rank} most common`));
+    else cardBox.append(...clean([wordDetails(word)]));
+    const at = Date.now();
+    actions.replaceChildren(h("div", { class: "grades" }, GRADES.map((g) =>
+      h("button", { class: `btn grade ${g.id === "good" ? "primary" : ""}`, type: "button", onclick: () => grade(g.id) },
+        h("span", {}, g.label),
+        h("span", { class: "grade-wait" }, SRS.preview(card, g.id, at))))));
+    cardBox.focus();
+    onKey = (event) => {
+      const chosen = GRADES.find((g) => g.key === event.key);
+      if (chosen) grade(chosen.id);
+      else if (event.key === " ") { event.preventDefault(); grade("good"); }
+    };
+  };
+
+  actions.append(h("button", { class: "btn primary", type: "button", onclick: reveal }, "Show answer"));
+  show(header, cardBox, actions,
+    h("p", { class: "sub small key-help" }, "Keys: space shows the answer, then 1–4 to grade."));
+  onKey = (event) => { if (event.key === " " || event.key === "Enter") { event.preventDefault(); reveal(); } };
+  cardBox.focus();
+}
+
+function exportForAnki() {
+  const clean = (text) => text.replace(/[\t\n]/g, " ");
+  const lines = ["#separator:tab", "#html:true", "#notetype:Basic (and reversed card)", "#tags column:3"];
+  for (const word of words) {
+    const examples = examplesFor(word).map((item) => `<br><i>${clean(item.vi)}</i> = ${clean(item.en)}`).join("");
+    lines.push([clean(word.vi), `${clean(word.en)}${examples}`, `vietnamese top100 rank${String(word.rank).padStart(3, "0")}`].join("\t"));
+  }
+  const blob = new Blob([lines.join("\n") + "\n"], { type: "text/plain;charset=utf-8" });
+  const link = h("a", { href: URL.createObjectURL(blob), download: "vietnamese-top-100.txt" });
+  document.body.append(link);
+  link.click();
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+}
+
 // ---------- Mistakes ----------
 
 function renderMistakes() {
@@ -812,7 +1036,7 @@ function renderMistakes() {
 
 // ---------- Routing and startup ----------
 
-const routes = { practice: renderPractice, letters: renderLetters, notes: renderNotes, mistakes: renderMistakes };
+const routes = { practice: renderPractice, words: renderWords, letters: renderLetters, notes: renderNotes, mistakes: renderMistakes };
 
 function route() {
   const name = location.hash.replace("#/", "") || "practice";
@@ -830,9 +1054,11 @@ document.addEventListener("keydown", (event) => {
 
 async function start() {
   try {
-    const response = await fetch("data/content.json");
-    if (!response.ok) throw new Error(`content: ${response.status}`);
-    content = await response.json();
+    const [contentResponse, wordsResponse] = await Promise.all([fetch("data/content.json"), fetch("data/words.json")]);
+    if (!contentResponse.ok) throw new Error(`content: ${contentResponse.status}`);
+    if (!wordsResponse.ok) throw new Error(`words: ${wordsResponse.status}`);
+    content = await contentResponse.json();
+    words = await wordsResponse.json();
   } catch (error) {
     app.replaceChildren(h("p", {}, "The lessons couldn't load. If you opened this file directly, run it through a local server: python -m http.server"));
     console.error(error);

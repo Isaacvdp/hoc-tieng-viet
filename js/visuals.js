@@ -81,6 +81,7 @@
     return node;
   }
 
+  // A single ASCII letter like "a" in "Na" or "ba" has no tone shape problem; unknown names draw an empty grid.
   const px = (t) => 10 + t * 80;
   const py = (level) => 52 - (level - 1) * 11;
 

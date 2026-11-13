@@ -328,6 +328,57 @@ button:disabled { cursor: not-allowed; opacity: 0.5; }
 .place { flex: 1; padding: 2px 0; border-radius: 4px; background: var(--surface); color: var(--muted); font-size: 0.75rem; text-align: center; }
 .place.on { background: var(--accent); color: var(--on-accent); font-weight: 600; }
 
+.contour-tiny { width: 52px; height: 32px; }
+
+/* Words */
+.word-study { margin-top: 20px; padding: 16px; border-radius: var(--radius); background: var(--surface); }
+.word-study .actions { margin-top: 12px; }
+.due-line { font-weight: 600; font-variant-numeric: tabular-nums; }
+.word-list { margin-top: 8px; }
+.word-row {
+  display: grid;
+  grid-template-columns: 32px minmax(72px, auto) 1fr auto;
+  align-items: baseline;
+  gap: 4px 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+}
+.word-rank { color: var(--muted); font-size: 0.8125rem; font-variant-numeric: tabular-nums; text-align: right; }
+.word-vi { font-weight: 600; }
+.word-en { color: var(--muted); font-size: 0.9375rem; }
+.word-status { color: var(--muted); font-size: 0.8125rem; white-space: nowrap; }
+.word-status.is-learning { color: var(--warn); }
+.word-status.is-due { color: var(--accent); font-weight: 600; }
+.word-status.is-known { color: var(--right); }
+
+.study-counts { flex: 1; font-variant-numeric: tabular-nums; }
+.count-new { color: var(--accent); font-weight: 600; }
+.flashcard:focus { outline: none; }
+.flashcard { margin-top: 8px; padding: 24px 20px; border: 1px solid var(--line); border-radius: var(--radius); text-align: center; }
+.card-meta { color: var(--muted); font-size: 0.875rem; }
+.flash-word { margin: 8px 0 4px; font-size: 2.75rem; line-height: 1.2; font-weight: 650; overflow-wrap: anywhere; }
+.flash-word.flash-en { font-size: 1.75rem; }
+.flash-word.answer { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--line); }
+.card-meaning { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 1.375rem; font-weight: 600; }
+.tone-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 16px; margin-top: 12px; }
+.tone-chip { display: flex; flex-direction: column; align-items: center; }
+.tone-chip-word { font-weight: 600; }
+.tone-chip-name { color: var(--muted); font-size: 0.8125rem; }
+.card-examples { margin-top: 16px; text-align: left; }
+.card-examples p + p { margin-top: 4px; }
+.example-vi { font-weight: 600; }
+.grades { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; width: 100%; }
+.btn.grade { display: flex; flex-direction: column; align-items: center; padding: 6px 4px; line-height: 1.25; }
+.grade-wait { font-size: 0.75rem; font-weight: 400; opacity: 0.8; font-variant-numeric: tabular-nums; }
+.key-help { margin-top: 12px; }
+
+@media (max-width: 480px) {
+  .word-row { grid-template-columns: 28px 1fr auto; }
+  .word-en { grid-column: 2 / 4; grid-row: 2; }
+  .flash-word { font-size: 2.25rem; }
+  .key-help { display: none; }
+}
+
 .quiz-picture { margin: 4px 0 16px; padding: 12px; border-radius: var(--radius); background: var(--surface); }
 .explain-picture { margin-top: 8px; }
 .explain-picture .vowel-map-small { width: 120px; height: 84px; }
