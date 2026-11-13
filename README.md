@@ -6,11 +6,12 @@ Live at https://isaacvdp.github.io/hoc-tieng-viet/
 
 ## Pages
 
+- **Today:** the home screen with today's plan (words due, mistakes, practice, the next grammar point) and progress. Mistakes open from here.
 - **Practice:** sentences from my lessons in six exercises (Translate, Build, Fill in, Meaning, Right sentence, Right marks). Typing is checked without tone marks; the correct spelling is always shown.
 - **Words:** the 1000 most common words as spaced-repetition cards, a few new ones a day, with tone lines and example sentences. Exports to Anki.
 - **Sounds:** tones as pitch lines, the vowel map, consonants, vowel groups, northern endings, and a syllable builder that shows spelling rules and where the tone mark goes.
 - **Grammar:** 96 A1–A2 points with patterns, examples, common mistakes and practice. Search works without marks.
-- **Mistakes:** wrong answers from Practice and Grammar, until they're answered right.
+- **Mistakes:** wrong answers from Practice and Grammar, until they're answered right. Reached from Today.
 
 ## Run it
 

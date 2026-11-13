@@ -150,22 +150,31 @@ function modesFor(item, sessionMode) {
 
 // ---------- Practice setup ----------
 
+// The sentences a Practice session draws from, given the saved exercise and topics.
+function practicePool(selected = new Set(state.topics || content.topics.map((t) => t.id)), mode = state.mode) {
+  return content.items.filter((item) => selected.has(item.topic) && (mode === "mix" || allowedModes(item).includes(mode)));
+}
+
+function practiceSummary(selected = new Set(state.topics || content.topics.map((t) => t.id))) {
+  const count = Math.min(SESSION_SIZE, practicePool(selected).length);
+  const mode = MODES.find((m) => m.id === state.mode).label;
+  const topics = selected.size === content.topics.length ? "all topics" : `${selected.size} ${selected.size === 1 ? "topic" : "topics"}`;
+  return { count, text: `${count} questions · ${mode} · ${topics}` };
+}
+
 function renderPractice() {
   const selected = new Set(state.topics || content.topics.map((t) => t.id));
-  const startButton = h("button", { class: "btn primary", type: "button", onclick: () => startSession(poolFor()) });
+  const startButton = h("button", { class: "btn primary big", type: "button", onclick: () => startSession(practicePool(selected)) }, "Start");
+  const summary = h("p", { class: "start-summary" });
   const message = h("p", { class: "sub small", role: "status" });
-
-  function poolFor() {
-    return content.items.filter((item) => selected.has(item.topic) && (state.mode === "mix" || allowedModes(item).includes(state.mode)));
-  }
 
   function refresh() {
     state.topics = [...selected];
     save();
-    const count = Math.min(SESSION_SIZE, poolFor().length);
+    const { count, text } = practiceSummary(selected);
     startButton.disabled = count === 0;
-    startButton.textContent = count ? `Start ${count} questions` : "Start";
-    message.textContent = count ? "" : "Pick at least one topic that works with this exercise.";
+    summary.textContent = text;
+    message.textContent = count ? "" : "No sentences match. Pick at least one topic that works with this exercise.";
     message.hidden = count > 0;
     for (const box of topicBoxes) box.checked = selected.has(box.value);
   }
@@ -211,17 +220,22 @@ function renderPractice() {
 
   show(
     h("h1", {}, "Practice"),
-    h("p", { class: "sub" }, "You don't need to type tone marks yet. The correct spelling is always shown afterwards."),
-    h("h2", {}, "Exercise"),
-    modes, modeHint,
-    h("div", { class: "topic-head" },
-      h("h2", {}, "Topics"),
-      h("span", {},
-        h("button", { class: "btn link", type: "button", onclick: () => setAll(true) }, "All"),
-        " ",
-        h("button", { class: "btn link", type: "button", onclick: () => setAll(false) }, "None"))),
-    list,
-    h("div", { class: "start-bar" }, message, startButton),
+    h("p", { class: "sub" }, "Sentences from your lessons. You don't need to type tone marks yet; the correct spelling is always shown afterwards."),
+    h("section", { class: "card start-card" },
+      summary,
+      message,
+      h("div", { class: "actions" }, startButton)),
+    h("details", { class: "card setup", open: state.setupOpen || null, ontoggle: (event) => { state.setupOpen = event.target.open; save(); } },
+      h("summary", {}, "Change exercise and topics"),
+      h("h2", {}, "Exercise"),
+      modes, modeHint,
+      h("div", { class: "topic-head" },
+        h("h2", {}, "Topics"),
+        h("span", {},
+          h("button", { class: "btn link", type: "button", onclick: () => setAll(true) }, "All"),
+          " ",
+          h("button", { class: "btn link", type: "button", onclick: () => setAll(false) }, "None"))),
+      list),
   );
   refresh();
 }
@@ -557,45 +571,69 @@ function letterRow(entry) {
       h("p", { class: "letter-word" }, h("b", { lang: "vi" }, entry.word), ` = ${entry.meaning}`)));
 }
 
-function renderLetters() {
+const SOUND_TABS = [
+  { id: "tones", label: "Tones" },
+  { id: "letters", label: "Letters" },
+  { id: "combinations", label: "Combinations" },
+  { id: "syllables", label: "Syllables" },
+];
+
+function subTabs(base, tabs, active, label) {
+  return h("nav", { class: "subtabs", "aria-label": label },
+    tabs.map((tab, i) => h("a", {
+      href: i === 0 ? `#/${base}` : `#/${base}/${tab.id}`,
+      "aria-current": tab.id === active ? "page" : null,
+    }, tab.label)));
+}
+
+function quizCard(title, buttons) {
+  return h("section", { class: "card quiz-card" },
+    h("p", { class: "quiz-card-title" }, title),
+    h("div", { class: "actions" }, buttons.map(([label, make], i) =>
+      h("button", { class: `btn ${i === 0 ? "primary" : ""}`, type: "button", onclick: () => startQuiz(make()) }, label))));
+}
+
+function renderSounds(tab) {
+  const active = SOUND_TABS.some((t) => t.id === tab) ? tab : "tones";
   const groups = content.letterGroups;
   const firstVowelGroup = groups.find((group) => group.letters.some((l) => Visuals.isVowel(l.letter)));
   const firstConsonantGroup = groups.find((group) => !group.letters.some((l) => Visuals.isVowel(l.letter)));
 
-  const jump = (id, label) => h("button", { class: "btn link jump", type: "button", onclick: () => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }) }, label);
+  const body = {
+    tones: () => [
+      quizCard("Test yourself on the six tones.", [["Tones quiz", toneQuestions]]),
+      h("p", { class: "group-note section-note" }, "Six tones. The mark changes the word completely. Each line shows your voice going from low (bottom) to high (top) across the word. The dot is where you start."),
+      h("div", { class: "card list-card" }, content.tones.map((tone) =>
+        h("div", { class: "letter-row has-picture" },
+          h("span", { class: "letter-glyph", lang: "vi" }, tone.mark),
+          h("div", { class: "letter-picture" }, Visuals.contour(tone.name)),
+          h("div", {},
+            h("p", {}, h("b", { lang: "vi" }, tone.name), `. ${tone.how}`),
+            h("p", { class: "letter-word" }, h("b", { lang: "vi" }, tone.word), ` = ${tone.meaning}`))))),
+    ],
+    letters: () => [
+      quizCard("Test yourself on letters and look-alike words.", [["Letter sounds quiz", soundQuestions], ["Similar words quiz", similarQuestions]]),
+      groups.map((group) => [
+        group === firstVowelGroup && [
+          h("h2", {}, "Vowel map"),
+          h("p", { class: "group-note" }, "Where your tongue sits for each vowel. Left is the front of the mouth, top is a nearly closed mouth. Circled vowels have rounded lips."),
+          h("div", { class: "card vowel-map-wrap" }, Visuals.vowelMap(null, "large")),
+        ],
+        h("h2", {}, group.title),
+        group === firstConsonantGroup && h("p", { class: "group-note" }, "The strip shows where in the mouth each sound is made, from the lips to the throat."),
+        group.note ? h("p", { class: "group-note" }, group.note) : null,
+        h("div", { class: "card list-card" }, group.letters.map(letterRow)),
+      ]),
+    ],
+    combinations: () => northernExtras(),
+    syllables: () => syllableBuilder(),
+  };
 
   show(
     h("h1", {}, "Sounds"),
-    h("p", { class: "sub" }, "How Vietnamese sounds in the north, described in English: tones, letters, vowel groups, endings, and how syllables are built."),
-    h("nav", { class: "page-jumps", "aria-label": "On this page" },
-      jump("sec-tones", "Tones"), jump("sec-vowels", "Vowels"), jump("sec-consonants", "Consonants"),
-      jump("sec-groups", "Vowel groups"), jump("sec-endings", "Endings"), jump("sec-syllables", "Syllable builder")),
-    h("div", { class: "quiz-buttons" },
-      h("button", { class: "btn primary", type: "button", onclick: () => startQuiz(soundQuestions()) }, "Letter sounds quiz"),
-      h("button", { class: "btn", type: "button", onclick: () => startQuiz(toneQuestions()) }, "Tones quiz"),
-      h("button", { class: "btn", type: "button", onclick: () => startQuiz(similarQuestions()) }, "Similar words quiz")),
-    h("h2", { id: "sec-tones" }, "Tones"),
-    h("p", { class: "group-note" }, "Six tones. The mark changes the word completely. Each line shows your voice going from low (bottom) to high (top) across the word. The dot is where you start."),
-    content.tones.map((tone) =>
-      h("div", { class: "letter-row has-picture" },
-        h("span", { class: "letter-glyph", lang: "vi" }, tone.mark),
-        h("div", { class: "letter-picture" }, Visuals.contour(tone.name)),
-        h("div", {},
-          h("p", {}, h("b", { lang: "vi" }, tone.name), `. ${tone.how}`),
-          h("p", { class: "letter-word" }, h("b", { lang: "vi" }, tone.word), ` = ${tone.meaning}`)))),
-    groups.map((group) => [
-      group === firstVowelGroup && [
-        h("h2", { id: "sec-vowels" }, "Vowel map"),
-        h("p", { class: "group-note" }, "Where your tongue sits for each vowel. Left is the front of the mouth, top is a nearly closed mouth. Circled vowels have rounded lips."),
-        h("div", { class: "vowel-map-wrap" }, Visuals.vowelMap(null, "large")),
-      ],
-      h("h2", { id: group === firstConsonantGroup ? "sec-consonants" : null }, group.title),
-      group === firstConsonantGroup && h("p", { class: "group-note" }, "The strip shows where in the mouth each sound is made, from the lips to the throat."),
-      group.note ? h("p", { class: "group-note" }, group.note) : null,
-      group.letters.map(letterRow),
-    ]),
-    northernExtras(),
-    syllableBuilder(),
+    h("p", { class: "sub" }, "How Vietnamese sounds in the north, described in English."),
+    subTabs("sounds", SOUND_TABS, active, "Sounds sections"),
+    body[active](),
   );
 }
 
@@ -622,10 +660,10 @@ function soundTable(id, title, note, rows) {
   return [
     h("h2", { id }, title),
     note && h("p", { class: "group-note" }, note),
-    rows.map((row) => h("div", { class: "sound-row" },
+    h("div", { class: "card list-card" }, rows.map((row) => h("div", { class: "sound-row" },
       h("p", { class: "sound-forms", lang: "vi" }, row.forms),
       h("p", {}, row.how),
-      h("p", { class: "letter-word" }, row.words.map((w, i) => [i ? " · " : "", h("b", { lang: "vi" }, w), find(w) ? ` ${find(w).en.split(";")[0]}` : ""])))),
+      h("p", { class: "letter-word" }, row.words.map((w, i) => [i ? " · " : "", h("b", { lang: "vi" }, w), find(w) ? ` ${find(w).en.split(";")[0]}` : ""]))))),
   ];
 }
 
@@ -655,7 +693,7 @@ function syllablesInWords() {
 }
 
 function syllableBuilder() {
-  const box = h("section", { id: "sec-syllables", class: "syllable-builder" });
+  const box = h("section", { id: "sec-syllables", class: "card syllable-builder" });
   const ui = state.syllableUi;
   const index = syllablesInWords();
 
@@ -961,12 +999,12 @@ function renderGrammarList() {
       (searchable(item.vi).includes(query) || searchable(item.en).includes(query)) && all.findIndex((o) => o.vi === item.vi) === i) : [];
     list.replaceChildren(...clean([
       shown.length === 0 && h("p", { class: "sub search-empty" }, "No grammar point matches that."),
-      groups.map((group) => [h("h2", {}, group), shown.filter((p) => p.category === group).map(grammarRow)]),
+      groups.map((group) => [h("h2", {}, group), h("div", { class: "card list-card" }, shown.filter((p) => p.category === group).map(grammarRow))]),
       sentences.length > 0 && [
         h("h2", {}, "In your sentences"),
-        sentences.slice(0, SEARCH_LIMIT).map((item) => h("div", { class: "review-item" },
+        h("div", { class: "card list-card" }, sentences.slice(0, SEARCH_LIMIT).map((item) => h("div", { class: "review-item" },
           h("p", { class: "mistake-vi", lang: "vi" }, item.vi),
-          h("p", { class: "mistake-en" }, item.en))),
+          h("p", { class: "mistake-en" }, item.en)))),
       ],
     ]));
   }
@@ -1143,7 +1181,10 @@ function wordStatus(word, now) {
   return { text: `next in ${SRS.formatWait(card.due - now)}`, cls: "is-known" };
 }
 
-function renderWords() {
+const WORD_TABS = [{ id: "study", label: "Study" }, { id: "all", label: "All 1000 words" }];
+
+function renderWords(tab) {
+  const active = tab === "all" ? "all" : "study";
   const now = Date.now();
   const w = state.words;
   const c = SRS.counts(w.cards, words, { now, newLeft: newLeft() });
@@ -1155,7 +1196,7 @@ function renderWords() {
   const perDay = h("div", { class: "segments", role: "radiogroup", "aria-label": "New words per day" },
     NEW_PER_DAY_OPTIONS.map((n) =>
       h("label", {},
-        h("input", { type: "radio", name: "per-day", value: n, checked: w.newPerDay === n, onchange: () => { w.newPerDay = n; save(); renderWords(); } }),
+        h("input", { type: "radio", name: "per-day", value: n, checked: w.newPerDay === n, onchange: () => { w.newPerDay = n; save(); renderWords(active); } }),
         `${n} a day`)));
 
   const study = total > 0
@@ -1165,7 +1206,7 @@ function renderWords() {
       ]
     : [
         h("p", { class: "due-line" }, started === words.length && !upcoming
-          ? "You've started all 100 words."
+          ? `You've started all ${words.length} words.`
           : upcoming ? `Done for now. Next card in ${SRS.formatWait(upcoming - now)}.` : "Done for now."),
         started < words.length && h("div", { class: "actions" },
           h("button", {
@@ -1178,19 +1219,30 @@ function renderWords() {
             },
           }, `Learn ${w.newPerDay} more new words`)),
       ];
+  study.unshift(h("p", { class: "start-title" }, total > 0 ? "Ready to study" : "All caught up"));
+
+  const studyTab = [
+    h("section", { class: "card start-card" }, study),
+    h("section", { class: "card" },
+      h("h2", {}, "New words per day"),
+      h("p", { class: "sub small" }, "New words are introduced in order, most common first. Reviews always come back when they're due."),
+      perDay),
+    h("p", { class: "sub small progress-line" }, `${started} of ${words.length} started · ${inReview} past the learning stage`),
+  ];
+  const allTab = [
+    h("p", { class: "sub progress-line" }, `${started} of ${words.length} started · ${inReview} past the learning stage`),
+    h("div", { class: "card list-card" }, wordBrowser(now)),
+    h("section", { class: "card" },
+      h("h2", {}, "Anki"),
+      h("p", { class: "sub small" }, "Imports into the Anki app as Basic (and reversed card) notes. Progress here and in Anki is separate."),
+      h("div", { class: "actions" }, h("button", { class: "btn", type: "button", onclick: exportForAnki }, "Download for Anki"))),
+  ];
 
   show(
     h("h1", {}, "Words"),
-    h("p", { class: "sub" }, "The 1000 most common Vietnamese words, most common first, a few new ones each day. Cards come back just before you'd forget them."),
-    h("div", { class: "word-study" }, study),
-    h("h2", {}, "New words per day"),
-    perDay,
-    h("h2", {}, "All words"),
-    h("p", { class: "sub" }, `${started} of ${words.length} started · ${inReview} past the learning stage`),
-    wordBrowser(now),
-    h("div", { class: "actions" },
-      h("button", { class: "btn", type: "button", onclick: exportForAnki }, "Download for Anki")),
-    h("p", { class: "sub small" }, "Imports into the Anki app as Basic (and reversed card) notes. Progress here and in Anki is separate."),
+    h("p", { class: "sub" }, "The 1000 most common Vietnamese words, a few new ones each day. Cards come back just before you'd forget them."),
+    subTabs("words", WORD_TABS, active, "Words sections"),
+    active === "all" ? allTab : studyTab,
   );
 }
 
@@ -1344,6 +1396,113 @@ function exportForAnki() {
   setTimeout(() => URL.revokeObjectURL(link.href), 1000);
 }
 
+// ---------- Today ----------
+
+const ICONS = {
+  words: '<rect x="3.5" y="7" width="12.5" height="14" rx="2"/><path d="M8 4h10.5a2 2 0 0 1 2 2v12"/>',
+  mistakes: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5v5M12 16h.01"/>',
+  practice: '<path d="M4 20h4L19.5 8.5a2.1 2.1 0 0 0-3-3L5 17v3zM14.5 7.5l2 2"/>',
+  grammar: '<path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v15H6.5A1.5 1.5 0 0 0 5 19.5zM5 19.5A1.5 1.5 0 0 0 6.5 21H19M9 7.5h6M9 11h4"/>',
+  sounds: '<path d="M3 14c2.5 0 2.5-5 5-5s2.5 9 5 9 2.5-12 5-12c1.5 0 2 1.5 3 3"/>',
+  done: '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+};
+
+function icon(name) {
+  const span = h("span", { class: "plan-icon", "aria-hidden": "true" });
+  span.innerHTML = `<svg viewBox="0 0 24 24">${ICONS[name]}</svg>`;
+  return span;
+}
+
+const WEEKDAYS = ["Chủ nhật", "Thứ hai", "Thứ ba", "Thứ tư", "Thứ năm", "Thứ sáu", "Thứ bảy"];
+
+// One row of today's plan: what it is, where you stand, and the one button that moves it forward.
+function planRow({ name, title, detail, done, action }) {
+  return h("div", { class: `plan-row ${done ? "is-done" : ""}` },
+    icon(done ? "done" : name),
+    h("div", { class: "plan-text" }, h("p", { class: "plan-title" }, title), h("p", { class: "plan-detail" }, detail)),
+    action);
+}
+
+const button = (label, onclick, primary) => h("button", { class: `btn ${primary ? "primary" : ""}`, type: "button", onclick }, label);
+const linkButton = (label, href) => h("a", { class: "btn as-link", href }, label);
+
+function nextGrammarPoint() {
+  const unfinished = (p) => { const s = grammarScore(p); return s.right < s.total; };
+  return grammar.find((p) => p.level === "A1" && unfinished(p)) || grammar.find(unfinished) || null;
+}
+
+function renderToday() {
+  const now = new Date();
+  const w = state.words;
+  const c = SRS.counts(w.cards, words, { now: now.getTime(), newLeft: newLeft() });
+  const wordsDue = c.new + c.learning + c.review;
+  const upcoming = Object.values(w.cards).map((card) => card.due).filter((due) => due > now.getTime()).sort((a, b) => a - b)[0];
+  const sentenceMistakes = openMistakes();
+  const grammarMisses = openGrammarMisses();
+  const practice = practiceSummary();
+  const point = nextGrammarPoint();
+  const started = words.filter((word) => w.cards[`${word.rank}:r`]).length;
+  const practised = content.items.filter((item) => state.progress[itemKey(item)]).length;
+  const grammarDone = grammar.filter((p) => { const s = grammarScore(p); return s.right === s.total; }).length;
+
+  const rows = [
+    planRow({
+      name: "words",
+      title: "Words",
+      done: wordsDue === 0,
+      detail: wordsDue > 0
+        ? [c.review && `${c.review} to review`, c.learning && `${c.learning} learning`, c.new && `${c.new} new`].filter(Boolean).join(" · ")
+        : upcoming ? `All caught up. Next card in ${SRS.formatWait(upcoming - now.getTime())}.` : "All caught up.",
+      action: wordsDue > 0 ? button("Study", () => studyWords(), true) : linkButton("Open", "#/words"),
+    }),
+    (sentenceMistakes.length > 0 || grammarMisses.length > 0) && planRow({
+      name: "mistakes",
+      title: "Mistakes to fix",
+      detail: [sentenceMistakes.length && `${sentenceMistakes.length} ${sentenceMistakes.length === 1 ? "sentence" : "sentences"}`,
+        grammarMisses.length && `${grammarMisses.length} grammar ${grammarMisses.length === 1 ? "question" : "questions"}`].filter(Boolean).join(" · "),
+      action: sentenceMistakes.length > 0
+        ? button("Fix", () => startSession(sentenceMistakes, "mix"))
+        : linkButton("Review", "#/mistakes"),
+    }),
+    planRow({
+      name: "practice",
+      title: "Practice",
+      detail: practice.text,
+      action: button("Start", () => startSession(practicePool()), wordsDue === 0),
+    }),
+    point && planRow({
+      name: "grammar",
+      title: "Grammar",
+      detail: h("span", {}, "Next up: ", h("span", { lang: "vi", class: "plan-vi" }, point.form), ` · ${point.meaning}`),
+      action: linkButton("Learn", `#/grammar/${point.id}`),
+    }),
+    planRow({
+      name: "sounds",
+      title: "Tone warm-up",
+      detail: "Ten quick questions on the six tones",
+      action: button("Go", () => startQuiz(toneQuestions())),
+    }),
+  ];
+
+  const stat = (value, total, label, href) => h("a", { class: "stat", href },
+    h("span", { class: "stat-label" }, label),
+    h("span", { class: "stat-value" }, `${value} / ${total}`),
+    h("span", { class: "stat-bar", "aria-hidden": "true" }, h("span", { style: `width:${total ? (value / total) * 100 : 0}%` })));
+
+  show(
+    h("p", { class: "today-date", lang: "vi" }, `${WEEKDAYS[now.getDay()]}, ${now.getDate()} tháng ${now.getMonth() + 1}`),
+    h("h1", {}, "Today"),
+    h("p", { class: "sub" }, wordsDue > 0 ? "Start with your words, then practise if you have time." : "Your words are done. Practise or pick up some grammar."),
+    h("section", { class: "card plan" }, rows),
+    (sentenceMistakes.length > 0 || grammarMisses.length > 0) && h("p", { class: "small see-mistakes" }, h("a", { href: "#/mistakes" }, "See all mistakes")),
+    h("h2", {}, "Progress"),
+    h("section", { class: "card stats" },
+      stat(started, words.length, "Words started", "#/words/all"),
+      stat(practised, content.items.length, "Sentences practised", "#/practice"),
+      stat(grammarDone, grammar.length, "Grammar points done", "#/grammar")),
+  );
+}
+
 // ---------- Mistakes ----------
 
 function grammarMistakes() {
@@ -1352,12 +1511,12 @@ function grammarMistakes() {
   return [
     h("h2", {}, "Grammar"),
     h("p", { class: "sub small" }, "Practice questions from the grammar guide. They leave this list once you answer them right."),
-    misses.map(({ point, question, miss }) => h("div", { class: "mistake" },
+    h("div", { class: "card list-card" }, misses.map(({ point, question, miss }) => h("div", { class: "mistake" },
       h("p", { class: "mistake-vi", lang: question.type === "fix" || question.type === "truefalse" ? "vi" : null }, question.q),
       h("p", { class: "mistake-en" }, "Answer: ",
         vi(question.type === "truefalse" ? (question.answer ? "right" : "wrong") : question.answer)),
       miss.typed ? h("p", { class: "mistake-typed" }, "Last answer: ", vi(miss.typed)) : null,
-      h("a", { href: `#/grammar/${point.id}`, class: "small" }, `Practise ${point.form}`))),
+      h("a", { href: `#/grammar/${point.id}`, class: "small" }, `Practise ${point.form}`)))),
   ];
 }
 
@@ -1365,12 +1524,12 @@ function renderMistakes() {
   const items = openMistakes().sort((a, b) => state.progress[itemKey(b)].misses - state.progress[itemKey(a)].misses);
   const grammarPart = grammarMistakes();
   if (items.length === 0 && grammarPart) {
-    show(h("h1", {}, "Mistakes"), grammarPart);
+    show(h("a", { class: "back-link small", href: "#/today" }, "← Today"), h("h1", {}, "Mistakes"), grammarPart);
     return;
   }
   if (items.length === 0) {
     show(
-      h("h1", {}, "Mistakes"),
+      h("a", { class: "back-link small", href: "#/today" }, "← Today"), h("h1", {}, "Mistakes"),
       h("div", { class: "empty" },
         h("p", {}, "Nothing to review right now."),
         h("p", { class: "sub small" }, "Anything you get wrong lands here until you get it right twice in a row."),
@@ -1387,12 +1546,12 @@ function renderMistakes() {
   const tally = Object.entries(totals).sort((a, b) => b[1] - a[1]).map(([kind, n]) => `${KIND_LABELS[kind] || kind}: ${n}`).join(" · ");
 
   show(
-    h("h1", {}, "Mistakes"),
+    h("a", { class: "back-link small", href: "#/today" }, "← Today"), h("h1", {}, "Mistakes"),
     h("p", { class: "sub" }, "Sentences stay here until you get them right twice in a row."),
     tally ? h("p", { class: "tally small" }, tally) : null,
     h("div", { class: "actions" },
       h("button", { class: "btn primary", type: "button", onclick: () => startSession(items, "mix") }, `Practise these (${Math.min(items.length, SESSION_SIZE)})`)),
-    h("div", { class: "mistake-items" }, items.map((item) => {
+    h("div", { class: "card list-card mistake-items" }, items.map((item) => {
       const p = state.progress[itemKey(item)];
       return h("div", { class: "mistake" },
         h("p", { class: "mistake-vi", lang: "vi" }, item.vi),
@@ -1407,25 +1566,37 @@ function renderMistakes() {
 // ---------- Routing and startup ----------
 
 const routes = {
+  today: renderToday,
   practice: renderPractice,
   words: renderWords,
-  sounds: renderLetters,
+  sounds: renderSounds,
   grammar: (id) => (id ? renderGrammarPoint(decodeURIComponent(id)) : renderGrammarList()),
   mistakes: renderMistakes,
 };
-// Old addresses from before the rename.
+// Old addresses from before the renames.
 const ROUTE_ALIASES = { letters: "sounds", notes: "grammar" };
+// Pages without their own tab light up the tab they belong to.
+const TAB_FOR = { mistakes: "today" };
 
 function route() {
   const [raw, param] = location.hash.replace(/^#\/?/, "").split("/");
-  const name = ROUTE_ALIASES[raw] || raw || "practice";
-  const render = routes[name] || renderPractice;
-  document.querySelectorAll("nav a").forEach((link) => {
-    if (link.dataset.route === name) link.setAttribute("aria-current", "page");
+  const name = routes[ROUTE_ALIASES[raw] || raw] ? ROUTE_ALIASES[raw] || raw : "today";
+  const tab = TAB_FOR[name] || name;
+  document.querySelectorAll(".tabs a").forEach((link) => {
+    if (link.dataset.route === tab) link.setAttribute("aria-current", "page");
     else link.removeAttribute("aria-current");
   });
-  render(param);
+  routes[name](param);
 }
+
+// A link to the page you're already on (like the Today tab during a study session) still opens that page.
+document.addEventListener("click", (event) => {
+  const link = event.target.closest('a[href^="#/"]');
+  if (link && link.getAttribute("href") === location.hash && !event.ctrlKey && !event.metaKey) {
+    event.preventDefault();
+    route();
+  }
+});
 
 document.addEventListener("keydown", (event) => {
   if (onKey && !event.ctrlKey && !event.metaKey && !event.altKey) onKey(event);

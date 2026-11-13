@@ -2,22 +2,44 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#181b21" media="(prefers-color-scheme: dark)" />
     <title>Học tiếng Việt</title>
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232f5fd0'/%3E%3Cpath d='M10 7h9a6 6 0 0 1 0 18h-9zM6 16h8' fill='none' stroke='white' stroke-width='3'/%3E%3C/svg%3E" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233451d1'/%3E%3Cpath d='M10 7h9a6 6 0 0 1 0 18h-9zM6 16h8' fill='none' stroke='white' stroke-width='3'/%3E%3C/svg%3E" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header class="topbar">
-      <a class="brand" href="#/practice" lang="vi">Học tiếng Việt</a>
-      <nav aria-label="Main">
-        <a href="#/practice" data-route="practice">Practice</a>
-        <a href="#/words" data-route="words">Words</a>
-        <a href="#/sounds" data-route="sounds">Sounds</a>
-        <a href="#/grammar" data-route="grammar">Grammar</a>
-        <a href="#/mistakes" data-route="mistakes">Mistakes<span class="count" id="mistake-count" hidden></span></a>
-      </nav>
+      <div class="topbar-inner">
+        <a class="brand" href="#/today" lang="vi">
+          <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" /><path d="M10 7h9a6 6 0 0 1 0 18h-9zM6 16h8" /></svg>
+          Học tiếng Việt
+        </a>
+        <nav class="tabs" aria-label="Main">
+          <a href="#/today" data-route="today">
+            <span class="tab-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 10.5 12 3.5l8.5 7V20a1 1 0 0 1-1 1h-5v-6h-5v6h-5a1 1 0 0 1-1-1z" /></svg><span class="count" id="mistake-count" hidden></span></span>
+            <span class="tab-label">Today</span>
+          </a>
+          <a href="#/practice" data-route="practice">
+            <span class="tab-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19.5 8.5a2.1 2.1 0 0 0-3-3L5 17v3zM14.5 7.5l2 2" /></svg></span>
+            <span class="tab-label">Practice</span>
+          </a>
+          <a href="#/words" data-route="words">
+            <span class="tab-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="7" width="12.5" height="14" rx="2" /><path d="M8 4h10.5a2 2 0 0 1 2 2v12" /></svg></span>
+            <span class="tab-label">Words</span>
+          </a>
+          <a href="#/sounds" data-route="sounds">
+            <span class="tab-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 14c2.5 0 2.5-5 5-5s2.5 9 5 9 2.5-12 5-12c1.5 0 2 1.5 3 3" /></svg></span>
+            <span class="tab-label">Sounds</span>
+          </a>
+          <a href="#/grammar" data-route="grammar">
+            <span class="tab-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v15H6.5A1.5 1.5 0 0 0 5 19.5zM5 19.5A1.5 1.5 0 0 0 6.5 21H19M9 7.5h6M9 11h4" /></svg></span>
+            <span class="tab-label">Grammar</span>
+          </a>
+        </nav>
+      </div>
     </header>
     <main id="app" tabindex="-1"></main>
     <script src="js/check.js"></script>
