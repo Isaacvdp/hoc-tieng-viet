@@ -59,8 +59,6 @@ for (const t of content.topics) assert(content.items.some((i) => i.topic === t.i
 const Ex = require(root + "/js/exercises.js");
 const { plain } = require(root + "/js/check.js");
 const plainText = (t) => words(t).map(plain).join(" ");
-const rulesTopics = content.rules.flatMap((r) => r.topics || []);
-for (const t of rulesTopics) assert(topics.has(t), "rule topic " + t);
 assert.equal(Ex.toneName("nước"), "sắc");
 assert.equal(Ex.toneName("mã"), "ngã");
 assert.equal(Ex.toneName("mạ"), "nặng");

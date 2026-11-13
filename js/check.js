@@ -1,7 +1,7 @@
 // Compares a typed answer with the accepted answers and explains the differences.
 // Tone and vowel marks are ignored on purpose: the learner is not typing them yet.
 (function (root) {
-  const SECOND_PERSON = new Set(["anh", "chi", "em"]);
+  const SECOND_PERSON = new Set(["anh", "chi", "em", "ban"]);
 
   function plain(word) {
     return word
@@ -25,7 +25,7 @@
       .filter(Boolean);
   }
 
-  // "anh", "chị" and "em" are all "you", so any of them is right unless the
+  // "anh", "chị", "em" and "bạn" are all "you", so any of them is right unless the
   // topic is about choosing the right one. "anh ấy" (he) stays fixed.
   function comparable(list, flexiblePronouns) {
     return list.map((word, i) => {

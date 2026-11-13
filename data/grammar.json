@@ -1,0 +1,6496 @@
+[
+  {
+    "id": "co-khong",
+    "form": "có … không",
+    "meaning": "yes/no question",
+    "level": "A1",
+    "category": "Questions",
+    "pattern": "Subject + có + verb/adjective + không?",
+    "summary": "Wrap the verb or adjective in có … không to turn a statement into a yes/no question.",
+    "examples": [
+      {
+        "vi": "Anh có muốn đi Việt Nam không?",
+        "en": "Do you want to go to Vietnam?"
+      },
+      {
+        "vi": "Phở có ngon không?",
+        "en": "Is the phở good?"
+      },
+      {
+        "vi": "Em có đói không?",
+        "en": "Are you hungry?"
+      }
+    ],
+    "howTo": [
+      "có goes before the verb or adjective, không goes at the very end.",
+      "Answer yes by repeating the verb (Có, muốn.) and no with không + verb (Không, tôi không muốn.)."
+    ],
+    "english": "English moves words around or adds do/does. Vietnamese keeps the statement order and adds có … không around it.",
+    "mistakes": [
+      {
+        "wrong": "Anh có muốn không đi Việt Nam?",
+        "right": "Anh có muốn đi Việt Nam không?",
+        "why": "không closes the question, so it goes at the end."
+      }
+    ],
+    "related": [
+      "co-phai-khong",
+      "da-chua",
+      "phai-khong"
+    ],
+    "topics": [
+      "yes-no"
+    ],
+    "words": [
+      "có",
+      "không"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Where does không go in a có … không question?",
+        "options": [
+          "At the end",
+          "Right after có",
+          "At the start"
+        ],
+        "answer": "At the end"
+      },
+      {
+        "type": "translate",
+        "q": "Do you want to go home?",
+        "answer": "Anh có muốn về nhà không?"
+      },
+      {
+        "type": "fix",
+        "q": "Em có thích không phở?",
+        "answer": "Em có thích phở không?"
+      },
+      {
+        "type": "truefalse",
+        "q": "Chị có khỏe không?",
+        "answer": true,
+        "why": "có + adjective + không is a normal yes/no question."
+      }
+    ]
+  },
+  {
+    "id": "co-phai-khong",
+    "form": "có phải (là) … không",
+    "meaning": "is it true that …? / is (someone) …?",
+    "level": "A1",
+    "category": "Questions",
+    "pattern": "Subject + có phải là + noun + không?",
+    "summary": "Use có phải là … không to ask whether someone or something is a particular thing. The answer uses (không) phải là.",
+    "examples": [
+      {
+        "vi": "Anh có phải là người Việt không?",
+        "en": "Are you Vietnamese?"
+      },
+      {
+        "vi": "Đó có phải là cơm không?",
+        "en": "Is that rice?"
+      },
+      {
+        "vi": "Phải, tôi là người Việt.",
+        "en": "Yes, I'm Vietnamese."
+      }
+    ],
+    "howTo": [
+      "Use it with nouns: asking what or who something is.",
+      "Short answers: Phải. (yes) or Không phải. (no)."
+    ],
+    "english": "Like asking 'Is it the case that …?'. With adjectives you don't need it: Phở có ngon không?, not Phở có phải là ngon không?",
+    "mistakes": [
+      {
+        "wrong": "Anh có là người Việt không?",
+        "right": "Anh có phải là người Việt không?",
+        "why": "With là + noun, the question form is có phải là … không."
+      }
+    ],
+    "related": [
+      "co-khong",
+      "khong-phai-la",
+      "la"
+    ],
+    "topics": [
+      "yes-no"
+    ],
+    "words": [
+      "có",
+      "phải",
+      "là",
+      "không"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Anh ___ người Na Uy không?",
+        "options": [
+          "có phải là",
+          "có là",
+          "là có"
+        ],
+        "answer": "có phải là"
+      },
+      {
+        "type": "translate",
+        "q": "Is he Norwegian?",
+        "answer": "Anh ấy có phải là người Na Uy không?"
+      },
+      {
+        "type": "fix",
+        "q": "Đây có là nước không?",
+        "answer": "Đây có phải là nước không?"
+      }
+    ]
+  },
+  {
+    "id": "da-chua",
+    "form": "(đã) … chưa",
+    "meaning": "… yet? (has it happened?)",
+    "level": "A1",
+    "category": "Questions",
+    "pattern": "Subject + (đã) + verb + chưa?",
+    "summary": "Ask whether something has happened yet by ending with chưa. Answer Rồi (already) or Chưa (not yet).",
+    "examples": [
+      {
+        "vi": "Anh ăn cơm chưa?",
+        "en": "Have you eaten yet?"
+      },
+      {
+        "vi": "Rồi, tôi ăn rồi.",
+        "en": "Yes, I've eaten."
+      },
+      {
+        "vi": "Chưa, tôi chưa ăn.",
+        "en": "No, not yet."
+      }
+    ],
+    "howTo": [
+      "đã is optional and often dropped in speech.",
+      "Ăn chưa? on its own is a very common, friendly greeting."
+    ],
+    "english": "English uses 'have you … yet?'. Vietnamese needs only chưa at the end.",
+    "mistakes": [
+      {
+        "wrong": "Anh ăn cơm không chưa?",
+        "right": "Anh ăn cơm chưa?",
+        "why": "Use chưa alone at the end, not không chưa."
+      }
+    ],
+    "related": [
+      "chua",
+      "roi",
+      "da"
+    ],
+    "topics": [
+      "how-are-you"
+    ],
+    "words": [
+      "đã",
+      "chưa",
+      "rồi"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Answer 'yes' to Anh ăn cơm chưa?",
+        "options": [
+          "Rồi.",
+          "Có.",
+          "Phải."
+        ],
+        "answer": "Rồi."
+      },
+      {
+        "type": "translate",
+        "q": "Have you eaten yet?",
+        "answer": "Anh ăn chưa?",
+        "alt": [
+          "Anh ăn cơm chưa?",
+          "Anh đã ăn chưa?",
+          "Anh đã ăn cơm chưa?",
+          "Ăn chưa?"
+        ]
+      },
+      {
+        "type": "truefalse",
+        "q": "Chưa, tôi chưa ăn.",
+        "answer": true,
+        "why": "Chưa is the 'not yet' answer."
+      }
+    ]
+  },
+  {
+    "id": "gi",
+    "form": "gì",
+    "meaning": "what",
+    "level": "A1",
+    "category": "Questions",
+    "pattern": "… verb + gì?  /  noun + gì?",
+    "summary": "gì means what. It stays where the answer would be, usually at the end.",
+    "examples": [
+      {
+        "vi": "Anh tên là gì?",
+        "en": "What is your name?"
+      },
+      {
+        "vi": "Anh muốn gì?",
+        "en": "What do you want?"
+      },
+      {
+        "vi": "Đây là gì?",
+        "en": "What is this?"
+      }
+    ],
+    "howTo": [
+      "After a noun it means 'what kind of': màu gì? (what colour?), quả gì? (what fruit?)."
+    ],
+    "english": "English moves 'what' to the front. Vietnamese leaves gì in the answer's place: Anh ấy thích gì? = He likes what?",
+    "mistakes": [
+      {
+        "wrong": "Gì anh muốn?",
+        "right": "Anh muốn gì?",
+        "why": "gì stays where the answer goes."
+      }
+    ],
+    "related": [
+      "question-word-place",
+      "ai",
+      "dau"
+    ],
+    "topics": [
+      "what"
+    ],
+    "words": [
+      "gì"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Anh ấy thích ___?",
+        "options": [
+          "gì",
+          "ai",
+          "đâu"
+        ],
+        "answer": "gì"
+      },
+      {
+        "type": "translate",
+        "q": "What does he like?",
+        "answer": "Anh ấy thích gì?"
+      },
+      {
+        "type": "fix",
+        "q": "Gì là đây?",
+        "answer": "Đây là gì?"
+      }
+    ]
+  },
+  {
+    "id": "ai",
+    "form": "ai",
+    "meaning": "who",
+    "level": "A1",
+    "category": "Questions",
+    "pattern": "Ai + verb …?  /  … verb + ai?",
+    "summary": "ai means who. Where it sits shows which person you're asking about.",
+    "examples": [
+      {
+        "vi": "Isaac là ai?",
+        "en": "Who is Isaac? (tell me about him)"
+      },
+      {
+        "vi": "Ai là Isaac?",
+        "en": "Which one is Isaac?"
+      },
+      {
+        "vi": "Anh đi làm với ai?",
+        "en": "Who do you go to work with?"
+      },
+      {
+        "vi": "Ai đi làm với anh ấy?",
+        "en": "Who goes to work with him?"
+      }
+    ],
+    "howTo": [
+      "At the start, ai is the one doing the action.",
+      "After the verb or a word like với or cho, ai is the person receiving it."
+    ],
+    "english": "English 'who' always goes first. In Vietnamese it stays in the person's place in the sentence.",
+    "mistakes": [
+      {
+        "wrong": "Ai anh đi làm với?",
+        "right": "Anh đi làm với ai?",
+        "why": "ai goes after với, where the person would be."
+      }
+    ],
+    "related": [
+      "question-word-place",
+      "gi"
+    ],
+    "topics": [
+      "who"
+    ],
+    "words": [
+      "ai"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Which asks you to point someone out in a group?",
+        "options": [
+          "Ai là Isaac?",
+          "Isaac là ai?"
+        ],
+        "answer": "Ai là Isaac?"
+      },
+      {
+        "type": "translate",
+        "q": "Who do you work for?",
+        "answer": "Anh làm việc cho ai?"
+      },
+      {
+        "type": "fix",
+        "q": "Ai anh ấy muốn cho tiền?",
+        "answer": "Anh ấy muốn cho ai tiền?"
+      }
+    ]
+  },
+  {
+    "id": "dau",
+    "form": "(ở) đâu",
+    "meaning": "where",
+    "level": "A1",
+    "category": "Questions",
+    "pattern": "… (ở) đâu?",
+    "summary": "đâu means where. With ở it asks where something is; after đi or đến it asks where to.",
+    "examples": [
+      {
+        "vi": "Anh ở đâu?",
+        "en": "Where are you?"
+      },
+      {
+        "vi": "Nhà vệ sinh ở đâu?",
+        "en": "Where is the toilet?"
+      },
+      {
+        "vi": "Anh muốn đi đâu?",
+        "en": "Where do you want to go?"
+      }
+    ],
+    "howTo": [
+      "Mẹ đâu? without ở asks where someone has gone.",
+      "đâu là … ? means 'which one is …?'."
+    ],
+    "english": "English 'where' goes first. Vietnamese đâu stays at the place in the sentence: You live at where?",
+    "mistakes": [
+      {
+        "wrong": "Đâu anh sống?",
+        "right": "Anh sống ở đâu?",
+        "why": "đâu goes where the place would be."
+      }
+    ],
+    "related": [
+      "question-word-place",
+      "o-place",
+      "day-do"
+    ],
+    "topics": [
+      "where"
+    ],
+    "words": [
+      "đâu",
+      "ở"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Anh làm việc ở ___?",
+        "options": [
+          "đâu",
+          "gì",
+          "nào"
+        ],
+        "answer": "đâu"
+      },
+      {
+        "type": "translate",
+        "q": "Where does he live?",
+        "answer": "Anh ấy sống ở đâu?"
+      },
+      {
+        "type": "fix",
+        "q": "Đâu anh muốn đi?",
+        "answer": "Anh muốn đi đâu?"
+      }
+    ]
+  },
+  {
+    "id": "nao",
+    "form": "nào",
+    "meaning": "which",
+    "level": "A1",
+    "category": "Questions",
+    "pattern": "classifier/noun + nào?",
+    "summary": "nào means which. It comes after the noun or classifier it asks about.",
+    "examples": [
+      {
+        "vi": "Anh thích cái nào?",
+        "en": "Which one do you like?"
+      },
+      {
+        "vi": "Cái nào là nước?",
+        "en": "Which one is water?"
+      },
+      {
+        "vi": "Anh là người nước nào?",
+        "en": "Which country are you from?"
+      }
+    ],
+    "howTo": [
+      "khi nào means when, ngày nào means which day."
+    ],
+    "english": "English 'which' comes before the noun. Vietnamese nào comes after it: cái nào = thing which.",
+    "mistakes": [
+      {
+        "wrong": "Nào cái anh thích?",
+        "right": "Anh thích cái nào?",
+        "why": "nào follows the noun and stays in the answer's place."
+      }
+    ],
+    "related": [
+      "cai",
+      "bao-gio"
+    ],
+    "topics": [
+      "this-that"
+    ],
+    "words": [
+      "nào",
+      "cái"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Anh muốn cái ___?",
+        "options": [
+          "nào",
+          "gì",
+          "ai"
+        ],
+        "answer": "nào"
+      },
+      {
+        "type": "translate",
+        "q": "Which one is water?",
+        "answer": "Cái nào là nước?",
+        "alt": [
+          "Đâu là nước?"
+        ]
+      },
+      {
+        "type": "fix",
+        "q": "Nào cái là nước?",
+        "answer": "Cái nào là nước?"
+      }
+    ]
+  },
+  {
+    "id": "bao-nhieu",
+    "form": "bao nhiêu",
+    "meaning": "how much, how many",
+    "level": "A1",
+    "category": "Questions",
+    "pattern": "… bao nhiêu (tiền)?  /  bao nhiêu + noun?",
+    "summary": "bao nhiêu asks for an amount, especially prices and larger numbers.",
+    "examples": [
+      {
+        "vi": "Cái này bao nhiêu tiền?",
+        "en": "How much is this?"
+      },
+      {
+        "vi": "Của tôi hết bao nhiêu tiền?",
+        "en": "How much do I owe?"
+      },
+      {
+        "vi": "Anh bao nhiêu tuổi?",
+        "en": "How old are you?"
+      }
+    ],
+    "howTo": [
+      "For small numbers you expect to be under about ten, use mấy instead."
+    ],
+    "english": "One word covers both 'how much' and 'how many'.",
+    "mistakes": [
+      {
+        "wrong": "Bao nhiêu cái này?",
+        "right": "Cái này bao nhiêu tiền?",
+        "why": "The thing comes first, bao nhiêu after it."
+      }
+    ],
+    "related": [
+      "may",
+      "numbers-tens"
+    ],
+    "topics": [
+      "restaurant-pay"
+    ],
+    "words": [
+      "tiền"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Asking a price: Cái này ___ tiền?",
+        "options": [
+          "bao nhiêu",
+          "mấy",
+          "gì"
+        ],
+        "answer": "bao nhiêu"
+      },
+      {
+        "type": "translate",
+        "q": "How much is this?",
+        "answer": "Cái này bao nhiêu tiền?",
+        "alt": [
+          "Cái này bao nhiêu?"
+        ]
+      },
+      {
+        "type": "truefalse",
+        "q": "Anh bao nhiêu tuổi?",
+        "answer": true,
+        "why": "A normal way to ask someone's age."
+      }
+    ]
+  },
+  {
+    "id": "may",
+    "form": "mấy",
+    "meaning": "how many (small numbers); a few",
+    "level": "A1",
+    "category": "Questions",
+    "pattern": "mấy + classifier/noun?",
+    "summary": "mấy asks how many when you expect a small number. It is also used for the time.",
+    "examples": [
+      {
+        "vi": "Anh đi mấy người?",
+        "en": "How many people (are you)?"
+      },
+      {
+        "vi": "Mấy giờ rồi?",
+        "en": "What time is it?"
+      },
+      {
+        "vi": "Anh có mấy con?",
+        "en": "How many children do you have?"
+      }
+    ],
+    "howTo": [
+      "mấy goes before the noun, bao nhiêu usually after it or before a bigger quantity.",
+      "In a statement, mấy means 'a few': mấy ngày = a few days."
+    ],
+    "english": "English has no split between small and large 'how many'.",
+    "mistakes": [
+      {
+        "wrong": "Bao nhiêu giờ rồi?",
+        "right": "Mấy giờ rồi?",
+        "why": "The time is always asked with mấy giờ."
+      }
+    ],
+    "related": [
+      "bao-nhieu"
+    ],
+    "topics": [
+      "restaurant-seat"
+    ],
+    "words": [
+      "mấy",
+      "giờ"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "___ giờ rồi?",
+        "options": [
+          "Mấy",
+          "Bao nhiêu",
+          "Nào"
+        ],
+        "answer": "Mấy"
+      },
+      {
+        "type": "translate",
+        "q": "What time is it?",
+        "answer": "Mấy giờ rồi?"
+      },
+      {
+        "type": "translate",
+        "q": "How many people?",
+        "answer": "Anh đi mấy người?",
+        "alt": [
+          "Mấy người?"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "bao-gio",
+    "form": "bao giờ / khi nào",
+    "meaning": "when",
+    "level": "A2",
+    "category": "Questions",
+    "pattern": "Bao giờ + clause? (future)  /  clause + bao giờ? (past)",
+    "summary": "At the start, bao giờ or khi nào asks about the future. At the end, it asks about the past.",
+    "examples": [
+      {
+        "vi": "Bao giờ anh đi Việt Nam?",
+        "en": "When are you going to Vietnam?"
+      },
+      {
+        "vi": "Anh đến bao giờ?",
+        "en": "When did you arrive?"
+      },
+      {
+        "vi": "Khi nào anh về?",
+        "en": "When are you coming home?"
+      }
+    ],
+    "howTo": [
+      "The position alone tells you whether it's future or past, so no tense words are needed."
+    ],
+    "english": "English 'when' always goes first and the verb shows the tense. Vietnamese uses the position instead.",
+    "mistakes": [
+      {
+        "wrong": "Anh đi Việt Nam bao giờ? (meaning: when will you go)",
+        "right": "Bao giờ anh đi Việt Nam?",
+        "why": "At the end it asks about the past. Put it first for the future."
+      }
+    ],
+    "related": [
+      "khi",
+      "se"
+    ],
+    "topics": [],
+    "words": [
+      "bao giờ",
+      "khi"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "When did you arrive?",
+        "options": [
+          "Anh đến bao giờ?",
+          "Bao giờ anh đến?"
+        ],
+        "answer": "Anh đến bao giờ?"
+      },
+      {
+        "type": "translate",
+        "q": "When are you going to Vietnam?",
+        "answer": "Bao giờ anh đi Việt Nam?",
+        "alt": [
+          "Khi nào anh đi Việt Nam?",
+          "Bao giờ anh sẽ đi Việt Nam?",
+          "Khi nào anh sẽ đi Việt Nam?"
+        ]
+      },
+      {
+        "type": "truefalse",
+        "q": "Khi nào anh về? asks about the past.",
+        "answer": false,
+        "why": "At the start it asks about the future."
+      }
+    ]
+  },
+  {
+    "id": "tai-sao",
+    "form": "tại sao / vì sao",
+    "meaning": "why",
+    "level": "A1",
+    "category": "Questions",
+    "pattern": "Tại sao + clause?  →  Vì + reason.",
+    "summary": "tại sao or vì sao ask why and go at the start. Answer with vì (because).",
+    "examples": [
+      {
+        "vi": "Tại sao anh học tiếng Việt?",
+        "en": "Why do you study Vietnamese?"
+      },
+      {
+        "vi": "Vì vợ tôi là người Việt.",
+        "en": "Because my wife is Vietnamese."
+      },
+      {
+        "vi": "Sao anh không ăn?",
+        "en": "Why aren't you eating?"
+      }
+    ],
+    "howTo": [
+      "Just sao is common and casual in speech."
+    ],
+    "english": "Works much like English 'why … ? – because …'.",
+    "mistakes": [
+      {
+        "wrong": "Tại sao? Bởi vì vợ tôi.",
+        "right": "Vì vợ tôi là người Việt.",
+        "why": "Give a full reason after vì."
+      }
+    ],
+    "related": [
+      "vi-nen"
+    ],
+    "topics": [],
+    "words": [
+      "sao",
+      "vì"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Answer a tại sao question with …",
+        "options": [
+          "vì",
+          "nếu",
+          "để"
+        ],
+        "answer": "vì"
+      },
+      {
+        "type": "translate",
+        "q": "Why do you study Vietnamese?",
+        "answer": "Tại sao anh học tiếng Việt?",
+        "alt": [
+          "Vì sao anh học tiếng Việt?",
+          "Sao anh học tiếng Việt?"
+        ]
+      },
+      {
+        "type": "truefalse",
+        "q": "Sao anh không ăn?",
+        "answer": true,
+        "why": "sao alone is a common way to say why."
+      }
+    ]
+  },
+  {
+    "id": "the-nao",
+    "form": "(như) thế nào",
+    "meaning": "how, what is it like",
+    "level": "A1",
+    "category": "Questions",
+    "pattern": "… thế nào?",
+    "summary": "thế nào asks how something is or what it's like. It goes at the end.",
+    "examples": [
+      {
+        "vi": "Dạo này anh thế nào?",
+        "en": "How have you been recently?"
+      },
+      {
+        "vi": "Hôm nay công việc thế nào?",
+        "en": "How's work today?"
+      },
+      {
+        "vi": "Phở ở đây thế nào?",
+        "en": "What's the phở like here?"
+      }
+    ],
+    "howTo": [
+      "For how to do something, use verb + như thế nào: Viết như thế nào? (How do you write it?)."
+    ],
+    "english": "English 'how' goes first. Vietnamese thế nào goes last.",
+    "mistakes": [
+      {
+        "wrong": "Thế nào anh?",
+        "right": "Anh thế nào?",
+        "why": "thế nào goes at the end."
+      }
+    ],
+    "related": [
+      "khoe-khong"
+    ],
+    "topics": [
+      "how-are-you"
+    ],
+    "words": [
+      "thế nào"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Hôm nay công việc ___?",
+        "options": [
+          "thế nào",
+          "ở đâu",
+          "bao giờ"
+        ],
+        "answer": "thế nào"
+      },
+      {
+        "type": "translate",
+        "q": "How have you been recently?",
+        "answer": "Dạo này anh thế nào?"
+      },
+      {
+        "type": "fix",
+        "q": "Thế nào công việc hôm nay?",
+        "answer": "Hôm nay công việc thế nào?",
+        "alt": [
+          "Công việc hôm nay thế nào?"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "bao-lau",
+    "form": "bao lâu",
+    "meaning": "how long (time)",
+    "level": "A2",
+    "category": "Questions",
+    "pattern": "… (trong) bao lâu?",
+    "summary": "bao lâu asks how long something lasts.",
+    "examples": [
+      {
+        "vi": "Anh ở Việt Nam bao lâu?",
+        "en": "How long are you staying in Vietnam?"
+      },
+      {
+        "vi": "Anh học tiếng Việt bao lâu rồi?",
+        "en": "How long have you been learning Vietnamese?"
+      }
+    ],
+    "howTo": [
+      "Add rồi at the end for something that is still going on."
+    ],
+    "english": "English 'how long' goes first; bao lâu goes at the end.",
+    "mistakes": [
+      {
+        "wrong": "Bao lâu anh ở Việt Nam?",
+        "right": "Anh ở Việt Nam bao lâu?",
+        "why": "bao lâu asking about duration goes at the end."
+      }
+    ],
+    "related": [
+      "bao-gio"
+    ],
+    "topics": [],
+    "words": [
+      "lâu"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Anh học tiếng Việt ___ rồi?",
+        "options": [
+          "bao lâu",
+          "bao nhiêu",
+          "mấy"
+        ],
+        "answer": "bao lâu"
+      },
+      {
+        "type": "translate",
+        "q": "How long are you staying in Vietnam?",
+        "answer": "Anh ở Việt Nam bao lâu?"
+      },
+      {
+        "type": "truefalse",
+        "q": "Anh học tiếng Việt bao lâu rồi?",
+        "answer": true,
+        "why": "rồi marks something still going on."
+      }
+    ]
+  },
+  {
+    "id": "phai-khong",
+    "form": "…, phải không?",
+    "meaning": "…, right? (checking)",
+    "level": "A1",
+    "category": "Questions",
+    "pattern": "Statement, phải không?",
+    "summary": "Add phải không? after a statement to check that it's true.",
+    "examples": [
+      {
+        "vi": "Anh là Isaac, phải không?",
+        "en": "You're Isaac, right?"
+      },
+      {
+        "vi": "Chị là người Hà Nội, phải không?",
+        "en": "You're from Hanoi, aren't you?"
+      }
+    ],
+    "howTo": [
+      "Answer Phải (yes) or Không phải (no)."
+    ],
+    "english": "Like English tag questions: …, right? / …, isn't it?",
+    "mistakes": [
+      {
+        "wrong": "Phải không anh là Isaac?",
+        "right": "Anh là Isaac, phải không?",
+        "why": "phải không goes after the statement."
+      }
+    ],
+    "related": [
+      "co-phai-khong",
+      "a-question"
+    ],
+    "topics": [
+      "yes-no"
+    ],
+    "words": [
+      "phải",
+      "không"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Answer 'yes' to Anh là Isaac, phải không?",
+        "options": [
+          "Phải.",
+          "Rồi.",
+          "Có."
+        ],
+        "answer": "Phải."
+      },
+      {
+        "type": "translate",
+        "q": "You're Isaac, right?",
+        "answer": "Anh là Isaac, phải không?"
+      },
+      {
+        "type": "fix",
+        "q": "Phải không chị là người Hà Nội?",
+        "answer": "Chị là người Hà Nội, phải không?"
+      }
+    ]
+  },
+  {
+    "id": "a-question",
+    "form": "… à?",
+    "meaning": "oh, …? (surprised check)",
+    "level": "A2",
+    "category": "Particles",
+    "pattern": "Statement + à?",
+    "summary": "à at the end turns a statement into a surprised or checking question.",
+    "examples": [
+      {
+        "vi": "Anh là người Na Uy à?",
+        "en": "Oh, you're Norwegian?"
+      },
+      {
+        "vi": "Anh về rồi à?",
+        "en": "Oh, you're back already?"
+      }
+    ],
+    "howTo": [
+      "Use it when you've just found something out or want to confirm it.",
+      "Add ạ instead of à when talking politely to an older person: Bác về rồi ạ?"
+    ],
+    "english": "Like saying a statement with rising, surprised intonation in English: 'You're back already?'",
+    "mistakes": [
+      {
+        "wrong": "À anh là người Na Uy?",
+        "right": "Anh là người Na Uy à?",
+        "why": "As a question particle, à goes at the end."
+      }
+    ],
+    "related": [
+      "phai-khong",
+      "a-polite"
+    ],
+    "topics": [],
+    "words": [],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "You just learned he's Norwegian. Anh là người Na Uy ___?",
+        "options": [
+          "à",
+          "nhé",
+          "đi"
+        ],
+        "answer": "à"
+      },
+      {
+        "type": "translate",
+        "q": "Oh, you're back already?",
+        "answer": "Anh về rồi à?"
+      },
+      {
+        "type": "truefalse",
+        "q": "À is a polite word for elders.",
+        "answer": false,
+        "why": "That's ạ. à marks a surprised question."
+      }
+    ]
+  },
+  {
+    "id": "chu-question",
+    "form": "… chứ?",
+    "meaning": "…, surely? (expects yes)",
+    "level": "A2",
+    "category": "Particles",
+    "pattern": "Statement + chứ?",
+    "summary": "chứ at the end asks a question while expecting the answer to be yes.",
+    "examples": [
+      {
+        "vi": "Anh vẫn khỏe chứ?",
+        "en": "You're still well, right?"
+      },
+      {
+        "vi": "Anh vẫn ổn chứ?",
+        "en": "You're still doing okay, right?"
+      }
+    ],
+    "howTo": [
+      "Friendly and caring in tone. Answer with Vâng or Khỏe, ổn."
+    ],
+    "english": "Like '…, I hope?' or '…, right?' when you expect a yes.",
+    "mistakes": [
+      {
+        "wrong": "Chứ anh vẫn khỏe?",
+        "right": "Anh vẫn khỏe chứ?",
+        "why": "chứ goes at the end."
+      }
+    ],
+    "related": [
+      "phai-khong",
+      "khoe-khong"
+    ],
+    "topics": [
+      "how-are-you"
+    ],
+    "words": [
+      "chứ"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Which expects the answer yes?",
+        "options": [
+          "Anh vẫn khỏe chứ?",
+          "Anh có khỏe không?"
+        ],
+        "answer": "Anh vẫn khỏe chứ?"
+      },
+      {
+        "type": "translate",
+        "q": "You're still okay, right?",
+        "answer": "Anh vẫn ổn chứ?"
+      },
+      {
+        "type": "truefalse",
+        "q": "Chị vẫn khỏe chứ?",
+        "answer": true,
+        "why": "A caring check that expects yes."
+      }
+    ]
+  },
+  {
+    "id": "nhi",
+    "form": "… nhỉ?",
+    "meaning": "…, isn't it? (inviting agreement)",
+    "level": "A2",
+    "category": "Particles",
+    "pattern": "Statement + nhỉ?",
+    "summary": "nhỉ at the end invites the listener to agree. It's very common in the north.",
+    "examples": [
+      {
+        "vi": "Hôm nay nóng nhỉ?",
+        "en": "It's hot today, isn't it?"
+      },
+      {
+        "vi": "Phở ngon nhỉ?",
+        "en": "The phở is good, isn't it?"
+      },
+      {
+        "vi": "Anh tên là gì nhỉ?",
+        "en": "What was your name again?"
+      }
+    ],
+    "howTo": [
+      "After a question word it means you've forgotten: tên là gì nhỉ? = what was the name again?"
+    ],
+    "english": "Like English 'isn't it?' or 'don't you think?'.",
+    "mistakes": [
+      {
+        "wrong": "Nhỉ hôm nay nóng?",
+        "right": "Hôm nay nóng nhỉ?",
+        "why": "nhỉ goes at the end."
+      }
+    ],
+    "related": [
+      "nhe",
+      "phai-khong"
+    ],
+    "topics": [],
+    "words": [],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Inviting agreement: Hôm nay lạnh ___?",
+        "options": [
+          "nhỉ",
+          "đi",
+          "ạ"
+        ],
+        "answer": "nhỉ"
+      },
+      {
+        "type": "translate",
+        "q": "The phở is good, isn't it?",
+        "answer": "Phở ngon nhỉ?"
+      },
+      {
+        "type": "truefalse",
+        "q": "Anh tên là gì nhỉ? can mean you've forgotten the name.",
+        "answer": true,
+        "why": "nhỉ after a question word means 'again?'."
+      }
+    ]
+  },
+  {
+    "id": "the-question",
+    "form": "… thế?",
+    "meaning": "softener at the end of questions",
+    "level": "A2",
+    "category": "Particles",
+    "pattern": "Question + thế?",
+    "summary": "In the north, thế at the end of a question makes it sound natural and friendly.",
+    "examples": [
+      {
+        "vi": "Anh đi đâu thế?",
+        "en": "Where are you off to?"
+      },
+      {
+        "vi": "Anh làm gì thế?",
+        "en": "What are you doing?"
+      }
+    ],
+    "howTo": [
+      "It adds no meaning, only a softer, more natural tone. Leave it out and the question is still correct."
+    ],
+    "english": "Similar to English '… then?' or a friendly tone of voice.",
+    "mistakes": [
+      {
+        "wrong": "Thế anh làm gì?",
+        "right": "Anh làm gì thế?",
+        "why": "As a softener, thế goes at the end. At the start it means 'so …'."
+      }
+    ],
+    "related": [
+      "nhi",
+      "gi"
+    ],
+    "topics": [],
+    "words": [
+      "thế"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "A friendly 'What are you doing?'",
+        "options": [
+          "Anh làm gì thế?",
+          "Thế làm gì anh?"
+        ],
+        "answer": "Anh làm gì thế?"
+      },
+      {
+        "type": "translate",
+        "q": "Where are you off to?",
+        "answer": "Anh đi đâu thế?",
+        "alt": [
+          "Anh đi đâu?"
+        ]
+      },
+      {
+        "type": "truefalse",
+        "q": "Without thế, Anh đi đâu? is wrong.",
+        "answer": false,
+        "why": "thế only softens the question."
+      }
+    ]
+  },
+  {
+    "id": "question-word-place",
+    "form": "question words stay in place",
+    "meaning": "how to build any question",
+    "level": "A1",
+    "category": "Word order",
+    "pattern": "Answer in full → swap the keyword for gì / ai / đâu → swap tôi for anh",
+    "summary": "Vietnamese does not move question words to the front. Say the answer, then replace the keyword with the question word.",
+    "examples": [
+      {
+        "vi": "Tôi muốn đi Na Uy.",
+        "en": "I want to go to Norway."
+      },
+      {
+        "vi": "Anh muốn đi đâu?",
+        "en": "Where do you want to go?"
+      },
+      {
+        "vi": "Tôi làm việc cho anh ấy. → Anh làm việc cho ai?",
+        "en": "I work for him. → Who do you work for?"
+      }
+    ],
+    "howTo": [
+      "1. Answer in full. 2. Replace the keyword with gì, ai, đâu, nào or bao nhiêu. 3. Change tôi to anh, chị or em."
+    ],
+    "english": "English moves the question word first and adds do/does. Vietnamese changes only the one word.",
+    "mistakes": [
+      {
+        "wrong": "Đâu anh sống?",
+        "right": "Anh sống ở đâu?",
+        "why": "Keep the statement order and swap in the question word."
+      }
+    ],
+    "related": [
+      "gi",
+      "ai",
+      "dau"
+    ],
+    "topics": [
+      "make-question",
+      "what"
+    ],
+    "words": [
+      "gì",
+      "ai",
+      "đâu"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Tôi đến từ Na Uy. → Ask the question:",
+        "options": [
+          "Anh đến từ đâu?",
+          "Đâu anh đến từ?",
+          "Anh đến đâu từ?"
+        ],
+        "answer": "Anh đến từ đâu?"
+      },
+      {
+        "type": "translate",
+        "q": "Who do you go to work with?",
+        "answer": "Anh đi làm với ai?"
+      },
+      {
+        "type": "fix",
+        "q": "Gì anh ấy thích?",
+        "answer": "Anh ấy thích gì?"
+      }
+    ]
+  },
+  {
+    "id": "khong",
+    "form": "không + verb/adjective",
+    "meaning": "not",
+    "level": "A1",
+    "category": "Negation",
+    "pattern": "Subject + không + verb/adjective",
+    "summary": "Put không right before the verb or adjective to make it negative.",
+    "examples": [
+      {
+        "vi": "Tôi không muốn đi.",
+        "en": "I don't want to go."
+      },
+      {
+        "vi": "Anh ấy không có tiền.",
+        "en": "He has no money."
+      },
+      {
+        "vi": "Không cay.",
+        "en": "Not spicy."
+      }
+    ],
+    "howTo": [
+      "Before a noun with là, use không phải là instead.",
+      "On its own, Không. means No."
+    ],
+    "english": "No 'do' needed: Tôi không thích = I not like.",
+    "mistakes": [
+      {
+        "wrong": "Tôi muốn không đi.",
+        "right": "Tôi không muốn đi.",
+        "why": "không goes before the verb it negates (here muốn)."
+      }
+    ],
+    "related": [
+      "khong-phai-la",
+      "chua",
+      "dung"
+    ],
+    "topics": [
+      "have-give"
+    ],
+    "words": [
+      "không"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Anh ấy ___ có tiền.",
+        "options": [
+          "không",
+          "không phải",
+          "chưa phải"
+        ],
+        "answer": "không"
+      },
+      {
+        "type": "translate",
+        "q": "I don't want to go.",
+        "answer": "Tôi không muốn đi."
+      },
+      {
+        "type": "fix",
+        "q": "Tôi là không mệt.",
+        "answer": "Tôi không mệt."
+      }
+    ]
+  },
+  {
+    "id": "khong-phai-la",
+    "form": "không phải (là)",
+    "meaning": "is not (a noun)",
+    "level": "A1",
+    "category": "Negation",
+    "pattern": "Subject + không phải là + noun",
+    "summary": "To say someone or something is not a thing, use không phải là, never không là.",
+    "examples": [
+      {
+        "vi": "Tôi không phải là người Việt.",
+        "en": "I am not Vietnamese."
+      },
+      {
+        "vi": "Đây không phải là cơm.",
+        "en": "This is not rice."
+      },
+      {
+        "vi": "Đó không phải là nước.",
+        "en": "That is not water."
+      }
+    ],
+    "howTo": [
+      "là is often dropped in speech: Tôi không phải người Việt."
+    ],
+    "english": "English just adds 'not'. Vietnamese needs phải: không phải là.",
+    "mistakes": [
+      {
+        "wrong": "Tôi không là người Việt.",
+        "right": "Tôi không phải là người Việt.",
+        "why": "Negating là needs không phải."
+      }
+    ],
+    "related": [
+      "la",
+      "co-phai-khong",
+      "khong"
+    ],
+    "topics": [
+      "yes-no",
+      "this-that"
+    ],
+    "words": [
+      "không",
+      "phải",
+      "là"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Đây ___ cơm.",
+        "options": [
+          "không phải là",
+          "không là",
+          "là không"
+        ],
+        "answer": "không phải là"
+      },
+      {
+        "type": "translate",
+        "q": "That is not water.",
+        "answer": "Đó không phải là nước.",
+        "alt": [
+          "Đấy không phải là nước.",
+          "Đó không phải nước.",
+          "Đấy không phải nước."
+        ]
+      },
+      {
+        "type": "fix",
+        "q": "Anh ấy không là người Na Uy.",
+        "answer": "Anh ấy không phải là người Na Uy."
+      }
+    ]
+  },
+  {
+    "id": "chua",
+    "form": "chưa",
+    "meaning": "not yet",
+    "level": "A1",
+    "category": "Negation",
+    "pattern": "Subject + chưa + verb",
+    "summary": "chưa means not yet: it hasn't happened, but it might.",
+    "examples": [
+      {
+        "vi": "Tôi chưa ăn.",
+        "en": "I haven't eaten yet."
+      },
+      {
+        "vi": "Tôi chưa đi Việt Nam.",
+        "en": "I haven't been to Vietnam yet."
+      }
+    ],
+    "howTo": [
+      "Use không for 'don't/won't', chưa for 'not yet'."
+    ],
+    "english": "English needs 'haven't … yet'. Vietnamese uses just chưa before the verb.",
+    "mistakes": [
+      {
+        "wrong": "Tôi không ăn chưa.",
+        "right": "Tôi chưa ăn.",
+        "why": "chưa replaces không, it doesn't join it."
+      }
+    ],
+    "related": [
+      "da-chua",
+      "khong",
+      "tung"
+    ],
+    "topics": [],
+    "words": [
+      "chưa"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "I haven't been to Vietnam yet: Tôi ___ đi Việt Nam.",
+        "options": [
+          "chưa",
+          "không",
+          "đã"
+        ],
+        "answer": "chưa"
+      },
+      {
+        "type": "translate",
+        "q": "I haven't eaten yet.",
+        "answer": "Tôi chưa ăn.",
+        "alt": [
+          "Tôi chưa ăn cơm."
+        ]
+      },
+      {
+        "type": "truefalse",
+        "q": "Tôi chưa ăn means 'I don't eat'.",
+        "answer": false,
+        "why": "It means 'not yet'. 'I don't eat' is Tôi không ăn."
+      }
+    ]
+  },
+  {
+    "id": "dung",
+    "form": "đừng / hãy",
+    "meaning": "don't … / do …",
+    "level": "A1",
+    "category": "Negation",
+    "pattern": "Đừng + verb  /  Hãy + verb",
+    "summary": "đừng tells someone not to do something. hãy is a polite or written 'do'.",
+    "examples": [
+      {
+        "vi": "Đừng lo.",
+        "en": "Don't worry."
+      },
+      {
+        "vi": "Anh đừng đi.",
+        "en": "Don't go."
+      },
+      {
+        "vi": "Hãy nghỉ đi.",
+        "en": "Please rest."
+      }
+    ],
+    "howTo": [
+      "Add nhé to soften it: Đừng lo nhé."
+    ],
+    "english": "Like 'don't' and 'do' in commands.",
+    "mistakes": [
+      {
+        "wrong": "Không lo!",
+        "right": "Đừng lo!",
+        "why": "Commands use đừng, not không."
+      }
+    ],
+    "related": [
+      "di-command",
+      "nhe",
+      "khong"
+    ],
+    "topics": [],
+    "words": [
+      "đừng",
+      "hãy"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Don't worry: ___ lo.",
+        "options": [
+          "Đừng",
+          "Không",
+          "Chưa"
+        ],
+        "answer": "Đừng"
+      },
+      {
+        "type": "translate",
+        "q": "Don't go.",
+        "answer": "Đừng đi.",
+        "alt": [
+          "Anh đừng đi.",
+          "Em đừng đi."
+        ]
+      },
+      {
+        "type": "fix",
+        "q": "Không lo nhé.",
+        "answer": "Đừng lo nhé."
+      }
+    ]
+  },
+  {
+    "id": "chang",
+    "form": "chẳng",
+    "meaning": "not (at all), casual",
+    "level": "A2",
+    "category": "Negation",
+    "pattern": "Subject + chẳng + verb/adjective",
+    "summary": "chẳng is a stronger, more casual không.",
+    "examples": [
+      {
+        "vi": "Tôi chẳng biết.",
+        "en": "I have no idea."
+      },
+      {
+        "vi": "Chẳng sao.",
+        "en": "It doesn't matter at all."
+      }
+    ],
+    "howTo": [
+      "Use it in speech. In polite or written Vietnamese, không is safer."
+    ],
+    "english": "Like 'not at all' or a strong 'don't'.",
+    "mistakes": [
+      {
+        "wrong": "Tôi biết chẳng.",
+        "right": "Tôi chẳng biết.",
+        "why": "Like không, it goes before the verb."
+      }
+    ],
+    "related": [
+      "khong"
+    ],
+    "topics": [],
+    "words": [
+      "chẳng"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Which is the more casual 'I don't know'?",
+        "options": [
+          "Tôi chẳng biết.",
+          "Tôi không biết."
+        ],
+        "answer": "Tôi chẳng biết."
+      },
+      {
+        "type": "translate",
+        "q": "I have no idea.",
+        "answer": "Tôi chẳng biết.",
+        "alt": [
+          "Tôi không biết."
+        ]
+      },
+      {
+        "type": "truefalse",
+        "q": "chẳng goes before the verb.",
+        "answer": true,
+        "why": "Same place as không."
+      }
+    ]
+  },
+  {
+    "id": "khong-gi-ca",
+    "form": "không … gì / ai / đâu (cả)",
+    "meaning": "nothing, nobody, nowhere",
+    "level": "A2",
+    "category": "Negation",
+    "pattern": "không + verb + gì / ai / đâu (+ cả)",
+    "summary": "With không, the question words gì, ai and đâu mean nothing, nobody and nowhere. cả adds 'at all'.",
+    "examples": [
+      {
+        "vi": "Tôi không ăn gì cả.",
+        "en": "I didn't eat anything at all."
+      },
+      {
+        "vi": "Không có ai ở nhà.",
+        "en": "There's nobody home."
+      },
+      {
+        "vi": "Hôm nay tôi không đi đâu.",
+        "en": "I'm not going anywhere today."
+      }
+    ],
+    "howTo": [
+      "The question word stays in the same place as in a question."
+    ],
+    "english": "English needs special words (nothing, nobody). Vietnamese reuses the question words.",
+    "mistakes": [
+      {
+        "wrong": "Tôi ăn không gì.",
+        "right": "Tôi không ăn gì.",
+        "why": "không stays before the verb; gì takes the object's place."
+      }
+    ],
+    "related": [
+      "gi",
+      "ai",
+      "khong"
+    ],
+    "topics": [],
+    "words": [
+      "gì",
+      "ai",
+      "cả"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Nobody's home: Không có ___ ở nhà.",
+        "options": [
+          "ai",
+          "gì",
+          "đâu"
+        ],
+        "answer": "ai"
+      },
+      {
+        "type": "translate",
+        "q": "I didn't eat anything.",
+        "answer": "Tôi không ăn gì.",
+        "alt": [
+          "Tôi không ăn gì cả."
+        ]
+      },
+      {
+        "type": "fix",
+        "q": "Tôi đi không đâu.",
+        "answer": "Tôi không đi đâu."
+      }
+    ]
+  },
+  {
+    "id": "khong-nua",
+    "form": "không … nữa",
+    "meaning": "not any more",
+    "level": "A2",
+    "category": "Negation",
+    "pattern": "không + verb + (object) + nữa",
+    "summary": "không … nữa means you used to, but don't any more.",
+    "examples": [
+      {
+        "vi": "Tôi không hút thuốc nữa.",
+        "en": "I don't smoke any more."
+      },
+      {
+        "vi": "Anh ấy không ở đây nữa.",
+        "en": "He's not here any more."
+      }
+    ],
+    "howTo": [
+      "nữa also means 'more' in a positive sentence: Ăn nữa đi! (Eat some more!)."
+    ],
+    "english": "English 'any more' also goes at the end.",
+    "mistakes": [
+      {
+        "wrong": "Tôi nữa không hút thuốc.",
+        "right": "Tôi không hút thuốc nữa.",
+        "why": "nữa goes at the end."
+      }
+    ],
+    "related": [
+      "khong",
+      "van"
+    ],
+    "topics": [],
+    "words": [
+      "nữa",
+      "không"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "He's not here any more: Anh ấy không ở đây ___.",
+        "options": [
+          "nữa",
+          "rồi",
+          "chưa"
+        ],
+        "answer": "nữa"
+      },
+      {
+        "type": "translate",
+        "q": "I don't smoke any more.",
+        "answer": "Tôi không hút thuốc nữa."
+      },
+      {
+        "type": "truefalse",
+        "q": "Ăn nữa đi! means 'Eat some more!'",
+        "answer": true,
+        "why": "In a positive sentence nữa means more."
+      }
+    ]
+  },
+  {
+    "id": "da",
+    "form": "đã",
+    "meaning": "past / already happened",
+    "level": "A1",
+    "category": "Time and aspect",
+    "pattern": "Subject + đã + verb",
+    "summary": "đã before a verb shows the action has happened. It is often left out when the time is already clear.",
+    "examples": [
+      {
+        "vi": "Tôi đã ăn cơm.",
+        "en": "I have eaten."
+      },
+      {
+        "vi": "Hôm qua tôi đi chợ.",
+        "en": "Yesterday I went to the market."
+      },
+      {
+        "vi": "Anh ấy đã đến Việt Nam.",
+        "en": "He has been to Vietnam."
+      }
+    ],
+    "howTo": [
+      "Verbs never change form. Time words (hôm qua) or đã show the past.",
+      "đã … rồi stresses that it's already done."
+    ],
+    "english": "English changes the verb (eat → ate). Vietnamese keeps the verb and adds đã or a time word.",
+    "mistakes": [
+      {
+        "wrong": "Tôi ăn đã cơm.",
+        "right": "Tôi đã ăn cơm.",
+        "why": "đã goes before the verb."
+      }
+    ],
+    "related": [
+      "dang",
+      "se",
+      "roi"
+    ],
+    "topics": [],
+    "words": [
+      "đã"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Where does đã go?",
+        "options": [
+          "Before the verb",
+          "After the verb",
+          "At the end"
+        ],
+        "answer": "Before the verb"
+      },
+      {
+        "type": "translate",
+        "q": "I have eaten.",
+        "answer": "Tôi đã ăn.",
+        "alt": [
+          "Tôi đã ăn cơm.",
+          "Tôi ăn rồi.",
+          "Tôi ăn cơm rồi.",
+          "Tôi đã ăn rồi.",
+          "Tôi đã ăn cơm rồi."
+        ]
+      },
+      {
+        "type": "fix",
+        "q": "Tôi ăn đã cơm.",
+        "answer": "Tôi đã ăn cơm."
+      }
+    ]
+  },
+  {
+    "id": "dang",
+    "form": "đang",
+    "meaning": "be …-ing (in progress)",
+    "level": "A1",
+    "category": "Time and aspect",
+    "pattern": "Subject + đang + verb",
+    "summary": "đang before a verb shows it is happening right now.",
+    "examples": [
+      {
+        "vi": "Tôi đang học tiếng Việt.",
+        "en": "I'm studying Vietnamese."
+      },
+      {
+        "vi": "Anh đang làm gì thế?",
+        "en": "What are you doing?"
+      }
+    ],
+    "howTo": [
+      "Leave it out when 'right now' is obvious."
+    ],
+    "english": "Like English 'am/is/are …-ing', but the verb itself doesn't change.",
+    "mistakes": [
+      {
+        "wrong": "Tôi là đang học.",
+        "right": "Tôi đang học.",
+        "why": "No là before đang."
+      }
+    ],
+    "related": [
+      "da",
+      "se"
+    ],
+    "topics": [],
+    "words": [
+      "đang"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "I'm studying: Tôi ___ học.",
+        "options": [
+          "đang",
+          "đã",
+          "sẽ"
+        ],
+        "answer": "đang"
+      },
+      {
+        "type": "translate",
+        "q": "I'm studying Vietnamese.",
+        "answer": "Tôi đang học tiếng Việt."
+      },
+      {
+        "type": "fix",
+        "q": "Tôi là đang làm việc.",
+        "answer": "Tôi đang làm việc."
+      }
+    ]
+  },
+  {
+    "id": "se",
+    "form": "sẽ",
+    "meaning": "will (future)",
+    "level": "A1",
+    "category": "Time and aspect",
+    "pattern": "Subject + sẽ + verb",
+    "summary": "sẽ before a verb shows it will happen.",
+    "examples": [
+      {
+        "vi": "Tôi sẽ đi Việt Nam.",
+        "en": "I will go to Vietnam."
+      },
+      {
+        "vi": "Ngày mai tôi sẽ gọi cho anh.",
+        "en": "I'll call you tomorrow."
+      }
+    ],
+    "howTo": [
+      "With a future time word (ngày mai), sẽ can be left out."
+    ],
+    "english": "Works like English 'will'.",
+    "mistakes": [
+      {
+        "wrong": "Tôi đi sẽ Việt Nam.",
+        "right": "Tôi sẽ đi Việt Nam.",
+        "why": "sẽ goes before the verb."
+      }
+    ],
+    "related": [
+      "da",
+      "dang",
+      "sap"
+    ],
+    "topics": [],
+    "words": [
+      "sẽ"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "I will go: Tôi ___ đi.",
+        "options": [
+          "sẽ",
+          "đã",
+          "đang"
+        ],
+        "answer": "sẽ"
+      },
+      {
+        "type": "translate",
+        "q": "I will go to Vietnam.",
+        "answer": "Tôi sẽ đi Việt Nam."
+      },
+      {
+        "type": "truefalse",
+        "q": "Ngày mai tôi đi Hà Nội. is wrong without sẽ.",
+        "answer": false,
+        "why": "The time word already shows the future."
+      }
+    ]
+  },
+  {
+    "id": "roi",
+    "form": "rồi",
+    "meaning": "already; then",
+    "level": "A1",
+    "category": "Time and aspect",
+    "pattern": "verb (+ object) + rồi",
+    "summary": "rồi at the end means something is already done. It is also the yes answer to a chưa question.",
+    "examples": [
+      {
+        "vi": "Tôi ăn rồi.",
+        "en": "I've already eaten."
+      },
+      {
+        "vi": "Mấy giờ rồi?",
+        "en": "What time is it (now)?"
+      },
+      {
+        "vi": "Ăn xong rồi đi.",
+        "en": "Eat, then go."
+      }
+    ],
+    "howTo": [
+      "Between two actions it means 'then'."
+    ],
+    "english": "Like 'already' at the end of a sentence.",
+    "mistakes": [
+      {
+        "wrong": "Tôi rồi ăn.",
+        "right": "Tôi ăn rồi.",
+        "why": "For 'already', rồi goes after the verb."
+      }
+    ],
+    "related": [
+      "da-chua",
+      "da",
+      "xong"
+    ],
+    "topics": [],
+    "words": [
+      "rồi"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Anh ăn chưa? → Yes:",
+        "options": [
+          "Rồi.",
+          "Chưa.",
+          "Không."
+        ],
+        "answer": "Rồi."
+      },
+      {
+        "type": "translate",
+        "q": "I've already eaten.",
+        "answer": "Tôi ăn rồi.",
+        "alt": [
+          "Tôi đã ăn rồi.",
+          "Tôi ăn cơm rồi.",
+          "Tôi đã ăn cơm rồi."
+        ]
+      },
+      {
+        "type": "fix",
+        "q": "Tôi rồi ăn.",
+        "answer": "Tôi ăn rồi."
+      }
+    ]
+  },
+  {
+    "id": "vua-moi",
+    "form": "vừa / mới",
+    "meaning": "just (a moment ago)",
+    "level": "A2",
+    "category": "Time and aspect",
+    "pattern": "Subject + vừa / mới + verb",
+    "summary": "vừa or mới before a verb means it has just happened.",
+    "examples": [
+      {
+        "vi": "Tôi vừa ăn xong.",
+        "en": "I've just finished eating."
+      },
+      {
+        "vi": "Anh ấy mới đến.",
+        "en": "He has just arrived."
+      }
+    ],
+    "howTo": [
+      "vừa mới together is also common: Tôi vừa mới về."
+    ],
+    "english": "Like English 'just' in 'I've just arrived'.",
+    "mistakes": [
+      {
+        "wrong": "Tôi ăn vừa xong.",
+        "right": "Tôi vừa ăn xong.",
+        "why": "vừa goes before the verb."
+      }
+    ],
+    "related": [
+      "da",
+      "xong"
+    ],
+    "topics": [],
+    "words": [
+      "vừa",
+      "mới"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "He's just arrived: Anh ấy ___ đến.",
+        "options": [
+          "mới",
+          "sẽ",
+          "đang"
+        ],
+        "answer": "mới"
+      },
+      {
+        "type": "translate",
+        "q": "I've just come home.",
+        "answer": "Tôi vừa về.",
+        "alt": [
+          "Tôi mới về.",
+          "Tôi vừa mới về.",
+          "Tôi vừa về nhà.",
+          "Tôi mới về nhà."
+        ]
+      },
+      {
+        "type": "fix",
+        "q": "Tôi ăn vừa xong.",
+        "answer": "Tôi vừa ăn xong."
+      }
+    ]
+  },
+  {
+    "id": "sap",
+    "form": "sắp",
+    "meaning": "about to, soon",
+    "level": "A2",
+    "category": "Time and aspect",
+    "pattern": "Subject + sắp + verb (+ rồi)",
+    "summary": "sắp means something is about to happen.",
+    "examples": [
+      {
+        "vi": "Tôi sắp đi.",
+        "en": "I'm about to leave."
+      },
+      {
+        "vi": "Sắp đến Tết rồi.",
+        "en": "Tết is coming soon."
+      }
+    ],
+    "howTo": [
+      "rồi at the end adds 'already, very soon'."
+    ],
+    "english": "Like 'about to' or 'soon'.",
+    "mistakes": [
+      {
+        "wrong": "Tôi đi sắp.",
+        "right": "Tôi sắp đi.",
+        "why": "sắp goes before the verb."
+      }
+    ],
+    "related": [
+      "se"
+    ],
+    "topics": [],
+    "words": [
+      "sắp"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "I'm about to leave: Tôi ___ đi.",
+        "options": [
+          "sắp",
+          "vừa",
+          "đã"
+        ],
+        "answer": "sắp"
+      },
+      {
+        "type": "translate",
+        "q": "I'm about to leave.",
+        "answer": "Tôi sắp đi.",
+        "alt": [
+          "Tôi sắp đi rồi."
+        ]
+      },
+      {
+        "type": "truefalse",
+        "q": "Sắp đến Tết rồi means Tết is over.",
+        "answer": false,
+        "why": "It means Tết is coming soon."
+      }
+    ]
+  },
+  {
+    "id": "van",
+    "form": "vẫn",
+    "meaning": "still",
+    "level": "A1",
+    "category": "Time and aspect",
+    "pattern": "Subject + vẫn + verb/adjective",
+    "summary": "vẫn means something is still true or still happening.",
+    "examples": [
+      {
+        "vi": "Tôi vẫn ổn.",
+        "en": "I'm still okay."
+      },
+      {
+        "vi": "Anh ấy vẫn làm việc ở đó.",
+        "en": "He still works there."
+      }
+    ],
+    "howTo": [
+      "vẫn còn is a stronger 'still'."
+    ],
+    "english": "Like English 'still', placed before the verb.",
+    "mistakes": [
+      {
+        "wrong": "Tôi ổn vẫn.",
+        "right": "Tôi vẫn ổn.",
+        "why": "vẫn goes before the verb or adjective."
+      }
+    ],
+    "related": [
+      "con",
+      "khong-nua"
+    ],
+    "topics": [
+      "how-are-you"
+    ],
+    "words": [
+      "vẫn"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "I'm still well: Tôi ___ khỏe.",
+        "options": [
+          "vẫn",
+          "đã",
+          "sắp"
+        ],
+        "answer": "vẫn"
+      },
+      {
+        "type": "translate",
+        "q": "I'm still okay.",
+        "answer": "Tôi vẫn ổn."
+      },
+      {
+        "type": "fix",
+        "q": "Anh ấy làm việc vẫn ở đó.",
+        "answer": "Anh ấy vẫn làm việc ở đó."
+      }
+    ]
+  },
+  {
+    "id": "con",
+    "form": "còn",
+    "meaning": "still have; and what about …?",
+    "level": "A1",
+    "category": "Connectors",
+    "pattern": "Còn + person/thing?  /  còn + noun",
+    "summary": "At the start, còn means 'and what about …?'. Before a noun, it means there's still some left.",
+    "examples": [
+      {
+        "vi": "Tôi khỏe, còn anh?",
+        "en": "I'm fine, and you?"
+      },
+      {
+        "vi": "Còn phòng không?",
+        "en": "Are there still rooms?"
+      },
+      {
+        "vi": "Hết rồi.",
+        "en": "None left."
+      }
+    ],
+    "howTo": [
+      "The answer to Còn … không? is Còn (yes) or Hết rồi (all gone)."
+    ],
+    "english": "'And you?' in English. Vietnamese uses còn to switch to the other person.",
+    "mistakes": [
+      {
+        "wrong": "Tôi khỏe, và anh?",
+        "right": "Tôi khỏe, còn anh?",
+        "why": "To turn a question back, use còn, not và."
+      }
+    ],
+    "related": [
+      "khoe-khong",
+      "van"
+    ],
+    "topics": [
+      "how-are-you"
+    ],
+    "words": [
+      "còn",
+      "hết"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "I'm fine, and you? Tôi khỏe, ___ anh?",
+        "options": [
+          "còn",
+          "và",
+          "với"
+        ],
+        "answer": "còn"
+      },
+      {
+        "type": "translate",
+        "q": "I'm fine, and you?",
+        "answer": "Tôi khỏe, còn anh?",
+        "alt": [
+          "Tôi khỏe, còn em?",
+          "Tôi khỏe, còn chị?"
+        ]
+      },
+      {
+        "type": "truefalse",
+        "q": "Hết rồi. means there's still some left.",
+        "answer": false,
+        "why": "Hết rồi means it's all gone."
+      }
+    ]
+  },
+  {
+    "id": "tung",
+    "form": "(đã) từng / chưa bao giờ",
+    "meaning": "ever / never",
+    "level": "A2",
+    "category": "Time and aspect",
+    "pattern": "đã từng + verb  /  chưa bao giờ + verb",
+    "summary": "Talk about experience: đã từng (have done before) and chưa bao giờ (have never).",
+    "examples": [
+      {
+        "vi": "Anh đã từng đến Việt Nam chưa?",
+        "en": "Have you ever been to Vietnam?"
+      },
+      {
+        "vi": "Tôi chưa bao giờ ăn bún chả.",
+        "en": "I've never eaten bún chả."
+      }
+    ],
+    "howTo": [
+      "Ask with đã từng … chưa?"
+    ],
+    "english": "Like 'have you ever …?' and 'never'.",
+    "mistakes": [
+      {
+        "wrong": "Tôi không bao giờ ăn bún chả. (meaning: never yet)",
+        "right": "Tôi chưa bao giờ ăn bún chả.",
+        "why": "không bao giờ means 'never, and won't'. For experience, use chưa bao giờ."
+      }
+    ],
+    "related": [
+      "chua",
+      "da-chua"
+    ],
+    "topics": [],
+    "words": [
+      "từng",
+      "bao giờ"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "I've never been there (yet): Tôi ___ đến đó.",
+        "options": [
+          "chưa bao giờ",
+          "không bao giờ"
+        ],
+        "answer": "chưa bao giờ"
+      },
+      {
+        "type": "translate",
+        "q": "Have you ever been to Vietnam?",
+        "answer": "Anh đã từng đến Việt Nam chưa?",
+        "alt": [
+          "Anh từng đến Việt Nam chưa?",
+          "Anh đã đến Việt Nam bao giờ chưa?",
+          "Anh đã từng đi Việt Nam chưa?"
+        ]
+      },
+      {
+        "type": "truefalse",
+        "q": "Tôi chưa bao giờ ăn phở. means you've never had phở.",
+        "answer": true,
+        "why": "chưa bao giờ = never (so far)."
+      }
+    ]
+  },
+  {
+    "id": "xong",
+    "form": "… xong",
+    "meaning": "finish doing",
+    "level": "A2",
+    "category": "Time and aspect",
+    "pattern": "verb (+ object) + xong (+ rồi)",
+    "summary": "xong after a verb means the action is finished.",
+    "examples": [
+      {
+        "vi": "Tôi ăn xong rồi.",
+        "en": "I've finished eating."
+      },
+      {
+        "vi": "Làm xong chưa?",
+        "en": "Are you done?"
+      }
+    ],
+    "howTo": [
+      "Ask with … xong chưa? Answer Xong rồi."
+    ],
+    "english": "Like 'finish …-ing', but xong goes after the verb.",
+    "mistakes": [
+      {
+        "wrong": "Tôi xong ăn.",
+        "right": "Tôi ăn xong rồi.",
+        "why": "xong comes after the verb."
+      }
+    ],
+    "related": [
+      "roi",
+      "vua-moi"
+    ],
+    "topics": [],
+    "words": [
+      "xong"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "I've finished eating:",
+        "options": [
+          "Tôi ăn xong rồi.",
+          "Tôi xong ăn rồi."
+        ],
+        "answer": "Tôi ăn xong rồi."
+      },
+      {
+        "type": "translate",
+        "q": "Are you done?",
+        "answer": "Làm xong chưa?",
+        "alt": [
+          "Anh làm xong chưa?",
+          "Xong chưa?",
+          "Em làm xong chưa?"
+        ]
+      },
+      {
+        "type": "fix",
+        "q": "Tôi xong làm rồi.",
+        "answer": "Tôi làm xong rồi."
+      }
+    ]
+  },
+  {
+    "id": "time-words",
+    "form": "hôm nay, ngày mai, hôm qua …",
+    "meaning": "time words",
+    "level": "A1",
+    "category": "Word order",
+    "pattern": "Time word + subject + verb  (or at the end)",
+    "summary": "Time words usually go at the start of the sentence, sometimes at the end. They do the job tense does in English.",
+    "examples": [
+      {
+        "vi": "Hôm nay tôi đi làm.",
+        "en": "Today I'm going to work."
+      },
+      {
+        "vi": "Ngày mai tôi sẽ về.",
+        "en": "Tomorrow I'll come back."
+      },
+      {
+        "vi": "Hôm qua anh làm gì?",
+        "en": "What did you do yesterday?"
+      }
+    ],
+    "howTo": [
+      "hôm qua = yesterday, hôm nay = today, ngày mai (or mai) = tomorrow, tuần sau = next week."
+    ],
+    "english": "English changes the verb for time. Vietnamese adds a time word and keeps the verb the same.",
+    "mistakes": [
+      {
+        "wrong": "Tôi hôm qua đi chợ.",
+        "right": "Hôm qua tôi đi chợ.",
+        "why": "Put the time word at the start (or the end), not between subject and verb."
+      }
+    ],
+    "related": [
+      "da",
+      "se"
+    ],
+    "topics": [],
+    "words": [
+      "hôm nay",
+      "ngày",
+      "hôm"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Tomorrow:",
+        "options": [
+          "ngày mai",
+          "hôm qua",
+          "hôm nay"
+        ],
+        "answer": "ngày mai"
+      },
+      {
+        "type": "translate",
+        "q": "Today I'm going to work.",
+        "answer": "Hôm nay tôi đi làm.",
+        "alt": [
+          "Hôm nay tôi sẽ đi làm.",
+          "Tôi đi làm hôm nay."
+        ]
+      },
+      {
+        "type": "fix",
+        "q": "Tôi hôm qua đi chợ.",
+        "answer": "Hôm qua tôi đi chợ.",
+        "alt": [
+          "Tôi đi chợ hôm qua."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "khi",
+    "form": "khi",
+    "meaning": "when (in a statement)",
+    "level": "A2",
+    "category": "Connectors",
+    "pattern": "Khi + clause, clause",
+    "summary": "khi joins two parts of a sentence: 'when this happens, that happens'.",
+    "examples": [
+      {
+        "vi": "Khi tôi ở Hà Nội, tôi ăn phở mỗi ngày.",
+        "en": "When I'm in Hanoi, I eat phở every day."
+      },
+      {
+        "vi": "Tôi gọi cho anh khi tôi đến.",
+        "en": "I'll call you when I arrive."
+      }
+    ],
+    "howTo": [
+      "Not for questions. To ask 'when?', use bao giờ or khi nào."
+    ],
+    "english": "Like English 'when' in statements.",
+    "mistakes": [
+      {
+        "wrong": "Khi anh đi?",
+        "right": "Khi nào anh đi?",
+        "why": "To ask 'when?', use khi nào."
+      }
+    ],
+    "related": [
+      "bao-gio",
+      "truoc-sau-khi"
+    ],
+    "topics": [],
+    "words": [
+      "khi"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Asking 'When are you going?'",
+        "options": [
+          "Khi nào anh đi?",
+          "Khi anh đi?"
+        ],
+        "answer": "Khi nào anh đi?"
+      },
+      {
+        "type": "translate",
+        "q": "I'll call you when I arrive.",
+        "answer": "Tôi sẽ gọi cho anh khi tôi đến.",
+        "alt": [
+          "Tôi gọi cho anh khi tôi đến.",
+          "Khi tôi đến, tôi sẽ gọi cho anh.",
+          "Khi đến, tôi sẽ gọi cho anh."
+        ]
+      },
+      {
+        "type": "truefalse",
+        "q": "Khi tôi ở Hà Nội, tôi ăn phở.",
+        "answer": true,
+        "why": "khi joins two parts in a statement."
+      }
+    ]
+  },
+  {
+    "id": "truoc-sau-khi",
+    "form": "trước khi / sau khi",
+    "meaning": "before / after (doing)",
+    "level": "A2",
+    "category": "Connectors",
+    "pattern": "Trước khi / Sau khi + verb, clause",
+    "summary": "trước khi means before, sau khi means after, joining two actions.",
+    "examples": [
+      {
+        "vi": "Trước khi ăn, tôi rửa tay.",
+        "en": "Before eating, I wash my hands."
+      },
+      {
+        "vi": "Sau khi làm việc, tôi về nhà.",
+        "en": "After work, I go home."
+      }
+    ],
+    "howTo": [
+      "Without khi they mean before or after a noun: trước Tết (before Tết), sau 5 giờ (after 5 o'clock)."
+    ],
+    "english": "Like English 'before/after …-ing'.",
+    "mistakes": [
+      {
+        "wrong": "Ăn trước khi, tôi rửa tay.",
+        "right": "Trước khi ăn, tôi rửa tay.",
+        "why": "trước khi comes first, then the verb."
+      }
+    ],
+    "related": [
+      "khi"
+    ],
+    "topics": [],
+    "words": [
+      "trước",
+      "sau",
+      "khi"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "After work: ___ làm việc",
+        "options": [
+          "Sau khi",
+          "Trước khi",
+          "Khi nào"
+        ],
+        "answer": "Sau khi"
+      },
+      {
+        "type": "translate",
+        "q": "After work, I go home.",
+        "answer": "Sau khi làm việc, tôi về nhà.",
+        "alt": [
+          "Sau khi làm việc tôi về nhà."
+        ]
+      },
+      {
+        "type": "fix",
+        "q": "Ăn trước khi, tôi rửa tay.",
+        "answer": "Trước khi ăn, tôi rửa tay."
+      }
+    ]
+  },
+  {
+    "id": "adjective-after",
+    "form": "noun + adjective",
+    "meaning": "describing words come after",
+    "level": "A1",
+    "category": "Word order",
+    "pattern": "noun + adjective",
+    "summary": "Adjectives come after the noun they describe.",
+    "examples": [
+      {
+        "vi": "nhà mới",
+        "en": "a new house"
+      },
+      {
+        "vi": "áo đỏ",
+        "en": "a red shirt"
+      },
+      {
+        "vi": "người Việt",
+        "en": "a Vietnamese person"
+      }
+    ],
+    "howTo": [
+      "This/that also come after: nhà này (this house)."
+    ],
+    "english": "The reverse of English: house new, shirt red.",
+    "mistakes": [
+      {
+        "wrong": "đỏ áo",
+        "right": "áo đỏ",
+        "why": "The noun comes first, then the adjective."
+      }
+    ],
+    "related": [
+      "nay-do-kia",
+      "possession"
+    ],
+    "topics": [],
+    "words": [
+      "mới",
+      "đỏ"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "a new house:",
+        "options": [
+          "nhà mới",
+          "mới nhà"
+        ],
+        "answer": "nhà mới"
+      },
+      {
+        "type": "translate",
+        "q": "a red shirt",
+        "answer": "áo đỏ",
+        "alt": [
+          "cái áo đỏ",
+          "một cái áo đỏ",
+          "một áo đỏ"
+        ]
+      },
+      {
+        "type": "fix",
+        "q": "Tôi thích mới nhà.",
+        "answer": "Tôi thích nhà mới."
+      }
+    ]
+  },
+  {
+    "id": "possession",
+    "form": "(của) + owner",
+    "meaning": "my, your, his …",
+    "level": "A1",
+    "category": "Word order",
+    "pattern": "thing + (của) + owner",
+    "summary": "The owner comes after the thing. của (of) is often left out for close things like home and family.",
+    "examples": [
+      {
+        "vi": "nhà tôi",
+        "en": "my house"
+      },
+      {
+        "vi": "Nước của anh đây.",
+        "en": "Here's your water."
+      },
+      {
+        "vi": "vợ tôi",
+        "en": "my wife"
+      }
+    ],
+    "howTo": [
+      "Use của to make ownership clear or stressed: Cái này là của tôi. (This is mine.)"
+    ],
+    "english": "English 'my house'; Vietnamese 'house (of) me'.",
+    "mistakes": [
+      {
+        "wrong": "tôi nhà",
+        "right": "nhà tôi",
+        "why": "The owner comes after the thing."
+      }
+    ],
+    "related": [
+      "adjective-after"
+    ],
+    "topics": [
+      "this-that"
+    ],
+    "words": [
+      "của"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "my wife:",
+        "options": [
+          "vợ tôi",
+          "tôi vợ",
+          "của vợ tôi"
+        ],
+        "answer": "vợ tôi"
+      },
+      {
+        "type": "translate",
+        "q": "This is my house.",
+        "answer": "Đây là nhà tôi.",
+        "alt": [
+          "Đây là nhà của tôi."
+        ]
+      },
+      {
+        "type": "fix",
+        "q": "Đây là tôi nhà.",
+        "answer": "Đây là nhà tôi.",
+        "alt": [
+          "Đây là nhà của tôi."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "nay-do-kia",
+    "form": "này / đó / kia",
+    "meaning": "this / that / that over there",
+    "level": "A1",
+    "category": "Word order",
+    "pattern": "(classifier) + noun + này / đó / đấy / kia",
+    "summary": "this and that go after the noun: này (this), đó or đấy (that), kia (that over there).",
+    "examples": [
+      {
+        "vi": "Cái này bao nhiêu tiền?",
+        "en": "How much is this?"
+      },
+      {
+        "vi": "Toà nhà đấy ở đâu?",
+        "en": "Where is that building?"
+      },
+      {
+        "vi": "người kia",
+        "en": "that person over there"
+      }
+    ],
+    "howTo": [
+      "On their own as 'this/that', use đây, đó, đấy: Đây là nước."
+    ],
+    "english": "English 'this' comes before the noun; này comes after it.",
+    "mistakes": [
+      {
+        "wrong": "này cái",
+        "right": "cái này",
+        "why": "này follows the noun or classifier."
+      }
+    ],
+    "related": [
+      "day-do",
+      "cai"
+    ],
+    "topics": [
+      "this-that"
+    ],
+    "words": [
+      "này",
+      "đó",
+      "kia",
+      "đấy"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "this one:",
+        "options": [
+          "cái này",
+          "này cái"
+        ],
+        "answer": "cái này"
+      },
+      {
+        "type": "translate",
+        "q": "This one is water.",
+        "answer": "Cái này là nước."
+      },
+      {
+        "type": "fix",
+        "q": "Này cái bao nhiêu tiền?",
+        "answer": "Cái này bao nhiêu tiền?"
+      }
+    ]
+  },
+  {
+    "id": "day-do",
+    "form": "đây / đấy / đó / đâu",
+    "meaning": "here / there / where",
+    "level": "A1",
+    "category": "Word order",
+    "pattern": "Đây là … / Đó là … / ở đây / ở đó / ở đâu",
+    "summary": "đây = here or this, đấy and đó = there or that, đâu = where or which.",
+    "examples": [
+      {
+        "vi": "Đây là nước.",
+        "en": "This is water."
+      },
+      {
+        "vi": "Tôi ở đây.",
+        "en": "I'm here."
+      },
+      {
+        "vi": "Đâu là nhà anh?",
+        "en": "Which one is your house?"
+      },
+      {
+        "vi": "Nước đây.",
+        "en": "Here's the water. (handing it over)"
+      }
+    ],
+    "howTo": [
+      "Đây là nước của anh defines what it is. Nước của anh đây is handing it over.",
+      "đấy and đó mean the same; đấy is very common in the north."
+    ],
+    "english": "One small family of words covers here, there, this, that and where.",
+    "mistakes": [
+      {
+        "wrong": "Đây là nhà anh? (meaning: which one is)",
+        "right": "Đâu là nhà anh?",
+        "why": "Asking which one uses đâu là."
+      }
+    ],
+    "related": [
+      "nay-do-kia",
+      "dau",
+      "o-place"
+    ],
+    "topics": [
+      "where",
+      "this-that"
+    ],
+    "words": [
+      "đây",
+      "đấy",
+      "đó",
+      "đâu"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Which (one) is water? ___ là nước?",
+        "options": [
+          "Đâu",
+          "Đây",
+          "Đó"
+        ],
+        "answer": "Đâu"
+      },
+      {
+        "type": "translate",
+        "q": "He is there.",
+        "answer": "Anh ấy ở đó.",
+        "alt": [
+          "Anh ấy ở đấy."
+        ]
+      },
+      {
+        "type": "truefalse",
+        "q": "Nước của anh đây. means 'Here is your water.'",
+        "answer": true,
+        "why": "Putting đây at the end hands it over."
+      }
+    ]
+  },
+  {
+    "id": "o-place",
+    "form": "ở + place",
+    "meaning": "at, in; to stay, live",
+    "level": "A1",
+    "category": "Word order",
+    "pattern": "Subject + verb + ở + place",
+    "summary": "ở before a place means at or in. As a verb, ở means to be somewhere or stay.",
+    "examples": [
+      {
+        "vi": "Tôi sống ở Na Uy.",
+        "en": "I live in Norway."
+      },
+      {
+        "vi": "Tôi làm việc ở đây.",
+        "en": "I work here."
+      },
+      {
+        "vi": "Anh ở đâu?",
+        "en": "Where are you?"
+      }
+    ],
+    "howTo": [
+      "The place usually comes at the end, after the verb."
+    ],
+    "english": "Covers English 'at', 'in' and 'be (somewhere)'.",
+    "mistakes": [
+      {
+        "wrong": "Tôi ở Na Uy sống.",
+        "right": "Tôi sống ở Na Uy.",
+        "why": "The verb comes first, then ở + place."
+      }
+    ],
+    "related": [
+      "dau",
+      "day-do"
+    ],
+    "topics": [
+      "where",
+      "work"
+    ],
+    "words": [
+      "ở"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "I live in Norway: Tôi sống ___ Na Uy.",
+        "options": [
+          "ở",
+          "đến",
+          "từ"
+        ],
+        "answer": "ở"
+      },
+      {
+        "type": "translate",
+        "q": "Where do you work?",
+        "answer": "Anh làm việc ở đâu?"
+      },
+      {
+        "type": "fix",
+        "q": "Tôi ở đây làm việc.",
+        "answer": "Tôi làm việc ở đây."
+      }
+    ]
+  },
+  {
+    "id": "cung",
+    "form": "cũng",
+    "meaning": "also, too",
+    "level": "A1",
+    "category": "Word order",
+    "pattern": "Subject + cũng + verb/adjective",
+    "summary": "cũng (also) goes after the subject and before the verb.",
+    "examples": [
+      {
+        "vi": "Tôi cũng thích phở.",
+        "en": "I like phở too."
+      },
+      {
+        "vi": "Vợ tôi cũng là người Hà Nội.",
+        "en": "My wife is from Hanoi too."
+      }
+    ],
+    "howTo": [
+      "Tôi cũng vậy. = Me too."
+    ],
+    "english": "English 'too' goes at the end; cũng goes before the verb.",
+    "mistakes": [
+      {
+        "wrong": "Tôi thích phở cũng.",
+        "right": "Tôi cũng thích phở.",
+        "why": "cũng goes before the verb."
+      }
+    ],
+    "related": [
+      "deu"
+    ],
+    "topics": [],
+    "words": [
+      "cũng"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Me too:",
+        "options": [
+          "Tôi cũng vậy.",
+          "Tôi vậy cũng."
+        ],
+        "answer": "Tôi cũng vậy."
+      },
+      {
+        "type": "translate",
+        "q": "I like phở too.",
+        "answer": "Tôi cũng thích phở."
+      },
+      {
+        "type": "fix",
+        "q": "Tôi thích phở cũng.",
+        "answer": "Tôi cũng thích phở."
+      }
+    ]
+  },
+  {
+    "id": "deu",
+    "form": "đều",
+    "meaning": "all, both",
+    "level": "A2",
+    "category": "Word order",
+    "pattern": "Plural subject + đều + verb",
+    "summary": "đều after a plural subject means all of them (or both) do it.",
+    "examples": [
+      {
+        "vi": "Chúng tôi đều thích phở.",
+        "en": "We all like phở."
+      },
+      {
+        "vi": "Hai người đều là người Việt.",
+        "en": "Both of them are Vietnamese."
+      }
+    ],
+    "howTo": [
+      "Like cũng, it sits right before the verb."
+    ],
+    "english": "English 'all' or 'both' can go in different places; đều always goes before the verb.",
+    "mistakes": [
+      {
+        "wrong": "Đều chúng tôi thích phở.",
+        "right": "Chúng tôi đều thích phở.",
+        "why": "đều goes after the subject."
+      }
+    ],
+    "related": [
+      "cung",
+      "nhung-cac"
+    ],
+    "topics": [],
+    "words": [
+      "đều"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "We all like phở: Chúng tôi ___ thích phở.",
+        "options": [
+          "đều",
+          "cũng",
+          "rất"
+        ],
+        "answer": "đều"
+      },
+      {
+        "type": "translate",
+        "q": "We all like phở.",
+        "answer": "Chúng tôi đều thích phở.",
+        "alt": [
+          "Chúng ta đều thích phở."
+        ]
+      },
+      {
+        "type": "fix",
+        "q": "Đều chúng tôi là người Na Uy.",
+        "answer": "Chúng tôi đều là người Na Uy."
+      }
+    ]
+  },
+  {
+    "id": "di-verb",
+    "form": "đi + verb",
+    "meaning": "go and do",
+    "level": "A1",
+    "category": "Word order",
+    "pattern": "đi + verb",
+    "summary": "đi before another verb means going out to do it: đi ăn (go eat), đi làm (go to work).",
+    "examples": [
+      {
+        "vi": "Tôi muốn đi làm.",
+        "en": "I want to go to work."
+      },
+      {
+        "vi": "Đi ăn không?",
+        "en": "Want to go eat?"
+      },
+      {
+        "vi": "Tôi đi ngủ đây.",
+        "en": "I'm off to bed."
+      }
+    ],
+    "howTo": [
+      "No word for 'to' or 'and' between the two verbs."
+    ],
+    "english": "English says 'go to eat' or 'go and eat'. Vietnamese puts the verbs side by side.",
+    "mistakes": [
+      {
+        "wrong": "Tôi đi để ăn.",
+        "right": "Tôi đi ăn.",
+        "why": "Just put the two verbs together."
+      }
+    ],
+    "related": [
+      "ve-den",
+      "lam"
+    ],
+    "topics": [
+      "work",
+      "go-home"
+    ],
+    "words": [
+      "đi"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "go to work:",
+        "options": [
+          "đi làm",
+          "đi đến làm",
+          "làm đi"
+        ],
+        "answer": "đi làm"
+      },
+      {
+        "type": "translate",
+        "q": "I want to go to work.",
+        "answer": "Tôi muốn đi làm."
+      },
+      {
+        "type": "fix",
+        "q": "Tôi đi để ngủ.",
+        "answer": "Tôi đi ngủ."
+      }
+    ]
+  },
+  {
+    "id": "ve-den",
+    "form": "về / đi / đến",
+    "meaning": "go home / go / arrive",
+    "level": "A1",
+    "category": "Word order",
+    "pattern": "về + home  /  đi + place  /  (đi) đến + place",
+    "summary": "về means returning home. đi X means going in the usual role for that place. (đi) đến X just means getting there.",
+    "examples": [
+      {
+        "vi": "Tôi muốn về nhà.",
+        "en": "I want to go home."
+      },
+      {
+        "vi": "đi chợ",
+        "en": "go grocery shopping"
+      },
+      {
+        "vi": "đến chợ",
+        "en": "get to the market"
+      },
+      {
+        "vi": "đi bệnh viện",
+        "en": "go to hospital (as a patient)"
+      }
+    ],
+    "howTo": [
+      "về nước = return to your home country.",
+      "đến also means 'come': Anh ấy muốn đến nhà tôi."
+    ],
+    "english": "English 'go home' and 'go to the market' use go for both. Vietnamese picks về for returning.",
+    "mistakes": [
+      {
+        "wrong": "Tôi muốn đi nhà.",
+        "right": "Tôi muốn về nhà.",
+        "why": "Going home is về."
+      }
+    ],
+    "related": [
+      "den-tu",
+      "di-verb"
+    ],
+    "topics": [
+      "go-home",
+      "to-from"
+    ],
+    "words": [
+      "về",
+      "đi",
+      "đến",
+      "tới"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "I want to go home: Tôi muốn ___ nhà.",
+        "options": [
+          "về",
+          "đi",
+          "đến"
+        ],
+        "answer": "về"
+      },
+      {
+        "type": "translate",
+        "q": "He wants to come to my house.",
+        "answer": "Anh ấy muốn đến nhà tôi.",
+        "alt": [
+          "Anh ấy muốn đi đến nhà tôi."
+        ]
+      },
+      {
+        "type": "truefalse",
+        "q": "đi chợ means grocery shopping.",
+        "answer": true,
+        "why": "đi + place = the usual reason you go there."
+      }
+    ]
+  },
+  {
+    "id": "den-tu",
+    "form": "đến từ / từ … đến",
+    "meaning": "from; from … to",
+    "level": "A1",
+    "category": "Word order",
+    "pattern": "đến từ + place  /  từ … đến …",
+    "summary": "từ means from. Tôi đến từ Na Uy is literally 'I arrive from Norway'.",
+    "examples": [
+      {
+        "vi": "Tôi đến từ Na Uy.",
+        "en": "I'm from Norway."
+      },
+      {
+        "vi": "Anh là người ở đâu?",
+        "en": "Where are you from?"
+      },
+      {
+        "vi": "Tôi làm việc từ 8 giờ đến 4 giờ.",
+        "en": "I work from 8 to 4."
+      }
+    ],
+    "howTo": [
+      "Another common way to say where you're from: Tôi là người Na Uy."
+    ],
+    "english": "Same as English 'from … to'.",
+    "mistakes": [
+      {
+        "wrong": "Tôi từ Na Uy.",
+        "right": "Tôi đến từ Na Uy.",
+        "why": "từ needs a verb before it, like đến."
+      }
+    ],
+    "related": [
+      "ve-den",
+      "la"
+    ],
+    "topics": [
+      "to-from"
+    ],
+    "words": [
+      "từ",
+      "đến"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "I'm from Norway: Tôi đến ___ Na Uy.",
+        "options": [
+          "từ",
+          "ở",
+          "về"
+        ],
+        "answer": "từ"
+      },
+      {
+        "type": "translate",
+        "q": "Where are you from?",
+        "answer": "Anh đến từ đâu?",
+        "alt": [
+          "Anh là người ở đâu?",
+          "Anh là người nước nào?"
+        ]
+      },
+      {
+        "type": "fix",
+        "q": "Tôi từ Na Uy.",
+        "answer": "Tôi đến từ Na Uy."
+      }
+    ]
+  },
+  {
+    "id": "la",
+    "form": "là",
+    "meaning": "to be (with nouns only)",
+    "level": "A1",
+    "category": "Word order",
+    "pattern": "Subject + là + noun",
+    "summary": "là links a subject to a noun. Adjectives don't need là.",
+    "examples": [
+      {
+        "vi": "Tôi là người Na Uy.",
+        "en": "I'm Norwegian."
+      },
+      {
+        "vi": "Đây là vợ tôi.",
+        "en": "This is my wife."
+      },
+      {
+        "vi": "Tôi mệt.",
+        "en": "I'm tired."
+      }
+    ],
+    "howTo": [
+      "With adjectives (mệt, đẹp, khỏe), just say the adjective: Phở ngon. (The phở is good.)"
+    ],
+    "english": "English uses 'to be' for everything. Vietnamese uses là only before nouns.",
+    "mistakes": [
+      {
+        "wrong": "Tôi là mệt.",
+        "right": "Tôi mệt.",
+        "why": "Adjectives don't take là."
+      }
+    ],
+    "related": [
+      "khong-phai-la",
+      "co-phai-khong",
+      "ten-la"
+    ],
+    "topics": [
+      "to-from",
+      "this-that"
+    ],
+    "words": [
+      "là"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "I'm tired:",
+        "options": [
+          "Tôi mệt.",
+          "Tôi là mệt."
+        ],
+        "answer": "Tôi mệt."
+      },
+      {
+        "type": "translate",
+        "q": "She is from Hanoi.",
+        "answer": "Cô ấy là người Hà Nội.",
+        "alt": [
+          "Chị ấy là người Hà Nội."
+        ]
+      },
+      {
+        "type": "fix",
+        "q": "Phở là ngon.",
+        "answer": "Phở ngon."
+      }
+    ]
+  },
+  {
+    "id": "ten-la",
+    "form": "tên là",
+    "meaning": "be named",
+    "level": "A1",
+    "category": "Word order",
+    "pattern": "Subject + tên là + name",
+    "summary": "Give or ask a name with tên là.",
+    "examples": [
+      {
+        "vi": "Anh tên là gì?",
+        "en": "What's your name?"
+      },
+      {
+        "vi": "Tôi tên là Isaac.",
+        "en": "My name is Isaac."
+      }
+    ],
+    "howTo": [
+      "Short form: Tôi là Isaac. (I'm Isaac.)"
+    ],
+    "english": "Literally 'I name is Isaac'.",
+    "mistakes": [
+      {
+        "wrong": "Tên tôi gì?",
+        "right": "Anh tên là gì?",
+        "why": "Ask with tên là gì."
+      }
+    ],
+    "related": [
+      "la",
+      "gi"
+    ],
+    "topics": [
+      "what",
+      "make-question"
+    ],
+    "words": [
+      "tên"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "My name is Isaac:",
+        "options": [
+          "Tôi tên là Isaac.",
+          "Tôi là tên Isaac."
+        ],
+        "answer": "Tôi tên là Isaac."
+      },
+      {
+        "type": "translate",
+        "q": "What is your name?",
+        "answer": "Anh tên là gì?",
+        "alt": [
+          "Chị tên là gì?",
+          "Em tên là gì?",
+          "Bạn tên là gì?",
+          "Tên anh là gì?"
+        ]
+      },
+      {
+        "type": "fix",
+        "q": "Tôi là tên Isaac.",
+        "answer": "Tôi tên là Isaac."
+      }
+    ]
+  },
+  {
+    "id": "classifiers",
+    "form": "number + classifier + noun",
+    "meaning": "counting things",
+    "level": "A1",
+    "category": "Classifiers",
+    "pattern": "number + classifier + noun (+ này/đó)",
+    "summary": "Counting a noun needs a classifier between the number and the noun, like 'a piece of' in English.",
+    "examples": [
+      {
+        "vi": "hai con mèo",
+        "en": "two cats"
+      },
+      {
+        "vi": "một quyển sách",
+        "en": "a book"
+      },
+      {
+        "vi": "ba cái bàn",
+        "en": "three tables"
+      }
+    ],
+    "howTo": [
+      "The classifier depends on the kind of thing: con for animals, cái for most objects, quyển for books, chiếc for single items and vehicles."
+    ],
+    "english": "English only does this with some words ('two pieces of paper'). Vietnamese does it with almost every count.",
+    "mistakes": [
+      {
+        "wrong": "hai mèo",
+        "right": "hai con mèo",
+        "why": "Counting needs a classifier."
+      }
+    ],
+    "related": [
+      "cai",
+      "con-classifier",
+      "containers"
+    ],
+    "topics": [
+      "restaurant-seat"
+    ],
+    "words": [
+      "cái",
+      "con",
+      "chiếc"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "two cats: hai ___ mèo",
+        "options": [
+          "con",
+          "cái",
+          "quyển"
+        ],
+        "answer": "con"
+      },
+      {
+        "type": "translate",
+        "q": "a book",
+        "answer": "một quyển sách",
+        "alt": [
+          "quyển sách"
+        ]
+      },
+      {
+        "type": "fix",
+        "q": "Tôi có hai mèo.",
+        "answer": "Tôi có hai con mèo."
+      }
+    ]
+  },
+  {
+    "id": "cai",
+    "form": "cái",
+    "meaning": "classifier for most objects; 'the one'",
+    "level": "A1",
+    "category": "Classifiers",
+    "pattern": "cái + noun  /  cái + này/đó/nào",
+    "summary": "cái is the general classifier for objects. With này, đó or nào it means this one, that one, which one.",
+    "examples": [
+      {
+        "vi": "Cho tôi một cái bánh mì.",
+        "en": "One bánh mì, please."
+      },
+      {
+        "vi": "Cái này là nước.",
+        "en": "This one is water."
+      },
+      {
+        "vi": "Cho tôi xin cái thìa.",
+        "en": "A spoon, please."
+      }
+    ],
+    "howTo": [
+      "When in doubt about an object, cái is the safest guess."
+    ],
+    "english": "Like English 'one' in 'this one', 'which one'.",
+    "mistakes": [
+      {
+        "wrong": "một cái mèo",
+        "right": "một con mèo",
+        "why": "Animals use con, not cái."
+      }
+    ],
+    "related": [
+      "classifiers",
+      "nay-do-kia",
+      "nao"
+    ],
+    "topics": [
+      "this-that",
+      "restaurant-extras"
+    ],
+    "words": [
+      "cái"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Which one? ___ nào?",
+        "options": [
+          "Cái",
+          "Con",
+          "Người"
+        ],
+        "answer": "Cái"
+      },
+      {
+        "type": "translate",
+        "q": "This one is water.",
+        "answer": "Cái này là nước."
+      },
+      {
+        "type": "fix",
+        "q": "một cái chó",
+        "answer": "một con chó"
+      }
+    ]
+  },
+  {
+    "id": "con-classifier",
+    "form": "con",
+    "meaning": "classifier for animals",
+    "level": "A1",
+    "category": "Classifiers",
+    "pattern": "con + animal",
+    "summary": "con is the classifier for animals. On its own, con also means child.",
+    "examples": [
+      {
+        "vi": "một con chó",
+        "en": "a dog"
+      },
+      {
+        "vi": "Anh có mấy con?",
+        "en": "How many children do you have?"
+      }
+    ],
+    "howTo": [
+      "A few objects also take con, like con đường (a road) and con dao (a knife)."
+    ],
+    "english": "No English equivalent; just add con before an animal when counting or pointing.",
+    "mistakes": [
+      {
+        "wrong": "ba cái gà",
+        "right": "ba con gà",
+        "why": "Animals take con."
+      }
+    ],
+    "related": [
+      "classifiers",
+      "cai"
+    ],
+    "topics": [],
+    "words": [
+      "con"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "a chicken: một ___ gà",
+        "options": [
+          "con",
+          "cái",
+          "chiếc"
+        ],
+        "answer": "con"
+      },
+      {
+        "type": "translate",
+        "q": "two dogs",
+        "answer": "hai con chó"
+      },
+      {
+        "type": "truefalse",
+        "q": "Anh có mấy con? asks about animals only.",
+        "answer": false,
+        "why": "On its own, con means child, so this asks about children."
+      }
+    ]
+  },
+  {
+    "id": "containers",
+    "form": "bát, cốc, đĩa, chai, phần",
+    "meaning": "bowl, glass, plate, bottle, portion",
+    "level": "A1",
+    "category": "Classifiers",
+    "pattern": "Cho tôi + number + container + food/drink",
+    "summary": "Food and drink are counted by their container: a bowl of, a glass of, a plate of.",
+    "examples": [
+      {
+        "vi": "Cho tôi một bát phở.",
+        "en": "A bowl of phở, please."
+      },
+      {
+        "vi": "Cho tôi hai cốc trà đá.",
+        "en": "Two glasses of iced tea, please."
+      },
+      {
+        "vi": "Cho tôi một phần bún chả.",
+        "en": "A portion of bún chả, please."
+      }
+    ],
+    "howTo": [
+      "Northern words: bát (bowl), cốc (glass), đĩa (plate), chai (bottle), phần (portion), set (set)."
+    ],
+    "english": "Like 'a bowl of', but without 'of'.",
+    "mistakes": [
+      {
+        "wrong": "Cho tôi một phở.",
+        "right": "Cho tôi một bát phở.",
+        "why": "Food is counted by its container."
+      }
+    ],
+    "related": [
+      "classifiers",
+      "cho-toi"
+    ],
+    "topics": [
+      "restaurant-seat",
+      "restaurant-extras"
+    ],
+    "words": [
+      "phần",
+      "đôi"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "A bowl of phở: Cho tôi một ___ phở.",
+        "options": [
+          "bát",
+          "con",
+          "quyển"
+        ],
+        "answer": "bát"
+      },
+      {
+        "type": "translate",
+        "q": "A bowl of phở, please.",
+        "answer": "Cho tôi một bát phở.",
+        "alt": [
+          "Cho tôi một bát phở nhé."
+        ]
+      },
+      {
+        "type": "fix",
+        "q": "Cho tôi hai trà đá.",
+        "answer": "Cho tôi hai cốc trà đá."
+      }
+    ]
+  },
+  {
+    "id": "nguoi-count",
+    "form": "number + người",
+    "meaning": "counting people",
+    "level": "A1",
+    "category": "Classifiers",
+    "pattern": "number + người",
+    "summary": "People are counted with người: hai người, ba người.",
+    "examples": [
+      {
+        "vi": "Anh ơi, có bàn hai người không?",
+        "en": "Excuse me, do you have a table for two?"
+      },
+      {
+        "vi": "Tôi đi hai người.",
+        "en": "We're two people."
+      }
+    ],
+    "howTo": [
+      "người also means person and nationality: người Việt (a Vietnamese person)."
+    ],
+    "english": "Like 'two people'.",
+    "mistakes": [
+      {
+        "wrong": "bàn cho hai",
+        "right": "bàn hai người",
+        "why": "Say the people: hai người."
+      }
+    ],
+    "related": [
+      "classifiers"
+    ],
+    "topics": [
+      "restaurant-seat"
+    ],
+    "words": [
+      "người"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "a table for two: bàn hai ___",
+        "options": [
+          "người",
+          "cái",
+          "con"
+        ],
+        "answer": "người"
+      },
+      {
+        "type": "translate",
+        "q": "Do you have a table for two?",
+        "answer": "Có bàn hai người không?",
+        "alt": [
+          "Anh ơi, có bàn hai người không?",
+          "Chị ơi, có bàn hai người không?",
+          "Em ơi, có bàn hai người không?"
+        ]
+      },
+      {
+        "type": "truefalse",
+        "q": "người Việt means a Vietnamese person.",
+        "answer": true,
+        "why": "người + country = nationality."
+      }
+    ]
+  },
+  {
+    "id": "nhung-cac",
+    "form": "những / các",
+    "meaning": "plural markers",
+    "level": "A2",
+    "category": "Classifiers",
+    "pattern": "những / các + noun",
+    "summary": "Nouns don't change for plural. các means all of a group, những means some or those.",
+    "examples": [
+      {
+        "vi": "các bạn",
+        "en": "you all, everyone"
+      },
+      {
+        "vi": "những người này",
+        "en": "these people"
+      },
+      {
+        "vi": "Tôi có nhiều bạn.",
+        "en": "I have many friends."
+      }
+    ],
+    "howTo": [
+      "With a number or nhiều (many), no plural word is needed."
+    ],
+    "english": "English adds -s. Vietnamese usually adds nothing, or các/những when it matters.",
+    "mistakes": [
+      {
+        "wrong": "nhiều những bạn",
+        "right": "nhiều bạn",
+        "why": "nhiều already shows the plural."
+      }
+    ],
+    "related": [
+      "classifiers",
+      "deu"
+    ],
+    "topics": [],
+    "words": [
+      "những",
+      "các",
+      "nhiều"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Everyone (addressing a group): ___ bạn",
+        "options": [
+          "Các",
+          "Những",
+          "Nhiều"
+        ],
+        "answer": "Các"
+      },
+      {
+        "type": "translate",
+        "q": "I have many friends.",
+        "answer": "Tôi có nhiều bạn."
+      },
+      {
+        "type": "fix",
+        "q": "Tôi có nhiều những bạn.",
+        "answer": "Tôi có nhiều bạn."
+      }
+    ]
+  },
+  {
+    "id": "pronouns",
+    "form": "anh / chị / em / tôi",
+    "meaning": "I and you depend on age",
+    "level": "A1",
+    "category": "Pronouns",
+    "pattern": "choose by age and relationship",
+    "summary": "Vietnamese 'I' and 'you' are family words chosen by age: anh (older man), chị (older woman), em (younger person), tôi (neutral I).",
+    "examples": [
+      {
+        "vi": "Em chào anh.",
+        "en": "Hello (from a younger person to an older man)."
+      },
+      {
+        "vi": "Chào em.",
+        "en": "Hello (to someone younger)."
+      },
+      {
+        "vi": "Anh yêu em.",
+        "en": "I love you (husband to wife)."
+      }
+    ],
+    "howTo": [
+      "Talking to someone, you call them anh, chị or em, and call yourself the matching word.",
+      "In a couple, the husband is anh and the wife is em, whatever their ages.",
+      "tôi is neutral and safe with strangers of similar age."
+    ],
+    "english": "English has one 'I' and one 'you'. Vietnamese picks a pair of words for each relationship.",
+    "mistakes": [
+      {
+        "wrong": "Chào em. (to someone clearly older)",
+        "right": "Chào anh. / Chào chị.",
+        "why": "Use anh or chị for someone older."
+      }
+    ],
+    "related": [
+      "ay",
+      "chung-toi-ta",
+      "a-polite"
+    ],
+    "topics": [
+      "greetings",
+      "thanks-sorry"
+    ],
+    "words": [
+      "anh",
+      "chị",
+      "em",
+      "tôi",
+      "bạn"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Greeting an older woman:",
+        "options": [
+          "Chào chị.",
+          "Chào em.",
+          "Chào anh."
+        ],
+        "answer": "Chào chị."
+      },
+      {
+        "type": "choice",
+        "q": "A husband talking to his wife calls her …",
+        "options": [
+          "em",
+          "chị",
+          "bạn"
+        ],
+        "answer": "em"
+      },
+      {
+        "type": "translate",
+        "q": "Thank you (to a younger person).",
+        "answer": "Cảm ơn em."
+      },
+      {
+        "type": "truefalse",
+        "q": "tôi is a safe neutral 'I' with strangers.",
+        "answer": true,
+        "why": "tôi is the neutral choice."
+      }
+    ]
+  },
+  {
+    "id": "ay",
+    "form": "anh ấy / chị ấy / cô ấy",
+    "meaning": "he / she",
+    "level": "A1",
+    "category": "Pronouns",
+    "pattern": "anh / chị / cô / em + ấy",
+    "summary": "Add ấy to a person word to get he or she.",
+    "examples": [
+      {
+        "vi": "Anh ấy là người Na Uy.",
+        "en": "He is Norwegian."
+      },
+      {
+        "vi": "Cô ấy là người Hà Nội.",
+        "en": "She is from Hanoi."
+      },
+      {
+        "vi": "Bà ấy là mẹ tôi.",
+        "en": "She is my mother."
+      }
+    ],
+    "howTo": [
+      "Pick the word that fits their age: anh ấy (a man), chị ấy (an older woman), cô ấy (a young woman), em ấy (someone younger), bà ấy and ông ấy (elderly)."
+    ],
+    "english": "English he/she shows gender only; Vietnamese also shows age.",
+    "mistakes": [
+      {
+        "wrong": "Anh là người Na Uy. (meaning: he)",
+        "right": "Anh ấy là người Na Uy.",
+        "why": "Without ấy, anh means you."
+      }
+    ],
+    "related": [
+      "pronouns",
+      "ho"
+    ],
+    "topics": [
+      "to-from"
+    ],
+    "words": [
+      "ấy",
+      "anh",
+      "chị",
+      "cô"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "He is Norwegian:",
+        "options": [
+          "Anh ấy là người Na Uy.",
+          "Anh là người Na Uy."
+        ],
+        "answer": "Anh ấy là người Na Uy."
+      },
+      {
+        "type": "translate",
+        "q": "Where does he live?",
+        "answer": "Anh ấy sống ở đâu?"
+      },
+      {
+        "type": "truefalse",
+        "q": "Anh là ai? asks who he is.",
+        "answer": false,
+        "why": "Without ấy, anh means you."
+      }
+    ]
+  },
+  {
+    "id": "ho",
+    "form": "họ",
+    "meaning": "they",
+    "level": "A1",
+    "category": "Pronouns",
+    "pattern": "họ + verb",
+    "summary": "họ means they (people).",
+    "examples": [
+      {
+        "vi": "Họ là người Việt.",
+        "en": "They are Vietnamese."
+      },
+      {
+        "vi": "Họ đang ăn cơm.",
+        "en": "They're eating."
+      }
+    ],
+    "howTo": [
+      "For family members, people often say the family word instead: bố mẹ tôi (my parents)."
+    ],
+    "english": "Like 'they'. As a noun, họ also means surname.",
+    "mistakes": [
+      {
+        "wrong": "Họ là đang ăn.",
+        "right": "Họ đang ăn.",
+        "why": "No là before đang."
+      }
+    ],
+    "related": [
+      "ay",
+      "chung-toi-ta"
+    ],
+    "topics": [],
+    "words": [
+      "họ"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "They are Vietnamese: ___ là người Việt.",
+        "options": [
+          "Họ",
+          "Chúng ta",
+          "Anh ấy"
+        ],
+        "answer": "Họ"
+      },
+      {
+        "type": "translate",
+        "q": "They are Vietnamese.",
+        "answer": "Họ là người Việt.",
+        "alt": [
+          "Họ là người Việt Nam."
+        ]
+      },
+      {
+        "type": "fix",
+        "q": "Họ là đang ăn cơm.",
+        "answer": "Họ đang ăn cơm."
+      }
+    ]
+  },
+  {
+    "id": "chung-toi-ta",
+    "form": "chúng tôi / chúng ta",
+    "meaning": "we (without / with you)",
+    "level": "A1",
+    "category": "Pronouns",
+    "pattern": "chúng tôi = we, not you  /  chúng ta = we, including you",
+    "summary": "chúng tôi leaves out the listener; chúng ta includes them. chúng con is children talking to parents or elders.",
+    "examples": [
+      {
+        "vi": "Chúng tôi là người Na Uy.",
+        "en": "We're Norwegian (not you)."
+      },
+      {
+        "vi": "Chúng ta đi ăn đi!",
+        "en": "Let's go eat!"
+      }
+    ],
+    "howTo": [
+      "Suggestions to the listener (let's) use chúng ta."
+    ],
+    "english": "English 'we' doesn't say whether the listener is included.",
+    "mistakes": [
+      {
+        "wrong": "Chúng tôi đi ăn đi! (to your friend)",
+        "right": "Chúng ta đi ăn đi!",
+        "why": "'Let's' includes the listener, so chúng ta."
+      }
+    ],
+    "related": [
+      "pronouns",
+      "di-command"
+    ],
+    "topics": [
+      "we-with"
+    ],
+    "words": [
+      "chúng tôi",
+      "chúng ta",
+      "ta"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Let's go eat! ___ đi ăn đi!",
+        "options": [
+          "Chúng ta",
+          "Chúng tôi"
+        ],
+        "answer": "Chúng ta"
+      },
+      {
+        "type": "translate",
+        "q": "We are Norwegian. (not including you)",
+        "answer": "Chúng tôi là người Na Uy."
+      },
+      {
+        "type": "truefalse",
+        "q": "chúng tôi includes the person you're talking to.",
+        "answer": false,
+        "why": "chúng ta includes them; chúng tôi doesn't."
+      }
+    ]
+  },
+  {
+    "id": "a-polite",
+    "form": "ạ",
+    "meaning": "politeness marker",
+    "level": "A1",
+    "category": "Particles",
+    "pattern": "sentence + ạ",
+    "summary": "ạ at the end makes what you say polite and respectful, especially to older people.",
+    "examples": [
+      {
+        "vi": "Cháu chào bà ạ.",
+        "en": "Hello, grandma (polite)."
+      },
+      {
+        "vi": "Em cảm ơn chị ạ.",
+        "en": "Thank you (polite)."
+      },
+      {
+        "vi": "Vâng ạ.",
+        "en": "Yes (polite)."
+      }
+    ],
+    "howTo": [
+      "Use it with your wife's parents and older relatives."
+    ],
+    "english": "Like adding 'sir' or 'ma'am', but used much more often.",
+    "mistakes": [
+      {
+        "wrong": "Ạ cháu chào bà.",
+        "right": "Cháu chào bà ạ.",
+        "why": "ạ goes at the end."
+      }
+    ],
+    "related": [
+      "vang-da",
+      "pronouns"
+    ],
+    "topics": [
+      "greetings",
+      "thanks-sorry"
+    ],
+    "words": [],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "A polite yes to an elder:",
+        "options": [
+          "Vâng ạ.",
+          "Ừ.",
+          "Có đi."
+        ],
+        "answer": "Vâng ạ."
+      },
+      {
+        "type": "translate",
+        "q": "Thank you, grandma. (polite)",
+        "answer": "Cháu cảm ơn bà ạ."
+      },
+      {
+        "type": "truefalse",
+        "q": "ạ makes a sentence more polite.",
+        "answer": true,
+        "why": "That's its whole job."
+      }
+    ]
+  },
+  {
+    "id": "vang-da",
+    "form": "vâng / dạ / ừ",
+    "meaning": "yes",
+    "level": "A1",
+    "category": "Particles",
+    "pattern": "Vâng. / Dạ. / Ừ.",
+    "summary": "In the north, vâng is the polite yes, dạ is a polite 'yes?' or 'I'm listening', and ừ is a casual yes to equals or younger people.",
+    "examples": [
+      {
+        "vi": "Vâng, em hiểu rồi.",
+        "en": "Yes, I understand."
+      },
+      {
+        "vi": "Dạ, cháu đây ạ.",
+        "en": "Yes, I'm here. (answering an elder who called)"
+      },
+      {
+        "vi": "Ừ, đi đi.",
+        "en": "Yeah, go on."
+      }
+    ],
+    "howTo": [
+      "For yes/no questions you can also repeat the verb: Có muốn không? – Muốn."
+    ],
+    "english": "Several kinds of 'yes' depending on politeness.",
+    "mistakes": [
+      {
+        "wrong": "Ừ. (to your father-in-law)",
+        "right": "Vâng ạ.",
+        "why": "ừ is too casual for elders."
+      }
+    ],
+    "related": [
+      "a-polite"
+    ],
+    "topics": [],
+    "words": [],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "A polite yes in the north:",
+        "options": [
+          "Vâng.",
+          "Ừ."
+        ],
+        "answer": "Vâng."
+      },
+      {
+        "type": "translate",
+        "q": "Yes, I understand.",
+        "answer": "Vâng, tôi hiểu rồi.",
+        "alt": [
+          "Vâng, em hiểu rồi.",
+          "Vâng, tôi hiểu.",
+          "Vâng, em hiểu."
+        ]
+      },
+      {
+        "type": "truefalse",
+        "q": "ừ is fine with older relatives.",
+        "answer": false,
+        "why": "It's casual. Use vâng ạ."
+      }
+    ]
+  },
+  {
+    "id": "nhe",
+    "form": "… nhé",
+    "meaning": "okay? (soft suggestion or agreement)",
+    "level": "A1",
+    "category": "Particles",
+    "pattern": "sentence + nhé",
+    "summary": "nhé at the end softens a suggestion or request and checks the other person is okay with it.",
+    "examples": [
+      {
+        "vi": "Mai gặp nhé.",
+        "en": "See you tomorrow, okay?"
+      },
+      {
+        "vi": "Đừng lo nhé.",
+        "en": "Don't worry, okay?"
+      },
+      {
+        "vi": "Cho tôi một bát phở nhé.",
+        "en": "One bowl of phở, please."
+      }
+    ],
+    "howTo": [
+      "Very common and friendly in the north."
+    ],
+    "english": "Like '…, okay?' or '…, alright?'.",
+    "mistakes": [
+      {
+        "wrong": "Nhé mai gặp.",
+        "right": "Mai gặp nhé.",
+        "why": "nhé goes at the end."
+      }
+    ],
+    "related": [
+      "di-command",
+      "nhi"
+    ],
+    "topics": [
+      "restaurant-seat"
+    ],
+    "words": [],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "See you tomorrow, okay? Mai gặp ___.",
+        "options": [
+          "nhé",
+          "à",
+          "chưa"
+        ],
+        "answer": "nhé"
+      },
+      {
+        "type": "translate",
+        "q": "Don't worry, okay?",
+        "answer": "Đừng lo nhé."
+      },
+      {
+        "type": "fix",
+        "q": "Nhé đừng lo.",
+        "answer": "Đừng lo nhé."
+      }
+    ]
+  },
+  {
+    "id": "di-command",
+    "form": "… đi",
+    "meaning": "go ahead! / let's",
+    "level": "A1",
+    "category": "Particles",
+    "pattern": "verb (+ object) + đi",
+    "summary": "đi at the end of a sentence urges someone to do something, or with chúng ta means 'let's'.",
+    "examples": [
+      {
+        "vi": "Ăn đi!",
+        "en": "Go on, eat!"
+      },
+      {
+        "vi": "Chúng ta đi ăn đi!",
+        "en": "Let's go eat!"
+      },
+      {
+        "vi": "Nghỉ đi.",
+        "en": "Take a rest."
+      }
+    ],
+    "howTo": [
+      "Don't confuse it with đi = go at the start of a verb phrase. At the end, it's encouragement."
+    ],
+    "english": "Like 'go ahead and …' or 'let's …'.",
+    "mistakes": [
+      {
+        "wrong": "Đi ăn! (meaning: go on, eat!)",
+        "right": "Ăn đi!",
+        "why": "Đi ăn means go out to eat. Ăn đi means go ahead and eat."
+      }
+    ],
+    "related": [
+      "chung-toi-ta",
+      "dung",
+      "nhe"
+    ],
+    "topics": [],
+    "words": [
+      "đi"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Go on, eat!",
+        "options": [
+          "Ăn đi!",
+          "Đi ăn!"
+        ],
+        "answer": "Ăn đi!"
+      },
+      {
+        "type": "translate",
+        "q": "Let's go eat!",
+        "answer": "Chúng ta đi ăn đi!",
+        "alt": [
+          "Đi ăn đi!"
+        ]
+      },
+      {
+        "type": "truefalse",
+        "q": "Đi ăn! and Ăn đi! mean the same.",
+        "answer": false,
+        "why": "Đi ăn = go out to eat; Ăn đi = go ahead and eat."
+      }
+    ]
+  },
+  {
+    "id": "oi",
+    "form": "… ơi",
+    "meaning": "calling someone",
+    "level": "A1",
+    "category": "Particles",
+    "pattern": "person + ơi",
+    "summary": "ơi after a name or person word calls their attention, like 'hey' or 'excuse me'.",
+    "examples": [
+      {
+        "vi": "Anh ơi, có bàn hai người không?",
+        "en": "Excuse me, do you have a table for two?"
+      },
+      {
+        "vi": "Em ơi!",
+        "en": "Hey! (calling someone younger, e.g. a waiter)"
+      },
+      {
+        "vi": "Mẹ ơi!",
+        "en": "Mom!"
+      }
+    ],
+    "howTo": [
+      "The usual way to call a waiter: Em ơi! (if they're younger) or Anh ơi! / Chị ơi!"
+    ],
+    "english": "Like 'excuse me' or calling someone's name.",
+    "mistakes": [
+      {
+        "wrong": "Ơi anh!",
+        "right": "Anh ơi!",
+        "why": "ơi comes after the person."
+      }
+    ],
+    "related": [
+      "pronouns"
+    ],
+    "topics": [
+      "restaurant-seat"
+    ],
+    "words": [],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Calling a young waiter:",
+        "options": [
+          "Em ơi!",
+          "Ơi em!",
+          "Em à!"
+        ],
+        "answer": "Em ơi!"
+      },
+      {
+        "type": "translate",
+        "q": "Excuse me, do you have a table for two?",
+        "answer": "Anh ơi, có bàn hai người không?",
+        "alt": [
+          "Chị ơi, có bàn hai người không?",
+          "Em ơi, có bàn hai người không?"
+        ]
+      },
+      {
+        "type": "fix",
+        "q": "Ơi chị!",
+        "answer": "Chị ơi!"
+      }
+    ]
+  },
+  {
+    "id": "thoi",
+    "form": "… thôi",
+    "meaning": "only, just; that's all",
+    "level": "A2",
+    "category": "Particles",
+    "pattern": "sentence + thôi",
+    "summary": "thôi at the end means only or just. On its own, Thôi! means 'Enough!' or 'Never mind.'",
+    "examples": [
+      {
+        "vi": "Một cái thôi.",
+        "en": "Just one."
+      },
+      {
+        "vi": "Tôi uống nước thôi.",
+        "en": "I'll just have water."
+      },
+      {
+        "vi": "Thôi, về đi.",
+        "en": "Okay, let's go home."
+      }
+    ],
+    "howTo": [
+      "chỉ … thôi is a stronger 'only': Tôi chỉ có một trăm nghìn thôi."
+    ],
+    "english": "Like 'just' or 'only', but placed at the end.",
+    "mistakes": [
+      {
+        "wrong": "Thôi một cái.",
+        "right": "Một cái thôi.",
+        "why": "In the sense of 'only', thôi goes at the end."
+      }
+    ],
+    "related": [
+      "nhe"
+    ],
+    "topics": [],
+    "words": [
+      "thôi",
+      "chỉ"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Just one: Một cái ___.",
+        "options": [
+          "thôi",
+          "nhé",
+          "nữa"
+        ],
+        "answer": "thôi"
+      },
+      {
+        "type": "translate",
+        "q": "I'll just have water.",
+        "answer": "Tôi uống nước thôi.",
+        "alt": [
+          "Tôi chỉ uống nước thôi.",
+          "Cho tôi nước thôi."
+        ]
+      },
+      {
+        "type": "fix",
+        "q": "Thôi tôi uống nước.",
+        "answer": "Tôi uống nước thôi."
+      }
+    ]
+  },
+  {
+    "id": "degree",
+    "form": "rất / lắm / quá",
+    "meaning": "very, so, too",
+    "level": "A1",
+    "category": "Comparison",
+    "pattern": "rất + adjective  /  adjective + lắm  /  adjective + quá",
+    "summary": "rất goes before an adjective, lắm and quá go after it. quá at the end is an exclamation: so …!",
+    "examples": [
+      {
+        "vi": "Phở rất ngon.",
+        "en": "The phở is very good."
+      },
+      {
+        "vi": "Phở ngon lắm.",
+        "en": "The phở is really good."
+      },
+      {
+        "vi": "Đẹp quá!",
+        "en": "So beautiful!"
+      }
+    ],
+    "howTo": [
+      "quá before an adjective means too: quá cay (too spicy)."
+    ],
+    "english": "English 'very' goes before; Vietnamese has before and after options.",
+    "mistakes": [
+      {
+        "wrong": "Phở ngon rất.",
+        "right": "Phở rất ngon.",
+        "why": "rất goes before the adjective."
+      }
+    ],
+    "related": [
+      "hon",
+      "nhat"
+    ],
+    "topics": [
+      "restaurant-spice"
+    ],
+    "words": [
+      "rất",
+      "lắm",
+      "quá"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "So beautiful! Đẹp ___!",
+        "options": [
+          "quá",
+          "rất",
+          "hơn"
+        ],
+        "answer": "quá"
+      },
+      {
+        "type": "translate",
+        "q": "The phở is very good.",
+        "answer": "Phở rất ngon.",
+        "alt": [
+          "Phở ngon lắm.",
+          "Phở ngon quá."
+        ]
+      },
+      {
+        "type": "fix",
+        "q": "Phở ngon rất.",
+        "answer": "Phở rất ngon.",
+        "alt": [
+          "Phở ngon lắm."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hon",
+    "form": "hơn",
+    "meaning": "more than (-er)",
+    "level": "A1",
+    "category": "Comparison",
+    "pattern": "A + adjective + hơn + B",
+    "summary": "Compare two things with adjective + hơn.",
+    "examples": [
+      {
+        "vi": "Na Uy lạnh hơn Việt Nam.",
+        "en": "Norway is colder than Vietnam."
+      },
+      {
+        "vi": "Cái này rẻ hơn.",
+        "en": "This one is cheaper."
+      }
+    ],
+    "howTo": [
+      "The adjective doesn't change; hơn does the work of -er and more."
+    ],
+    "english": "colder than = lạnh hơn. No separate 'more' or '-er'.",
+    "mistakes": [
+      {
+        "wrong": "Na Uy hơn lạnh Việt Nam.",
+        "right": "Na Uy lạnh hơn Việt Nam.",
+        "why": "hơn comes after the adjective."
+      }
+    ],
+    "related": [
+      "bang",
+      "nhat",
+      "degree"
+    ],
+    "topics": [],
+    "words": [
+      "hơn"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "colder than:",
+        "options": [
+          "lạnh hơn",
+          "hơn lạnh"
+        ],
+        "answer": "lạnh hơn"
+      },
+      {
+        "type": "translate",
+        "q": "Norway is colder than Vietnam.",
+        "answer": "Na Uy lạnh hơn Việt Nam."
+      },
+      {
+        "type": "fix",
+        "q": "Cái này hơn rẻ.",
+        "answer": "Cái này rẻ hơn."
+      }
+    ]
+  },
+  {
+    "id": "bang",
+    "form": "bằng",
+    "meaning": "as … as",
+    "level": "A2",
+    "category": "Comparison",
+    "pattern": "A + adjective + bằng + B",
+    "summary": "adjective + bằng says two things are equal.",
+    "examples": [
+      {
+        "vi": "Tôi cao bằng anh ấy.",
+        "en": "I'm as tall as him."
+      },
+      {
+        "vi": "Cái này không đắt bằng cái kia.",
+        "en": "This one isn't as expensive as that one."
+      }
+    ],
+    "howTo": [
+      "bằng also means 'by means of': đi bằng xe máy (go by motorbike)."
+    ],
+    "english": "as tall as = cao bằng.",
+    "mistakes": [
+      {
+        "wrong": "Tôi bằng cao anh ấy.",
+        "right": "Tôi cao bằng anh ấy.",
+        "why": "The adjective comes before bằng."
+      }
+    ],
+    "related": [
+      "hon",
+      "giong-nhu"
+    ],
+    "topics": [],
+    "words": [
+      "bằng"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "as tall as him: cao ___ anh ấy",
+        "options": [
+          "bằng",
+          "hơn",
+          "nhất"
+        ],
+        "answer": "bằng"
+      },
+      {
+        "type": "translate",
+        "q": "I'm as tall as him.",
+        "answer": "Tôi cao bằng anh ấy."
+      },
+      {
+        "type": "truefalse",
+        "q": "đi bằng xe máy means go by motorbike.",
+        "answer": true,
+        "why": "bằng also means 'by means of'."
+      }
+    ]
+  },
+  {
+    "id": "nhat",
+    "form": "nhất",
+    "meaning": "the most (-est)",
+    "level": "A1",
+    "category": "Comparison",
+    "pattern": "adjective + nhất",
+    "summary": "adjective + nhất means the most.",
+    "examples": [
+      {
+        "vi": "Đây là quán phở ngon nhất.",
+        "en": "This is the best phở place."
+      },
+      {
+        "vi": "Anh thích món nào nhất?",
+        "en": "Which dish do you like most?"
+      }
+    ],
+    "howTo": [
+      "thứ nhất means first."
+    ],
+    "english": "the best = ngon nhất / tốt nhất.",
+    "mistakes": [
+      {
+        "wrong": "nhất ngon",
+        "right": "ngon nhất",
+        "why": "nhất comes after the adjective."
+      }
+    ],
+    "related": [
+      "hon",
+      "degree"
+    ],
+    "topics": [],
+    "words": [
+      "nhất"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "the most beautiful:",
+        "options": [
+          "đẹp nhất",
+          "nhất đẹp",
+          "rất nhất đẹp"
+        ],
+        "answer": "đẹp nhất"
+      },
+      {
+        "type": "translate",
+        "q": "Which dish do you like most?",
+        "answer": "Anh thích món nào nhất?"
+      },
+      {
+        "type": "fix",
+        "q": "Đây là quán nhất ngon.",
+        "answer": "Đây là quán ngon nhất."
+      }
+    ]
+  },
+  {
+    "id": "giong-nhu",
+    "form": "giống / như",
+    "meaning": "like, similar to",
+    "level": "A2",
+    "category": "Comparison",
+    "pattern": "A + giống + B  /  như + B",
+    "summary": "giống means to look or be like. như means like or as.",
+    "examples": [
+      {
+        "vi": "Con giống bố.",
+        "en": "The child looks like the father."
+      },
+      {
+        "vi": "Anh nói như người Việt.",
+        "en": "You speak like a Vietnamese person."
+      },
+      {
+        "vi": "Hai cái này giống nhau.",
+        "en": "These two are the same."
+      }
+    ],
+    "howTo": [
+      "giống nhau = alike, the same. khác nhau = different."
+    ],
+    "english": "Like 'look like' and 'like/as'.",
+    "mistakes": [
+      {
+        "wrong": "Hai cái này giống.",
+        "right": "Hai cái này giống nhau.",
+        "why": "Comparing two things with each other needs nhau."
+      }
+    ],
+    "related": [
+      "bang"
+    ],
+    "topics": [],
+    "words": [
+      "giống",
+      "như",
+      "nhau",
+      "khác"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "These two are different: Hai cái này ___ nhau.",
+        "options": [
+          "khác",
+          "giống",
+          "như"
+        ],
+        "answer": "khác"
+      },
+      {
+        "type": "translate",
+        "q": "These two are the same.",
+        "answer": "Hai cái này giống nhau."
+      },
+      {
+        "type": "fix",
+        "q": "Hai cái này giống.",
+        "answer": "Hai cái này giống nhau."
+      }
+    ]
+  },
+  {
+    "id": "cang-cang",
+    "form": "càng … càng",
+    "meaning": "the more … the more",
+    "level": "A2",
+    "category": "Comparison",
+    "pattern": "càng + A, càng + B  /  ngày càng + adjective",
+    "summary": "càng … càng links two things that grow together. ngày càng means more and more over time.",
+    "examples": [
+      {
+        "vi": "Càng học càng thích.",
+        "en": "The more I study, the more I like it."
+      },
+      {
+        "vi": "Tiếng Việt của anh ngày càng tốt.",
+        "en": "Your Vietnamese is getting better and better."
+      }
+    ],
+    "howTo": [
+      "Short and common: càng sớm càng tốt (the sooner the better)."
+    ],
+    "english": "Same idea as 'the more … the more'.",
+    "mistakes": [
+      {
+        "wrong": "Càng học thích càng.",
+        "right": "Càng học càng thích.",
+        "why": "Each càng goes before its verb."
+      }
+    ],
+    "related": [
+      "hon"
+    ],
+    "topics": [],
+    "words": [
+      "càng",
+      "ngày càng"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "the sooner the better:",
+        "options": [
+          "càng sớm càng tốt",
+          "sớm càng tốt càng"
+        ],
+        "answer": "càng sớm càng tốt"
+      },
+      {
+        "type": "translate",
+        "q": "The more I study, the more I like it.",
+        "answer": "Càng học càng thích.",
+        "alt": [
+          "Tôi càng học càng thích."
+        ]
+      },
+      {
+        "type": "truefalse",
+        "q": "ngày càng means 'more and more'.",
+        "answer": true,
+        "why": "Literally 'each day more'."
+      }
+    ]
+  },
+  {
+    "id": "va-voi",
+    "form": "và / với",
+    "meaning": "and / with",
+    "level": "A1",
+    "category": "Connectors",
+    "pattern": "A và B  /  verb + với + person",
+    "summary": "và means and. với means with, and can also join two people like và.",
+    "examples": [
+      {
+        "vi": "Tôi và anh ấy là người Na Uy.",
+        "en": "He and I are Norwegian."
+      },
+      {
+        "vi": "Tôi với anh ấy là người Na Uy.",
+        "en": "He and I are Norwegian."
+      },
+      {
+        "vi": "Tôi đi làm với anh ấy.",
+        "en": "I go to work with him."
+      }
+    ],
+    "howTo": [
+      "To turn a question back ('and you?'), use còn, not và."
+    ],
+    "english": "Like 'and' and 'with'.",
+    "mistakes": [
+      {
+        "wrong": "Tôi đi làm và anh ấy.",
+        "right": "Tôi đi làm với anh ấy.",
+        "why": "Doing something together with someone is với."
+      }
+    ],
+    "related": [
+      "con",
+      "hoac-hay"
+    ],
+    "topics": [
+      "we-with"
+    ],
+    "words": [
+      "và",
+      "với",
+      "cùng"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "I go to work with him: Tôi đi làm ___ anh ấy.",
+        "options": [
+          "với",
+          "và",
+          "hay"
+        ],
+        "answer": "với"
+      },
+      {
+        "type": "translate",
+        "q": "He and I are Norwegian.",
+        "answer": "Tôi và anh ấy là người Na Uy.",
+        "alt": [
+          "Tôi với anh ấy là người Na Uy.",
+          "Anh ấy và tôi là người Na Uy."
+        ]
+      },
+      {
+        "type": "fix",
+        "q": "Tôi đi làm và Isaac.",
+        "answer": "Tôi đi làm với Isaac."
+      }
+    ]
+  },
+  {
+    "id": "hoac-hay",
+    "form": "hay / hoặc",
+    "meaning": "or",
+    "level": "A1",
+    "category": "Connectors",
+    "pattern": "question: A hay B?  /  statement: A hoặc B",
+    "summary": "hay is the 'or' for questions. hoặc is the 'or' for statements.",
+    "examples": [
+      {
+        "vi": "Anh ấy muốn đi Việt Nam hay Thái Lan?",
+        "en": "Does he want to go to Vietnam or Thailand?"
+      },
+      {
+        "vi": "Anh ấy muốn đi Việt Nam hoặc Thái Lan.",
+        "en": "He wants to go to Vietnam or Thailand."
+      },
+      {
+        "vi": "Anh uống trà hay cà phê?",
+        "en": "Would you like tea or coffee?"
+      }
+    ],
+    "howTo": [
+      "hay also means often, or good, in other uses."
+    ],
+    "english": "English uses one 'or' for both.",
+    "mistakes": [
+      {
+        "wrong": "Anh uống trà hoặc cà phê?",
+        "right": "Anh uống trà hay cà phê?",
+        "why": "In a question, 'or' is hay."
+      }
+    ],
+    "related": [
+      "va-voi"
+    ],
+    "topics": [
+      "or"
+    ],
+    "words": [
+      "hay",
+      "hoặc"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Tea or coffee? Trà ___ cà phê?",
+        "options": [
+          "hay",
+          "hoặc",
+          "và"
+        ],
+        "answer": "hay"
+      },
+      {
+        "type": "translate",
+        "q": "He wants to go to Vietnam or Thailand.",
+        "answer": "Anh ấy muốn đi Việt Nam hoặc Thái Lan."
+      },
+      {
+        "type": "fix",
+        "q": "Anh ấy muốn đi Việt Nam hoặc Thái Lan?",
+        "answer": "Anh ấy muốn đi Việt Nam hay Thái Lan?"
+      }
+    ]
+  },
+  {
+    "id": "nhung",
+    "form": "nhưng / mà",
+    "meaning": "but",
+    "level": "A1",
+    "category": "Connectors",
+    "pattern": "clause, nhưng + clause",
+    "summary": "nhưng means but. mà is a more casual but, often with a sense of 'and yet'.",
+    "examples": [
+      {
+        "vi": "Tôi muốn đi nhưng tôi bận.",
+        "en": "I want to go, but I'm busy."
+      },
+      {
+        "vi": "Đắt mà không ngon.",
+        "en": "Expensive, and not even good."
+      }
+    ],
+    "howTo": [
+      "In speech, nhưng mà is common too: Ngon, nhưng mà cay quá."
+    ],
+    "english": "Like 'but'.",
+    "mistakes": [
+      {
+        "wrong": "Tôi muốn đi, còn tôi bận.",
+        "right": "Tôi muốn đi nhưng tôi bận.",
+        "why": "For a contrast, use nhưng."
+      }
+    ],
+    "related": [
+      "tuy-nhung",
+      "con"
+    ],
+    "topics": [],
+    "words": [
+      "nhưng",
+      "mà"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "I want to go, but I'm busy: Tôi muốn đi ___ tôi bận.",
+        "options": [
+          "nhưng",
+          "và",
+          "hay"
+        ],
+        "answer": "nhưng"
+      },
+      {
+        "type": "translate",
+        "q": "I want to go, but I'm busy.",
+        "answer": "Tôi muốn đi nhưng tôi bận.",
+        "alt": [
+          "Tôi muốn đi nhưng tôi bận rồi.",
+          "Tôi muốn đi nhưng mà tôi bận."
+        ]
+      },
+      {
+        "type": "truefalse",
+        "q": "nhưng mà is wrong; you must pick one.",
+        "answer": false,
+        "why": "nhưng mà together is common in speech."
+      }
+    ]
+  },
+  {
+    "id": "tuy-nhung",
+    "form": "tuy … nhưng",
+    "meaning": "although … (still)",
+    "level": "A2",
+    "category": "Connectors",
+    "pattern": "Tuy / Mặc dù + clause, nhưng + clause",
+    "summary": "tuy or mặc dù start the 'although' part, and nhưng usually starts the second part too.",
+    "examples": [
+      {
+        "vi": "Tuy mệt nhưng tôi vẫn đi làm.",
+        "en": "Although I'm tired, I still go to work."
+      },
+      {
+        "vi": "Mặc dù trời mưa nhưng chúng tôi vẫn đi.",
+        "en": "Although it rained, we still went."
+      }
+    ],
+    "howTo": [
+      "Unlike English, using both 'although' and 'but' is normal."
+    ],
+    "english": "English forbids 'although … but'; Vietnamese uses both.",
+    "mistakes": [
+      {
+        "wrong": "Tuy mệt, tôi đi làm vẫn.",
+        "right": "Tuy mệt nhưng tôi vẫn đi làm.",
+        "why": "Use nhưng for the second part and vẫn before the verb."
+      }
+    ],
+    "related": [
+      "nhung",
+      "van"
+    ],
+    "topics": [],
+    "words": [
+      "mặc dù",
+      "nhưng",
+      "vẫn"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Tuy mệt ___ tôi vẫn đi làm.",
+        "options": [
+          "nhưng",
+          "nên",
+          "thì"
+        ],
+        "answer": "nhưng"
+      },
+      {
+        "type": "translate",
+        "q": "Although I'm tired, I still go to work.",
+        "answer": "Tuy mệt nhưng tôi vẫn đi làm.",
+        "alt": [
+          "Mặc dù mệt nhưng tôi vẫn đi làm.",
+          "Tuy tôi mệt nhưng tôi vẫn đi làm.",
+          "Mặc dù tôi mệt nhưng tôi vẫn đi làm."
+        ]
+      },
+      {
+        "type": "truefalse",
+        "q": "Tuy … nhưng is correct Vietnamese.",
+        "answer": true,
+        "why": "Both parts are normally marked."
+      }
+    ]
+  },
+  {
+    "id": "vi-nen",
+    "form": "vì … nên",
+    "meaning": "because … so",
+    "level": "A2",
+    "category": "Cause and condition",
+    "pattern": "Vì + reason, nên + result  /  result + vì + reason",
+    "summary": "vì gives the reason, nên gives the result. Both are often used together.",
+    "examples": [
+      {
+        "vi": "Vì trời mưa nên tôi ở nhà.",
+        "en": "Because it's raining, I'm staying home."
+      },
+      {
+        "vi": "Tôi ở nhà vì trời mưa.",
+        "en": "I'm staying home because it's raining."
+      }
+    ],
+    "howTo": [
+      "With the result first, drop nên: Tôi ở nhà vì trời mưa."
+    ],
+    "english": "English uses 'because' or 'so', not both. Vietnamese normally uses vì … nên together.",
+    "mistakes": [
+      {
+        "wrong": "Nên trời mưa, tôi ở nhà.",
+        "right": "Vì trời mưa nên tôi ở nhà.",
+        "why": "vì introduces the reason; nên introduces the result."
+      }
+    ],
+    "related": [
+      "tai-sao",
+      "neu-thi"
+    ],
+    "topics": [],
+    "words": [
+      "vì",
+      "nên",
+      "do"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Vì trời mưa ___ tôi ở nhà.",
+        "options": [
+          "nên",
+          "nhưng",
+          "thì"
+        ],
+        "answer": "nên"
+      },
+      {
+        "type": "translate",
+        "q": "I'm staying home because it's raining.",
+        "answer": "Tôi ở nhà vì trời mưa.",
+        "alt": [
+          "Vì trời mưa nên tôi ở nhà."
+        ]
+      },
+      {
+        "type": "fix",
+        "q": "Nên trời mưa, tôi ở nhà.",
+        "answer": "Vì trời mưa nên tôi ở nhà."
+      }
+    ]
+  },
+  {
+    "id": "neu-thi",
+    "form": "nếu … thì",
+    "meaning": "if … then",
+    "level": "A2",
+    "category": "Cause and condition",
+    "pattern": "Nếu + condition (thì) + result",
+    "summary": "nếu starts the condition; thì often starts the result.",
+    "examples": [
+      {
+        "vi": "Nếu mai mưa thì tôi ở nhà.",
+        "en": "If it rains tomorrow, I'll stay home."
+      },
+      {
+        "vi": "Nếu anh mệt thì nghỉ đi.",
+        "en": "If you're tired, take a rest."
+      }
+    ],
+    "howTo": [
+      "thì can be dropped in short sentences."
+    ],
+    "english": "Like 'if … (then)'.",
+    "mistakes": [
+      {
+        "wrong": "Thì mai mưa, tôi ở nhà.",
+        "right": "Nếu mai mưa thì tôi ở nhà.",
+        "why": "The condition starts with nếu."
+      }
+    ],
+    "related": [
+      "vi-nen"
+    ],
+    "topics": [],
+    "words": [
+      "nếu",
+      "thì"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Nếu anh mệt ___ nghỉ đi.",
+        "options": [
+          "thì",
+          "nên",
+          "nhưng"
+        ],
+        "answer": "thì"
+      },
+      {
+        "type": "translate",
+        "q": "If you're tired, take a rest.",
+        "answer": "Nếu anh mệt thì nghỉ đi.",
+        "alt": [
+          "Nếu anh mệt thì anh nghỉ đi.",
+          "Nếu mệt thì nghỉ đi.",
+          "Nếu em mệt thì nghỉ đi."
+        ]
+      },
+      {
+        "type": "truefalse",
+        "q": "Nếu mai mưa tôi ở nhà. (without thì) is acceptable.",
+        "answer": true,
+        "why": "thì can be dropped in short sentences."
+      }
+    ]
+  },
+  {
+    "id": "de",
+    "form": "để",
+    "meaning": "in order to, so that",
+    "level": "A2",
+    "category": "Cause and condition",
+    "pattern": "action + để + purpose",
+    "summary": "để links an action to its purpose.",
+    "examples": [
+      {
+        "vi": "Tôi học tiếng Việt để nói chuyện với vợ.",
+        "en": "I study Vietnamese to talk with my wife."
+      },
+      {
+        "vi": "Tôi đi chợ để mua rau.",
+        "en": "I'm going to the market to buy vegetables."
+      }
+    ],
+    "howTo": [
+      "After đi and đến, the purpose verb can follow directly without để: đi mua rau."
+    ],
+    "english": "Like 'to' or 'in order to'.",
+    "mistakes": [
+      {
+        "wrong": "Tôi học tiếng Việt cho nói chuyện với vợ.",
+        "right": "Tôi học tiếng Việt để nói chuyện với vợ.",
+        "why": "Purpose is để."
+      }
+    ],
+    "related": [
+      "di-verb",
+      "vi-nen"
+    ],
+    "topics": [],
+    "words": [
+      "để"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "I study to talk with my wife: Tôi học ___ nói chuyện với vợ.",
+        "options": [
+          "để",
+          "vì",
+          "nên"
+        ],
+        "answer": "để"
+      },
+      {
+        "type": "translate",
+        "q": "I study Vietnamese to talk with my wife.",
+        "answer": "Tôi học tiếng Việt để nói chuyện với vợ.",
+        "alt": [
+          "Tôi học tiếng Việt để nói chuyện với vợ tôi."
+        ]
+      },
+      {
+        "type": "fix",
+        "q": "Tôi đi chợ vì mua rau.",
+        "answer": "Tôi đi chợ để mua rau.",
+        "alt": [
+          "Tôi đi chợ mua rau."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "muon-thich",
+    "form": "muốn / thích",
+    "meaning": "want / like",
+    "level": "A1",
+    "category": "Modal verbs",
+    "pattern": "Subject + muốn / thích + verb or noun",
+    "summary": "muốn (want) and thích (like) go straight before a verb or noun.",
+    "examples": [
+      {
+        "vi": "Tôi muốn đi Việt Nam.",
+        "en": "I want to go to Vietnam."
+      },
+      {
+        "vi": "Tôi thích phở.",
+        "en": "I like phở."
+      },
+      {
+        "vi": "Anh ấy thích gì?",
+        "en": "What does he like?"
+      }
+    ],
+    "howTo": [
+      "No word for 'to' before the next verb."
+    ],
+    "english": "want to go = muốn đi. No 'to'.",
+    "mistakes": [
+      {
+        "wrong": "Tôi muốn để đi Việt Nam.",
+        "right": "Tôi muốn đi Việt Nam.",
+        "why": "No extra word between muốn and the verb."
+      }
+    ],
+    "related": [
+      "can-phai",
+      "co-the"
+    ],
+    "topics": [
+      "yes-no",
+      "what"
+    ],
+    "words": [
+      "muốn",
+      "thích"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "I like phở: Tôi ___ phở.",
+        "options": [
+          "thích",
+          "muốn để",
+          "là thích"
+        ],
+        "answer": "thích"
+      },
+      {
+        "type": "translate",
+        "q": "What do you want?",
+        "answer": "Anh muốn gì?"
+      },
+      {
+        "type": "fix",
+        "q": "Tôi muốn để về nhà.",
+        "answer": "Tôi muốn về nhà."
+      }
+    ]
+  },
+  {
+    "id": "can-phai",
+    "form": "cần / phải",
+    "meaning": "need / must",
+    "level": "A1",
+    "category": "Modal verbs",
+    "pattern": "Subject + cần / phải + verb",
+    "summary": "cần means need, phải means must or have to.",
+    "examples": [
+      {
+        "vi": "Tôi cần nước.",
+        "en": "I need water."
+      },
+      {
+        "vi": "Tôi phải đi làm.",
+        "en": "I have to go to work."
+      },
+      {
+        "vi": "Anh không cần lo.",
+        "en": "You don't need to worry."
+      }
+    ],
+    "howTo": [
+      "không phải + verb means 'don't have to'."
+    ],
+    "english": "Like 'need' and 'must/have to', with no 'to'.",
+    "mistakes": [
+      {
+        "wrong": "Tôi phải để đi.",
+        "right": "Tôi phải đi.",
+        "why": "No word between phải and the verb."
+      }
+    ],
+    "related": [
+      "muon-thich",
+      "nen"
+    ],
+    "topics": [],
+    "words": [
+      "cần",
+      "phải"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "I have to go to work: Tôi ___ đi làm.",
+        "options": [
+          "phải",
+          "muốn",
+          "được"
+        ],
+        "answer": "phải"
+      },
+      {
+        "type": "translate",
+        "q": "I need water.",
+        "answer": "Tôi cần nước."
+      },
+      {
+        "type": "translate",
+        "q": "You don't need to worry.",
+        "answer": "Anh không cần lo.",
+        "alt": [
+          "Em không cần lo.",
+          "Chị không cần lo.",
+          "Không cần lo."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "nen",
+    "form": "nên",
+    "meaning": "should",
+    "level": "A2",
+    "category": "Modal verbs",
+    "pattern": "Subject + nên + verb",
+    "summary": "nên before a verb gives advice: should.",
+    "examples": [
+      {
+        "vi": "Anh nên nghỉ.",
+        "en": "You should rest."
+      },
+      {
+        "vi": "Anh không nên uống nhiều.",
+        "en": "You shouldn't drink a lot."
+      }
+    ],
+    "howTo": [
+      "Between two clauses, nên means 'so' instead (see vì … nên)."
+    ],
+    "english": "Like 'should'.",
+    "mistakes": [
+      {
+        "wrong": "Anh nghỉ nên.",
+        "right": "Anh nên nghỉ.",
+        "why": "nên goes before the verb."
+      }
+    ],
+    "related": [
+      "can-phai",
+      "vi-nen"
+    ],
+    "topics": [],
+    "words": [
+      "nên"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "You should rest: Anh ___ nghỉ.",
+        "options": [
+          "nên",
+          "phải không",
+          "sẽ"
+        ],
+        "answer": "nên"
+      },
+      {
+        "type": "translate",
+        "q": "You shouldn't drink a lot.",
+        "answer": "Anh không nên uống nhiều.",
+        "alt": [
+          "Em không nên uống nhiều.",
+          "Chị không nên uống nhiều."
+        ]
+      },
+      {
+        "type": "fix",
+        "q": "Anh nghỉ nên.",
+        "answer": "Anh nên nghỉ."
+      }
+    ]
+  },
+  {
+    "id": "co-the",
+    "form": "có thể",
+    "meaning": "can, may, be able to",
+    "level": "A1",
+    "category": "Modal verbs",
+    "pattern": "Subject + có thể + verb (+ được)",
+    "summary": "có thể before a verb means can or may.",
+    "examples": [
+      {
+        "vi": "Tôi có thể nói tiếng Việt một chút.",
+        "en": "I can speak a little Vietnamese."
+      },
+      {
+        "vi": "Anh có thể giúp tôi không?",
+        "en": "Can you help me?"
+      }
+    ],
+    "howTo": [
+      "Negative: không thể (cannot)."
+    ],
+    "english": "Like 'can' or 'may'.",
+    "mistakes": [
+      {
+        "wrong": "Tôi có thể không đi.",
+        "right": "Tôi không thể đi.",
+        "why": "'Can't go' is không thể đi."
+      }
+    ],
+    "related": [
+      "duoc-ability",
+      "biet"
+    ],
+    "topics": [],
+    "words": [
+      "có thể",
+      "không thể"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Can you help me? Anh ___ giúp tôi không?",
+        "options": [
+          "có thể",
+          "có phải",
+          "đã"
+        ],
+        "answer": "có thể"
+      },
+      {
+        "type": "translate",
+        "q": "Can you help me?",
+        "answer": "Anh có thể giúp tôi không?",
+        "alt": [
+          "Chị có thể giúp tôi không?",
+          "Em có thể giúp tôi không?",
+          "Anh giúp tôi được không?"
+        ]
+      },
+      {
+        "type": "fix",
+        "q": "Tôi có thể không đi.",
+        "answer": "Tôi không thể đi."
+      }
+    ]
+  },
+  {
+    "id": "duoc-ability",
+    "form": "verb + được",
+    "meaning": "can, manage to",
+    "level": "A2",
+    "category": "Modal verbs",
+    "pattern": "verb (+ object) + được  /  không + verb + được",
+    "summary": "được after a verb means you can or managed to do it.",
+    "examples": [
+      {
+        "vi": "Tôi nói được tiếng Việt.",
+        "en": "I can speak Vietnamese."
+      },
+      {
+        "vi": "Tôi không ngủ được.",
+        "en": "I can't sleep."
+      },
+      {
+        "vi": "Được không?",
+        "en": "Is that okay?"
+      }
+    ],
+    "howTo": [
+      "Được! on its own means 'Okay!' or 'Fine!'."
+    ],
+    "english": "Like 'can', but placed after the verb.",
+    "mistakes": [
+      {
+        "wrong": "Tôi được nói tiếng Việt. (meaning: can)",
+        "right": "Tôi nói được tiếng Việt.",
+        "why": "For ability, được goes after the verb."
+      }
+    ],
+    "related": [
+      "co-the",
+      "duoc-bi"
+    ],
+    "topics": [],
+    "words": [
+      "được"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "I can't sleep:",
+        "options": [
+          "Tôi không ngủ được.",
+          "Tôi được không ngủ."
+        ],
+        "answer": "Tôi không ngủ được."
+      },
+      {
+        "type": "translate",
+        "q": "I can speak Vietnamese.",
+        "answer": "Tôi nói được tiếng Việt.",
+        "alt": [
+          "Tôi có thể nói tiếng Việt.",
+          "Tôi biết nói tiếng Việt.",
+          "Tôi nói tiếng Việt được."
+        ]
+      },
+      {
+        "type": "truefalse",
+        "q": "Được! can mean 'Okay!'",
+        "answer": true,
+        "why": "On its own, được means okay or fine."
+      }
+    ]
+  },
+  {
+    "id": "biet",
+    "form": "biết + verb",
+    "meaning": "know how to",
+    "level": "A1",
+    "category": "Modal verbs",
+    "pattern": "Subject + biết + verb",
+    "summary": "biết before a verb means you know how to do it (a skill).",
+    "examples": [
+      {
+        "vi": "Tôi biết bơi.",
+        "en": "I can swim."
+      },
+      {
+        "vi": "Anh biết nói tiếng Việt không?",
+        "en": "Do you know how to speak Vietnamese?"
+      }
+    ],
+    "howTo": [
+      "On its own, biết means know: Tôi không biết. (I don't know.)"
+    ],
+    "english": "Like 'know how to' or 'can' for skills.",
+    "mistakes": [
+      {
+        "wrong": "Tôi bơi biết.",
+        "right": "Tôi biết bơi.",
+        "why": "biết goes before the verb."
+      }
+    ],
+    "related": [
+      "co-the",
+      "duoc-ability"
+    ],
+    "topics": [],
+    "words": [
+      "biết"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "I can swim (skill): Tôi ___ bơi.",
+        "options": [
+          "biết",
+          "được",
+          "phải"
+        ],
+        "answer": "biết"
+      },
+      {
+        "type": "translate",
+        "q": "I don't know.",
+        "answer": "Tôi không biết.",
+        "alt": [
+          "Em không biết."
+        ]
+      },
+      {
+        "type": "fix",
+        "q": "Tôi bơi biết.",
+        "answer": "Tôi biết bơi."
+      }
+    ]
+  },
+  {
+    "id": "duoc-bi",
+    "form": "được / bị",
+    "meaning": "get (good) / suffer (bad)",
+    "level": "A2",
+    "category": "Modal verbs",
+    "pattern": "Subject + được + good thing  /  Subject + bị + bad thing",
+    "summary": "được is for good things that happen to you, bị for bad ones.",
+    "examples": [
+      {
+        "vi": "Tôi được nghỉ hôm nay.",
+        "en": "I get the day off today."
+      },
+      {
+        "vi": "Tôi bị ốm.",
+        "en": "I'm sick."
+      },
+      {
+        "vi": "Anh ấy bị mất ví.",
+        "en": "He lost his wallet."
+      }
+    ],
+    "howTo": [
+      "ốm is the northern word for sick: Tôi bị ốm."
+    ],
+    "english": "English passive is neutral. Vietnamese shows whether it's good or bad news.",
+    "mistakes": [
+      {
+        "wrong": "Tôi được ốm.",
+        "right": "Tôi bị ốm.",
+        "why": "Being sick is bad, so bị."
+      }
+    ],
+    "related": [
+      "duoc-ability"
+    ],
+    "topics": [],
+    "words": [
+      "được",
+      "bị"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "I'm sick: Tôi ___ ốm.",
+        "options": [
+          "bị",
+          "được"
+        ],
+        "answer": "bị"
+      },
+      {
+        "type": "translate",
+        "q": "I get the day off today.",
+        "answer": "Hôm nay tôi được nghỉ.",
+        "alt": [
+          "Tôi được nghỉ hôm nay."
+        ]
+      },
+      {
+        "type": "fix",
+        "q": "Tôi được ốm.",
+        "answer": "Tôi bị ốm."
+      }
+    ]
+  },
+  {
+    "id": "cho",
+    "form": "cho",
+    "meaning": "give; for; to",
+    "level": "A1",
+    "category": "Giving and asking",
+    "pattern": "cho + person + thing  /  verb + cho + person",
+    "summary": "cho means give, and after another verb it means for or to someone.",
+    "examples": [
+      {
+        "vi": "Anh ấy muốn cho tôi tiền.",
+        "en": "He wants to give me money."
+      },
+      {
+        "vi": "Tôi làm việc cho anh ấy.",
+        "en": "I work for him."
+      },
+      {
+        "vi": "Tôi sẽ gọi cho anh.",
+        "en": "I'll call you."
+      }
+    ],
+    "howTo": [
+      "Phone calls: gọi cho + person.",
+      "tặng is for giving a gift."
+    ],
+    "english": "Covers English give, for and to.",
+    "mistakes": [
+      {
+        "wrong": "Tôi sẽ gọi anh. (meaning: phone)",
+        "right": "Tôi sẽ gọi cho anh.",
+        "why": "Phoning someone is gọi cho."
+      }
+    ],
+    "related": [
+      "cho-toi"
+    ],
+    "topics": [
+      "have-give",
+      "work"
+    ],
+    "words": [
+      "cho"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "I work for him: Tôi làm việc ___ anh ấy.",
+        "options": [
+          "cho",
+          "với",
+          "của"
+        ],
+        "answer": "cho"
+      },
+      {
+        "type": "translate",
+        "q": "He wants to give me money.",
+        "answer": "Anh ấy muốn cho tôi tiền."
+      },
+      {
+        "type": "fix",
+        "q": "Tôi sẽ gọi với anh.",
+        "answer": "Tôi sẽ gọi cho anh."
+      }
+    ]
+  },
+  {
+    "id": "cho-toi",
+    "form": "Cho tôi (xin) …",
+    "meaning": "Can I have …, please",
+    "level": "A1",
+    "category": "Giving and asking",
+    "pattern": "Cho tôi (xin) + number + classifier + thing",
+    "summary": "Cho tôi … asks for something, like ordering food. xin makes it more polite.",
+    "examples": [
+      {
+        "vi": "Cho tôi xem menu.",
+        "en": "Can I see the menu?"
+      },
+      {
+        "vi": "Cho tôi xin đôi đũa.",
+        "en": "A pair of chopsticks, please."
+      },
+      {
+        "vi": "Cho tôi thanh toán.",
+        "en": "I'd like to pay."
+      }
+    ],
+    "howTo": [
+      "thêm = more: Cho tôi thêm nước chấm."
+    ],
+    "english": "Literally 'give me', but polite, like 'Can I have …'.",
+    "mistakes": [
+      {
+        "wrong": "Tôi muốn có một bát phở.",
+        "right": "Cho tôi một bát phở.",
+        "why": "The muốn version is understood but Cho tôi … is how people order."
+      }
+    ],
+    "related": [
+      "cho",
+      "containers"
+    ],
+    "topics": [
+      "restaurant-seat",
+      "restaurant-extras",
+      "restaurant-pay"
+    ],
+    "words": [
+      "cho",
+      "xin",
+      "thêm"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "More dipping sauce, please: Cho tôi ___ nước chấm.",
+        "options": [
+          "thêm",
+          "nữa",
+          "hơn"
+        ],
+        "answer": "thêm"
+      },
+      {
+        "type": "translate",
+        "q": "I want to see the menu.",
+        "answer": "Cho tôi xem menu.",
+        "alt": [
+          "Cho tôi xem thực đơn.",
+          "Cho tôi xin menu."
+        ]
+      },
+      {
+        "type": "translate",
+        "q": "I want to pay.",
+        "answer": "Cho tôi thanh toán.",
+        "alt": [
+          "Cho tôi gửi tiền."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "co-have",
+    "form": "có",
+    "meaning": "have; there is",
+    "level": "A1",
+    "category": "Giving and asking",
+    "pattern": "Subject + có + noun  /  (place) + có + noun",
+    "summary": "có means have. Without a subject, or after a place, it means there is.",
+    "examples": [
+      {
+        "vi": "Anh ấy có tiền.",
+        "en": "He has money."
+      },
+      {
+        "vi": "Có nước.",
+        "en": "There is water."
+      },
+      {
+        "vi": "Trong chai có nước.",
+        "en": "There's water in the bottle."
+      }
+    ],
+    "howTo": [
+      "Negative: không có (doesn't have, there isn't)."
+    ],
+    "english": "One word for 'have' and 'there is'.",
+    "mistakes": [
+      {
+        "wrong": "Nó có nước trong chai.",
+        "right": "Trong chai có nước.",
+        "why": "For 'there is', start with the place."
+      }
+    ],
+    "related": [
+      "co-khong",
+      "khong"
+    ],
+    "topics": [
+      "have-give"
+    ],
+    "words": [
+      "có",
+      "trong"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "There's water in the bottle:",
+        "options": [
+          "Trong chai có nước.",
+          "Có trong chai nước."
+        ],
+        "answer": "Trong chai có nước."
+      },
+      {
+        "type": "translate",
+        "q": "He has no money.",
+        "answer": "Anh ấy không có tiền."
+      },
+      {
+        "type": "truefalse",
+        "q": "Có nước. can mean 'There is water.'",
+        "answer": true,
+        "why": "có without a subject means there is."
+      }
+    ]
+  },
+  {
+    "id": "lam",
+    "form": "làm / làm việc / việc",
+    "meaning": "do, make / work / a job",
+    "level": "A1",
+    "category": "Giving and asking",
+    "pattern": "làm + thing  /  làm việc (ở / cho …)",
+    "summary": "làm is do or make, làm việc is to work, việc is a job or task.",
+    "examples": [
+      {
+        "vi": "Anh muốn làm gì?",
+        "en": "What do you want to do?"
+      },
+      {
+        "vi": "Tôi làm việc ở đây.",
+        "en": "I work here."
+      },
+      {
+        "vi": "làm việc nhà",
+        "en": "do chores"
+      }
+    ],
+    "howTo": [
+      "đi làm = go to work. Anh làm nghề gì? = What's your job?"
+    ],
+    "english": "One verb for do and make.",
+    "mistakes": [
+      {
+        "wrong": "Tôi làm ở đây việc.",
+        "right": "Tôi làm việc ở đây.",
+        "why": "làm việc stays together."
+      }
+    ],
+    "related": [
+      "di-verb",
+      "o-place"
+    ],
+    "topics": [
+      "work"
+    ],
+    "words": [
+      "làm",
+      "việc",
+      "làm việc"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "do chores:",
+        "options": [
+          "làm việc nhà",
+          "làm nhà việc"
+        ],
+        "answer": "làm việc nhà"
+      },
+      {
+        "type": "translate",
+        "q": "Where do you work?",
+        "answer": "Anh làm việc ở đâu?"
+      },
+      {
+        "type": "fix",
+        "q": "Tôi làm ở đây việc.",
+        "answer": "Tôi làm việc ở đây."
+      }
+    ]
+  },
+  {
+    "id": "greetings",
+    "form": "Chào / Cảm ơn / Xin lỗi + person",
+    "meaning": "hello, thanks, sorry",
+    "level": "A1",
+    "category": "Giving and asking",
+    "pattern": "(I-word) + chào / cảm ơn / xin lỗi + (you-word)",
+    "summary": "Greetings, thanks and apologies add the right person words for politeness.",
+    "examples": [
+      {
+        "vi": "Em chào anh.",
+        "en": "Hello (younger to an older man)."
+      },
+      {
+        "vi": "Cảm ơn chị.",
+        "en": "Thank you (to an older woman)."
+      },
+      {
+        "vi": "Xin lỗi anh.",
+        "en": "Sorry / excuse me (to a man)."
+      }
+    ],
+    "howTo": [
+      "Chào on its own is casual. Xin chào is formal.",
+      "Answers: Không có gì (you're welcome), Không sao (no problem)."
+    ],
+    "english": "English hello/thanks/sorry don't change. Vietnamese adds who's speaking to whom.",
+    "mistakes": [
+      {
+        "wrong": "Xin chào em. (to a friend's child, casually)",
+        "right": "Chào em.",
+        "why": "Xin chào is formal; casual greetings use Chào."
+      }
+    ],
+    "related": [
+      "pronouns",
+      "a-polite"
+    ],
+    "topics": [
+      "greetings",
+      "thanks-sorry"
+    ],
+    "words": [
+      "xin"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "You're welcome:",
+        "options": [
+          "Không có gì.",
+          "Không sao.",
+          "Xin lỗi."
+        ],
+        "answer": "Không có gì."
+      },
+      {
+        "type": "translate",
+        "q": "Thank you (to an older woman).",
+        "answer": "Cảm ơn chị.",
+        "alt": [
+          "Em cảm ơn chị.",
+          "Cảm ơn chị ạ.",
+          "Em cảm ơn chị ạ."
+        ]
+      },
+      {
+        "type": "truefalse",
+        "q": "Xin chào is the formal hello.",
+        "answer": true,
+        "why": "Chào + person is the everyday way."
+      }
+    ]
+  },
+  {
+    "id": "khoe-khong",
+    "form": "(Dạo này) … khỏe không?",
+    "meaning": "how are you",
+    "level": "A1",
+    "category": "Giving and asking",
+    "pattern": "(Dạo này) + you-word + (có) khỏe không?",
+    "summary": "Ask how someone is with khỏe không? (well?) or thế nào? (how?). Dạo này means recently.",
+    "examples": [
+      {
+        "vi": "Dạo này anh khỏe không?",
+        "en": "Have you been well recently?"
+      },
+      {
+        "vi": "Tôi khỏe, cảm ơn. Còn anh?",
+        "en": "I'm well, thanks. And you?"
+      },
+      {
+        "vi": "Anh vẫn khỏe chứ?",
+        "en": "You're still well, right?"
+      }
+    ],
+    "howTo": [
+      "Answer: Tôi khỏe / Tôi ổn / Tôi vẫn khỏe. Then turn it back with Còn anh?"
+    ],
+    "english": "Like 'How are you? – Fine, and you?'",
+    "mistakes": [
+      {
+        "wrong": "Anh là khỏe không?",
+        "right": "Anh khỏe không?",
+        "why": "khỏe is an adjective, so no là."
+      }
+    ],
+    "related": [
+      "con",
+      "chu-question",
+      "the-nao"
+    ],
+    "topics": [
+      "how-are-you"
+    ],
+    "words": [],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "I'm well, and you? Tôi khỏe, ___ anh?",
+        "options": [
+          "còn",
+          "và",
+          "hay"
+        ],
+        "answer": "còn"
+      },
+      {
+        "type": "translate",
+        "q": "Have you been well recently?",
+        "answer": "Dạo này anh khỏe không?",
+        "alt": [
+          "Dạo này anh có khỏe không?",
+          "Dạo này chị khỏe không?",
+          "Dạo này em khỏe không?"
+        ]
+      },
+      {
+        "type": "fix",
+        "q": "Anh là khỏe không?",
+        "answer": "Anh khỏe không?",
+        "alt": [
+          "Anh có khỏe không?"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "numbers-tens",
+    "form": "mười / mươi, mốt, tư, lăm",
+    "meaning": "numbers 11–99",
+    "level": "A1",
+    "category": "Numbers",
+    "pattern": "mười + unit (11–19)  /  unit + mươi + unit (20–99)",
+    "summary": "11–19 start with mười. From 20, tens are 'two ten': hai mươi. Some units change: 1 → mốt, 4 → tư, 5 → lăm.",
+    "examples": [
+      {
+        "vi": "mười lăm",
+        "en": "fifteen"
+      },
+      {
+        "vi": "hai mươi mốt",
+        "en": "twenty-one"
+      },
+      {
+        "vi": "hai mươi tư",
+        "en": "twenty-four"
+      }
+    ],
+    "howTo": [
+      "After mười or mươi, 5 is lăm (mười năm means ten years).",
+      "After mươi, 1 is mốt and 4 is often tư."
+    ],
+    "english": "Built logically: 35 = ba mươi lăm, 'three ten five'.",
+    "mistakes": [
+      {
+        "wrong": "mười năm (meaning 15)",
+        "right": "mười lăm",
+        "why": "mười năm means ten years."
+      }
+    ],
+    "related": [
+      "numbers-big",
+      "bao-nhieu"
+    ],
+    "topics": [
+      "numbers"
+    ],
+    "words": [
+      "năm",
+      "hai"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "twenty-one:",
+        "options": [
+          "hai mươi mốt",
+          "hai mươi một",
+          "hai mười một"
+        ],
+        "answer": "hai mươi mốt"
+      },
+      {
+        "type": "translate",
+        "q": "fifteen",
+        "answer": "mười lăm"
+      },
+      {
+        "type": "translate",
+        "q": "twenty-five",
+        "answer": "hai mươi lăm"
+      },
+      {
+        "type": "fix",
+        "q": "hai mươi năm (meaning 25)",
+        "answer": "hai mươi lăm"
+      }
+    ]
+  },
+  {
+    "id": "numbers-big",
+    "form": "trăm, nghìn, triệu, lẻ",
+    "meaning": "hundreds and up",
+    "level": "A2",
+    "category": "Numbers",
+    "pattern": "number + trăm / nghìn / triệu (+ lẻ + unit)",
+    "summary": "trăm = hundred, nghìn = thousand, triệu = million. With no tens, say lẻ or linh: một trăm lẻ năm (105).",
+    "examples": [
+      {
+        "vi": "một trăm lẻ một",
+        "en": "101"
+      },
+      {
+        "vi": "một trăm nghìn",
+        "en": "100,000 (dong)"
+      },
+      {
+        "vi": "hai triệu",
+        "en": "two million"
+      }
+    ],
+    "howTo": [
+      "Prices are often in nghìn: năm mươi nghìn = 50,000 đồng.",
+      "nghìn is the northern word for thousand."
+    ],
+    "english": "Like English, but Vietnamese groups by thousands too: 100,000 = một trăm nghìn (a hundred thousand).",
+    "mistakes": [
+      {
+        "wrong": "một trăm năm (meaning 105)",
+        "right": "một trăm lẻ năm",
+        "why": "With no tens, put lẻ or linh before the unit."
+      }
+    ],
+    "related": [
+      "numbers-tens",
+      "bao-nhieu"
+    ],
+    "topics": [
+      "numbers",
+      "restaurant-pay"
+    ],
+    "words": [
+      "trăm",
+      "nghìn",
+      "triệu"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "105:",
+        "options": [
+          "một trăm lẻ năm",
+          "một trăm năm",
+          "một trăm mươi năm"
+        ],
+        "answer": "một trăm lẻ năm"
+      },
+      {
+        "type": "translate",
+        "q": "one hundred and one",
+        "answer": "một trăm lẻ một",
+        "alt": [
+          "một trăm linh một"
+        ]
+      },
+      {
+        "type": "truefalse",
+        "q": "một trăm nghìn is 100,000.",
+        "answer": true,
+        "why": "A hundred thousand."
+      }
+    ]
+  },
+  {
+    "id": "ta-tay",
+    "form": "ta / Tây",
+    "meaning": "ours, traditional / Western",
+    "level": "A2",
+    "category": "Word order",
+    "pattern": "noun + ta  /  noun + Tây",
+    "summary": "After a noun, ta means ours or traditional Vietnamese, and Tây means Western.",
+    "examples": [
+      {
+        "vi": "Tết ta",
+        "en": "Lunar New Year"
+      },
+      {
+        "vi": "Tết Tây",
+        "en": "Western New Year (1 January)"
+      },
+      {
+        "vi": "táo Tây",
+        "en": "Western apple"
+      }
+    ],
+    "howTo": [
+      "nước ta = our country."
+    ],
+    "english": "No direct equivalent; like saying 'our' vs 'Western' version.",
+    "mistakes": [
+      {
+        "wrong": "ta Tết",
+        "right": "Tết ta",
+        "why": "ta and Tây come after the noun."
+      }
+    ],
+    "related": [
+      "adjective-after"
+    ],
+    "topics": [
+      "ta-tay"
+    ],
+    "words": [
+      "ta",
+      "Tết",
+      "tây"
+    ],
+    "practice": [
+      {
+        "type": "choice",
+        "q": "Lunar New Year:",
+        "options": [
+          "Tết ta",
+          "Tết Tây"
+        ],
+        "answer": "Tết ta"
+      },
+      {
+        "type": "translate",
+        "q": "our country",
+        "answer": "nước ta"
+      },
+      {
+        "type": "fix",
+        "q": "Tây Tết",
+        "answer": "Tết Tây"
+      }
+    ]
+  }
+]

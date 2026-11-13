@@ -33,6 +33,7 @@ const { shuffle, pick, toneName, tileWords, allowedModes, acceptedAnswers } = Ex
 const app = document.getElementById("app");
 let content;
 let words = [];
+let grammar = [];
 let topicById = {};
 let state = load();
 let onKey = null;
@@ -40,14 +41,18 @@ let onKey = null;
 // ---------- Storage ----------
 
 function load() {
-  const empty = { progress: {}, mode: "mix", topics: null, words: null };
-  try {
-    const saved = { ...empty, ...JSON.parse(localStorage.getItem(STORAGE_KEY)) };
+  const empty = { progress: {}, mode: "mix", topics: null };
+  const fill = (saved) => {
     if (!MODES.some((mode) => mode.id === saved.mode)) saved.mode = "mix";
     saved.words = { cards: {}, newPerDay: 5, introduced: {}, bonus: {}, ...saved.words };
+    saved.grammar = { right: {}, misses: {}, ...saved.grammar };
+    saved.grammarUi = { level: "All", category: "All", ...saved.grammarUi };
     return saved;
+  };
+  try {
+    return fill({ ...empty, ...JSON.parse(localStorage.getItem(STORAGE_KEY)) });
   } catch {
-    return { ...empty, words: { cards: {}, newPerDay: 5, introduced: {}, bonus: {} } };
+    return fill({ ...empty });
   }
 }
 
@@ -101,7 +106,7 @@ const openMistakes = () => content.items.filter((item) => state.progress[itemKey
 function updateMistakeCount() {
   const badge = document.getElementById("mistake-count");
   if (!content) return;
-  const count = openMistakes().length;
+  const count = openMistakes().length + openGrammarMisses().length;
   badge.hidden = count === 0;
   badge.textContent = count;
 }
@@ -140,17 +145,6 @@ function withBold(text) {
 function modesFor(item, sessionMode) {
   const modes = allowedModes(item);
   return sessionMode === "mix" ? modes.filter((mode) => mode !== "marks") : modes;
-}
-
-function renderRule(rule) {
-  return [
-    rule.body.map((text) => h("p", { class: "rule-body" }, text)),
-    rule.examples?.length > 0 && h("dl", { class: "examples" },
-      rule.examples.map((example) => [
-        h("dt", { lang: "vi" }, example.vi),
-        h("dd", {}, example.en),
-      ])),
-  ];
 }
 
 // ---------- Practice setup ----------
@@ -487,7 +481,13 @@ function finish(session, entry, result) {
 
   const lines = typedWrong ? explainMistakes(result) : [];
   const notes = [...(result.tips || []), ...(item.note ? [item.note] : [])];
-  const rule = content.rules.find((r) => r.topics?.includes(item.topic));
+  // The grammar points for this topic, most specific first: those whose word links appear in the answer.
+  const answerWords = new Set(Check.words(item.vi).map((w) => w.toLowerCase()));
+  const related = pointsForTopic(item.topic)
+    .map((p) => ({ p, hits: (p.words || []).filter((w) => answerWords.has(w.toLowerCase())).length }))
+    .sort((a, b) => b.hits - a.hits)
+    .slice(0, 2)
+    .map((x) => x.p);
 
   const panel = h("section", { class: "feedback", "aria-live": "polite" },
     verdictFor(result),
@@ -500,9 +500,7 @@ function finish(session, entry, result) {
     (result.keep || item.from) && h("p", { class: "sub small" }, item.en),
     lines.length > 0 && h("ul", { class: "mistake-list" }, lines.map((line) => h("li", {}, line))),
     notes.length > 0 && h("div", { class: "tip" }, notes.map((note) => h("p", {}, note))),
-    rule && !result.correct && h("details", { class: "rule-peek" },
-      h("summary", {}, `Rule: ${rule.title}`),
-      renderRule(rule)),
+    !result.correct && related.map(grammarPeek),
   );
 
   if (result.keep) {
@@ -705,7 +703,7 @@ function startQuiz(questions) {
       h("div", { class: "progress-row" },
         h("div", { class: "progress-track" }, fill),
         h("span", {}, `${index + 1} of ${questions.length}`),
-        h("a", { href: "#/letters", class: "small" }, "End")),
+        h("a", { href: "#/sounds", class: "small" }, "End")),
       h("p", { class: "instruction" }, q.instruction),
       q.visual ? h("div", { class: "quiz-picture" }, q.visual) : h("p", { class: "prompt", lang: q.promptLang }, q.prompt),
       h("div", { class: "options big" }, buttons),
@@ -720,57 +718,220 @@ function startQuiz(questions) {
     show(
       h("h1", {}, `${score} of ${questions.length} right`),
       h("div", { class: "actions" },
-        h("a", { class: "btn primary as-link", href: "#/letters" }, "Back to letters")),
+        h("a", { class: "btn primary as-link", href: "#/sounds" }, "Back to sounds")),
     );
   }
 
   ask();
 }
 
-// ---------- Notes ----------
+// ---------- Grammar ----------
 
-function renderNotes() {
-  const results = h("div", { "aria-live": "polite" });
+const QUESTION_LABELS = {
+  choice: "Pick the right answer",
+  translate: "Write it in Vietnamese (no marks needed)",
+  fix: "Correct this sentence",
+  truefalse: "Is this right?",
+};
+
+const pointById = (id) => grammar.find((p) => p.id === id);
+const pointsForTopic = (topic) => grammar.filter((p) => p.topics?.includes(topic));
+const pointsForWord = (vi) => grammar.filter((p) => p.words?.includes(vi));
+const grammarKey = (id, n) => `${id}|${n}`;
+
+function grammarScore(point) {
+  const right = point.practice.filter((_, n) => state.grammar.right[grammarKey(point.id, n)]).length;
+  return { right, total: point.practice.length };
+}
+
+function recordGrammar(point, n, correct, typed) {
+  const key = grammarKey(point.id, n);
+  const miss = state.grammar.misses[key];
+  if (correct) {
+    state.grammar.right[key] = true;
+    if (miss) miss.open = false;
+  } else {
+    delete state.grammar.right[key];
+    state.grammar.misses[key] = { count: (miss?.count || 0) + 1, typed: typed ?? "", open: true, at: Date.now() };
+  }
+  save();
+}
+
+const openGrammarMisses = () => Object.entries(state.grammar.misses)
+  .filter(([key, miss]) => miss.open && pointById(key.split("|")[0]))
+  .map(([key, miss]) => {
+    const [id, n] = key.split("|");
+    const point = pointById(id);
+    return { point, question: point.practice[Number(n)], miss };
+  })
+  .filter((entry) => entry.question);
+
+// A compact version of a grammar point, shown under a wrong answer in Practice.
+function grammarPeek(point) {
+  return h("details", { class: "rule-peek" },
+    h("summary", {}, `Grammar: ${point.form}`),
+    h("p", { class: "rule-body" }, point.summary),
+    h("p", { class: "pattern small" }, point.pattern),
+    h("dl", { class: "examples" }, point.examples.slice(0, 2).map((example) => [
+      h("dt", { lang: "vi" }, example.vi),
+      h("dd", {}, example.en),
+    ])),
+    h("a", { href: `#/grammar/${point.id}`, class: "small" }, "Open the full explanation"));
+}
+
+function grammarRow(point) {
+  const score = grammarScore(point);
+  const progress = score.right === score.total ? "all right" : score.right ? `${score.right}/${score.total} right` : "";
+  return h("a", { class: "gp-row", href: `#/grammar/${point.id}` },
+    h("span", { class: "gp-form", lang: "vi" }, point.form),
+    h("span", { class: "gp-meaning" }, point.meaning),
+    h("span", { class: `gp-meta ${score.right === score.total ? "is-done" : ""}` }, [point.level, progress].filter(Boolean).join(" · ")));
+}
+
+function renderGrammarList() {
+  const ui = state.grammarUi;
+  const categories = [...new Set(grammar.map((p) => p.category))];
+  const list = h("div", { "aria-live": "polite" });
   const search = h("input", {
-    class: "answer-input", type: "search", lang: "vi", "aria-label": "Search words and sentences",
+    class: "answer-input", type: "search", lang: "vi", "aria-label": "Search grammar and sentences",
     autocomplete: "off", autocapitalize: "off", autocorrect: "off", spellcheck: "false",
-    placeholder: "Search Vietnamese or English",
-    oninput: () => drawResults(),
+    placeholder: "Search Vietnamese or English", oninput: () => draw(),
   });
-  const rules = h("div", {}, content.rules.map((rule) =>
-    h("section", { class: "rule" }, h("h2", {}, rule.title), renderRule(rule))));
+  const levels = h("div", { class: "segments", role: "radiogroup", "aria-label": "Level" },
+    ["All", "A1", "A2"].map((level) => h("label", {},
+      h("input", { type: "radio", name: "level", value: level, checked: ui.level === level, onchange: () => { ui.level = level; save(); draw(); } }),
+      level === "All" ? "All levels" : level)));
+  const category = h("select", { class: "select", "aria-label": "Category", onchange: (event) => { ui.category = event.target.value; save(); draw(); } },
+    h("option", { value: "All" }, "All categories"),
+    categories.map((c) => h("option", { value: c, selected: ui.category === c }, c)));
 
-  function drawResults() {
-    const query = Check.plain(search.value.trim());
-    rules.hidden = query.length > 0;
-    if (!query) return results.replaceChildren();
-    const seen = new Set();
-    const matches = content.items.filter((item) => {
-      if (seen.has(item.vi)) return false;
-      const hit = Check.plain(item.vi).includes(query) || Check.plain(item.en).includes(query);
-      if (hit) seen.add(item.vi);
-      return hit;
-    });
-    results.replaceChildren(
-      ...(matches.length === 0
-        ? [h("p", { class: "sub search-empty" }, "Nothing in your notes matches that.")]
-        : clean([
-            matches.slice(0, SEARCH_LIMIT).map((item) =>
-              h("div", { class: "review-item" },
-                h("p", { class: "mistake-vi", lang: "vi" }, item.vi),
-                h("p", { class: "mistake-en" }, item.en))),
-            matches.length > SEARCH_LIMIT && h("p", { class: "sub small search-empty" }, `Showing the first ${SEARCH_LIMIT} of ${matches.length}.`),
-          ])),
-    );
+  // Compare word by word, without marks or punctuation, so "co khong" finds "có … không".
+  const searchable = (text) => Check.words(text).map(Check.plain).join(" ");
+
+  function draw() {
+    const query = searchable(search.value);
+    const matchesQuery = (p) => !query || [p.form, p.meaning, p.summary, p.pattern, ...p.examples.flatMap((e) => [e.vi, e.en])].some((text) => searchable(text).includes(query));
+    const shown = grammar.filter((p) => (ui.level === "All" || p.level === ui.level) && (ui.category === "All" || p.category === ui.category) && matchesQuery(p));
+    const groups = categories.filter((c) => shown.some((p) => p.category === c));
+    const sentences = query ? content.items.filter((item, i, all) =>
+      (searchable(item.vi).includes(query) || searchable(item.en).includes(query)) && all.findIndex((o) => o.vi === item.vi) === i) : [];
+    list.replaceChildren(...clean([
+      shown.length === 0 && h("p", { class: "sub search-empty" }, "No grammar point matches that."),
+      groups.map((group) => [h("h2", {}, group), shown.filter((p) => p.category === group).map(grammarRow)]),
+      sentences.length > 0 && [
+        h("h2", {}, "In your sentences"),
+        sentences.slice(0, SEARCH_LIMIT).map((item) => h("div", { class: "review-item" },
+          h("p", { class: "mistake-vi", lang: "vi" }, item.vi),
+          h("p", { class: "mistake-en" }, item.en))),
+      ],
+    ]));
   }
 
+  const done = grammar.filter((p) => { const s = grammarScore(p); return s.right === s.total; }).length;
   show(
-    h("h1", {}, "Notes"),
-    h("p", { class: "sub" }, "The rules from your lessons, and every word and sentence in the app."),
+    h("h1", {}, "Grammar"),
+    h("p", { class: "sub" }, `${grammar.length} patterns for beginners (A1–A2), in northern Vietnamese. Each has examples, common mistakes and practice. ${done} fully practised.`),
     h("div", { class: "search" }, search),
-    results,
-    rules,
+    h("div", { class: "grammar-filters" }, levels, category),
+    list,
   );
+  draw();
+}
+
+function renderGrammarPoint(id) {
+  const point = pointById(id);
+  if (!point) return renderGrammarList();
+  const related = (point.related || []).map(pointById).filter(Boolean);
+  const linkedWords = (point.words || []).map((w) => words.find((word) => word.vi === w)).filter(Boolean);
+
+  show(
+    h("a", { href: "#/grammar", class: "back-link small" }, "← All grammar"),
+    h("h1", { lang: "vi" }, point.form),
+    h("p", { class: "sub" }, `${point.meaning} · ${point.level} · ${point.category}`),
+    h("p", { class: "pattern" }, point.pattern),
+    h("p", { class: "gp-summary" }, point.summary),
+    h("h2", {}, "Examples"),
+    h("dl", { class: "examples" }, point.examples.map((example) => [h("dt", { lang: "vi" }, example.vi), h("dd", {}, example.en)])),
+    point.howTo?.length > 0 && [h("h2", {}, "How to use it"), h("ul", { class: "plain-list" }, point.howTo.map((line) => h("li", {}, line)))],
+    h("h2", {}, "Compared with English"),
+    h("p", {}, point.english),
+    point.mistakes?.length > 0 && [
+      h("h2", {}, "Common mistakes"),
+      point.mistakes.map((m) => h("div", { class: "mistake-pair" },
+        h("p", { class: "pair-wrong", lang: "vi" }, h("span", { class: "sr-only" }, "Wrong: "), m.wrong),
+        h("p", { class: "pair-right", lang: "vi" }, h("span", { class: "sr-only" }, "Right: "), m.right),
+        h("p", { class: "sub small" }, m.why))),
+    ],
+    h("h2", {}, "Practice"),
+    point.practice.map((question, n) => practiceQuestion(point, question, n)),
+    related.length > 0 && [h("h2", {}, "Related"), h("div", { class: "chips" }, related.map((p) => h("a", { class: "chip", href: `#/grammar/${p.id}`, lang: "vi" }, p.form)))],
+    linkedWords.length > 0 && [h("h2", {}, "In the top 1000 words"), h("p", { class: "sub" }, linkedWords.map((w) => `${w.vi} (#${w.rank})`).join(" · "))],
+  );
+}
+
+function practiceQuestion(point, q, n) {
+  const box = h("section", { class: "practice-q" });
+  const done = state.grammar.right[grammarKey(point.id, n)];
+
+  function draw() {
+    const head = [
+      h("p", { class: "instruction" }, `${n + 1}. ${QUESTION_LABELS[q.type]}${done ? " · answered right before" : ""}`),
+      h("p", { class: "pq-prompt", lang: q.type === "fix" || q.type === "truefalse" ? "vi" : null }, q.q),
+    ];
+    if (q.type === "choice" || q.type === "truefalse") {
+      const options = q.type === "choice" ? q.options : ["Right", "Wrong"];
+      const right = q.type === "choice" ? q.answer : q.answer ? "Right" : "Wrong";
+      const buttons = options.map((text) => h("button", {
+        class: "option", type: "button", lang: q.type === "choice" ? "vi" : null,
+        onclick: (clicked) => {
+          const correct = text === right;
+          buttons.forEach((b, i) => {
+            b.disabled = true;
+            if (options[i] === right) b.classList.add("is-right");
+            else if (b === clicked.currentTarget) b.classList.add("is-wrong");
+          });
+          recordGrammar(point, n, correct, text);
+          box.append(h("div", { class: "pq-feedback" },
+            h("strong", { class: `verdict ${correct ? "right" : "wrong"}` }, correct ? "Correct" : "Not quite"),
+            q.why && h("p", {}, q.why),
+            h("button", { class: "btn link", type: "button", onclick: draw }, "Try again")));
+        },
+      }, text));
+      box.replaceChildren(...head, h("div", { class: "options" }, buttons));
+      return;
+    }
+    const accepted = [q.answer, ...(q.alt || [])];
+    const input = h("input", {
+      class: "answer-input", type: "text", lang: "vi", "aria-label": "Your answer",
+      autocomplete: "off", autocapitalize: "off", autocorrect: "off", spellcheck: "false",
+      placeholder: "Type here, no marks needed",
+    });
+    const check = (typed) => {
+      const result = { ...Check.checkAnswer(typed, accepted, { tips: content.tips }), typed };
+      recordGrammar(point, n, result.correct, typed);
+      const typedWrong = !result.correct && !result.kinds.skipped;
+      const lines = typedWrong ? explainMistakes(result) : [];
+      box.replaceChildren(...head, h("div", { class: "pq-feedback" },
+        verdictFor(result),
+        typedWrong && [h("p", { class: "line-label" }, "You wrote"), h("p", { class: "words", lang: "vi" }, typedLine(result))],
+        h("p", { class: "line-label" }, "Correct answer"),
+        h("p", { class: "words", lang: "vi" }, typedWrong ? expectedLine(result) : result.answer),
+        lines.length > 0 && h("ul", { class: "mistake-list" }, lines.map((line) => h("li", {}, line))),
+        result.tips.length > 0 && h("div", { class: "tip" }, result.tips.map((tip) => h("p", {}, tip))),
+        h("div", { class: "actions" },
+          h("button", { class: "btn", type: "button", onclick: draw }, "Try again"),
+          typedWrong && h("button", { class: "btn link", type: "button", onclick: () => { recordGrammar(point, n, true, typed); draw(); } }, "My answer was fine"))));
+    };
+    box.replaceChildren(...head,
+      h("form", { onsubmit: (event) => { event.preventDefault(); check(input.value); } },
+        input,
+        h("div", { class: "actions" },
+          h("button", { class: "btn primary", type: "submit" }, "Check"),
+          h("button", { class: "btn link", type: "button", onclick: () => check("") }, "Show answer"))));
+  }
+
+  draw();
+  return box;
 }
 
 // ---------- Words (spaced repetition) ----------
@@ -818,9 +979,12 @@ function toneChips(text) {
 
 function wordDetails(word) {
   const examples = examplesFor(word);
+  const points = pointsForWord(word.vi).slice(0, 3);
   return [
     h("p", { class: "card-meaning" }, word.en),
     toneChips(word.vi),
+    points.length > 0 && h("p", { class: "card-grammar small" }, "Grammar: ",
+      points.map((p, i) => [i ? " · " : "", h("a", { href: `#/grammar/${p.id}`, lang: "vi" }, p.form)])),
     examples.length > 0 && h("div", { class: "card-examples" },
       h("p", { class: "line-label" }, "In your notes"),
       examples.map((item) => h("p", {}, vi(item.vi, { class: "example-vi" }), h("span", { class: "sub small" }, ` ${item.en}`)))),
@@ -1038,8 +1202,28 @@ function exportForAnki() {
 
 // ---------- Mistakes ----------
 
+function grammarMistakes() {
+  const misses = openGrammarMisses().sort((a, b) => b.miss.at - a.miss.at);
+  if (misses.length === 0) return null;
+  return [
+    h("h2", {}, "Grammar"),
+    h("p", { class: "sub small" }, "Practice questions from the grammar guide. They leave this list once you answer them right."),
+    misses.map(({ point, question, miss }) => h("div", { class: "mistake" },
+      h("p", { class: "mistake-vi", lang: question.type === "fix" || question.type === "truefalse" ? "vi" : null }, question.q),
+      h("p", { class: "mistake-en" }, "Answer: ",
+        vi(question.type === "truefalse" ? (question.answer ? "right" : "wrong") : question.answer)),
+      miss.typed ? h("p", { class: "mistake-typed" }, "Last answer: ", vi(miss.typed)) : null,
+      h("a", { href: `#/grammar/${point.id}`, class: "small" }, `Practise ${point.form}`))),
+  ];
+}
+
 function renderMistakes() {
   const items = openMistakes().sort((a, b) => state.progress[itemKey(b)].misses - state.progress[itemKey(a)].misses);
+  const grammarPart = grammarMistakes();
+  if (items.length === 0 && grammarPart) {
+    show(h("h1", {}, "Mistakes"), grammarPart);
+    return;
+  }
   if (items.length === 0) {
     show(
       h("h1", {}, "Mistakes"),
@@ -1072,21 +1256,31 @@ function renderMistakes() {
         p.lastTyped ? h("p", { class: "mistake-typed" }, "Last answer: ", vi(p.lastTyped)) : null,
         p.misses > 1 ? h("p", { class: "mistake-typed" }, `Wrong ${p.misses} times`) : null);
     })),
+    grammarPart,
   );
 }
 
 // ---------- Routing and startup ----------
 
-const routes = { practice: renderPractice, words: renderWords, letters: renderLetters, notes: renderNotes, mistakes: renderMistakes };
+const routes = {
+  practice: renderPractice,
+  words: renderWords,
+  sounds: renderLetters,
+  grammar: (id) => (id ? renderGrammarPoint(decodeURIComponent(id)) : renderGrammarList()),
+  mistakes: renderMistakes,
+};
+// Old addresses from before the rename.
+const ROUTE_ALIASES = { letters: "sounds", notes: "grammar" };
 
 function route() {
-  const name = location.hash.replace("#/", "") || "practice";
+  const [raw, param] = location.hash.replace(/^#\/?/, "").split("/");
+  const name = ROUTE_ALIASES[raw] || raw || "practice";
   const render = routes[name] || renderPractice;
   document.querySelectorAll("nav a").forEach((link) => {
     if (link.dataset.route === name) link.setAttribute("aria-current", "page");
     else link.removeAttribute("aria-current");
   });
-  render();
+  render(param);
 }
 
 document.addEventListener("keydown", (event) => {
@@ -1095,11 +1289,10 @@ document.addEventListener("keydown", (event) => {
 
 async function start() {
   try {
-    const [contentResponse, wordsResponse] = await Promise.all([fetch("data/content.json"), fetch("data/words.json")]);
-    if (!contentResponse.ok) throw new Error(`content: ${contentResponse.status}`);
-    if (!wordsResponse.ok) throw new Error(`words: ${wordsResponse.status}`);
-    content = await contentResponse.json();
-    words = await wordsResponse.json();
+    const responses = await Promise.all(["content", "words", "grammar"].map((name) => fetch(`data/${name}.json`)));
+    const failed = responses.find((r) => !r.ok);
+    if (failed) throw new Error(`${failed.url}: ${failed.status}`);
+    [content, words, grammar] = await Promise.all(responses.map((r) => r.json()));
   } catch (error) {
     app.replaceChildren(h("p", {}, "The lessons couldn't load. If you opened this file directly, run it through a local server: python -m http.server"));
     console.error(error);
