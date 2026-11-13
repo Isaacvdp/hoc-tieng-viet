@@ -335,6 +335,7 @@ button:disabled { cursor: not-allowed; opacity: 0.5; }
 .word-study .actions { margin-top: 12px; }
 .due-line { font-weight: 600; font-variant-numeric: tabular-nums; }
 .word-list { margin-top: 8px; }
+.tier-picker { margin-top: 12px; }
 .word-row {
   display: grid;
   grid-template-columns: 32px minmax(72px, auto) 1fr auto;

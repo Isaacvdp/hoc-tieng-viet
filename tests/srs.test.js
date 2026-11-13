@@ -7,10 +7,15 @@ const { MINUTE, DAY } = SRS;
 
 const now = new Date(2026, 10, 13, 9, 0).getTime();
 
-// Word list: 100 unique, ranked 1..100, every word has a meaning.
-assert.equal(words.length, 100);
-words.forEach((w, i) => { assert.equal(w.rank, i + 1); assert(w.vi && w.en, w.rank); assert.equal(w.vi, w.vi.normalize("NFC")); });
-assert.equal(new Set(words.map((w) => w.vi)).size, 100);
+// Word list: 1000 unique, ranked 1..1000, every word has a tidy meaning.
+assert.equal(words.length, 1000);
+words.forEach((w, i) => {
+  assert.equal(w.rank, i + 1);
+  assert(w.vi && w.en, w.rank);
+  assert.equal(w.vi, w.vi.normalize("NFC"), w.vi);
+  assert(!/[／]|\s\/|\/\s/.test(w.en), "messy separator: " + w.en);
+});
+assert.equal(new Set(words.map((w) => w.vi)).size, 1000);
 
 // Learning steps: 1 minute, then 10 minutes, then graduate to 1 day.
 let card = SRS.newCard("1:r");

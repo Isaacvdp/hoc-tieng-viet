@@ -873,24 +873,65 @@ function renderWords() {
 
   show(
     h("h1", {}, "Words"),
-    h("p", { class: "sub" }, "The 100 most common Vietnamese words, a few new ones each day. Cards come back just before you'd forget them."),
+    h("p", { class: "sub" }, "The 1000 most common Vietnamese words, most common first, a few new ones each day. Cards come back just before you'd forget them."),
     h("div", { class: "word-study" }, study),
     h("h2", {}, "New words per day"),
     perDay,
-    h("h2", {}, "Progress"),
+    h("h2", {}, "All words"),
     h("p", { class: "sub" }, `${started} of ${words.length} started · ${inReview} past the learning stage`),
-    h("div", { class: "word-list" }, words.map((word) => {
-      const status = wordStatus(word, now);
-      return h("div", { class: "word-row" },
-        h("span", { class: "word-rank" }, word.rank),
-        h("span", { class: "word-vi", lang: "vi" }, word.vi),
-        h("span", { class: "word-en" }, word.en),
-        h("span", { class: `word-status ${status.cls}` }, status.text));
-    })),
+    wordBrowser(now),
     h("div", { class: "actions" },
       h("button", { class: "btn", type: "button", onclick: exportForAnki }, "Download for Anki")),
     h("p", { class: "sub small" }, "Imports into the Anki app as Basic (and reversed card) notes. Progress here and in Anki is separate."),
   );
+}
+
+const TIERS = [
+  { id: 100, label: "1–100", from: 1, to: 100 },
+  { id: 500, label: "101–500", from: 101, to: 500 },
+  { id: 1000, label: "501–1000", from: 501, to: 1000 },
+];
+const tierOf = (rank) => TIERS.find((t) => rank >= t.from && rank <= t.to).id;
+
+// Shows one tier at a time, or search results across all 1000 words.
+function wordBrowser(now) {
+  const list = h("div", { class: "word-list", "aria-live": "polite" });
+  const search = h("input", {
+    class: "answer-input", type: "search", lang: "vi", "aria-label": "Search the 1000 words",
+    autocomplete: "off", autocapitalize: "off", autocorrect: "off", spellcheck: "false",
+    placeholder: "Search Vietnamese or English", oninput: () => draw(),
+  });
+  const tiers = h("div", { class: "segments", role: "radiogroup", "aria-label": "Word range" },
+    TIERS.map((tier) => h("label", {},
+      h("input", {
+        type: "radio", name: "tier", value: tier.id, checked: (state.words.tier || 100) === tier.id,
+        onchange: () => { state.words.tier = tier.id; save(); draw(); },
+      }),
+      tier.label)));
+
+  function row(word) {
+    const status = wordStatus(word, now);
+    return h("div", { class: "word-row" },
+      h("span", { class: "word-rank" }, word.rank),
+      h("span", { class: "word-vi", lang: "vi" }, word.vi),
+      h("span", { class: "word-en" }, word.en),
+      h("span", { class: `word-status ${status.cls}` }, status.text));
+  }
+
+  function draw() {
+    const query = Check.plain(search.value.trim());
+    tiers.hidden = query.length > 0;
+    if (query) {
+      const hits = words.filter((w) => Check.plain(w.vi).includes(query) || w.en.toLowerCase().includes(query));
+      list.replaceChildren(...(hits.length ? hits.slice(0, 100).map(row) : [h("p", { class: "sub search-empty" }, "No word matches that.")]));
+      return;
+    }
+    const tier = TIERS.find((t) => t.id === (state.words.tier || 100));
+    list.replaceChildren(...words.filter((w) => w.rank >= tier.from && w.rank <= tier.to).map(row));
+  }
+
+  draw();
+  return h("div", {}, h("div", { class: "search" }, search), h("div", { class: "tier-picker" }, tiers), list);
 }
 
 function studyWords(session = { done: 0 }) {
@@ -985,10 +1026,10 @@ function exportForAnki() {
   const lines = ["#separator:tab", "#html:true", "#notetype:Basic (and reversed card)", "#tags column:3"];
   for (const word of words) {
     const examples = examplesFor(word).map((item) => `<br><i>${clean(item.vi)}</i> = ${clean(item.en)}`).join("");
-    lines.push([clean(word.vi), `${clean(word.en)}${examples}`, `vietnamese top100 rank${String(word.rank).padStart(3, "0")}`].join("\t"));
+    lines.push([clean(word.vi), `${clean(word.en)}${examples}`, `vietnamese top${tierOf(word.rank)} rank${String(word.rank).padStart(4, "0")}`].join("\t"));
   }
   const blob = new Blob([lines.join("\n") + "\n"], { type: "text/plain;charset=utf-8" });
-  const link = h("a", { href: URL.createObjectURL(blob), download: "vietnamese-top-100.txt" });
+  const link = h("a", { href: URL.createObjectURL(blob), download: "vietnamese-top-1000.txt" });
   document.body.append(link);
   link.click();
   link.remove();
